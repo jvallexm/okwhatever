@@ -10,7 +10,7 @@ module.exports = function(app){
       },
       function(accessToken, refreshToken, profile, cb) {
         console.log(JSON.stringify(profile));
-        return cb();
+        return cb(false,{ facebookId: profile.id });
       }
     ));
 
