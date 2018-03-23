@@ -27,13 +27,7 @@ passport.use(new FacebookStrategy({
   }
 ));
 
-app.get('/auth/facebook',
-  passport.authenticate('facebook'));
- 
-app.get('/auth/facebook/callback?',
-  (req,res)=>{
-      res.send("ding");
-  });
+require('./routes/authRoutes.js')(passport,app);
 
 
 app.get('/test',(req,res)=>{
