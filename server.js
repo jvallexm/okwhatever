@@ -6,7 +6,6 @@ const path             = require("path");
 const exphbs           = require("express-handlebars");
 const passport         = require("passport");
 const env              = require('dotenv').config();
-const FacebookStrategy = require("passport-facebook").Strategy;
 const session          = require('express-session');
 const parseurl         = require('parseurl')
 

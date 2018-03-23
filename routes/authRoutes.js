@@ -1,3 +1,5 @@
+const FacebookStrategy = require("passport-facebook").Strategy;
+
 module.exports = function(passport,app){
 
     passport.use(new FacebookStrategy({
