@@ -9,6 +9,9 @@ const session          = require('express-session');
 
 app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
 
+app.use( express.cookieParser()                         );
+app.use( express.bodyParser()                           );
+app.use( express.cookieSession()                        );
 app.use( bodyParser.urlencoded({ extended: false })     ); 
 app.use( bodyParser.json()                              );
 app.use( express.static(path.join(__dirname, 'public')) );
