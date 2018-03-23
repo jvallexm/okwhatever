@@ -20,7 +20,7 @@ app.set("view engine", "handlebars");
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "/auth/facebook/callback"
+    callbackURL: "http://okwhatever.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb("hot poppers");
@@ -30,7 +30,7 @@ passport.use(new FacebookStrategy({
 app.get('/auth/facebook',
   passport.authenticate('facebook'));
  
-app.get('/auth/facebook/callback?',
+app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home. 
