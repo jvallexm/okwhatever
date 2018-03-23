@@ -10,7 +10,9 @@ module.exports = function(app){
       },
       function(accessToken, refreshToken, profile, cb) {
         console.log(JSON.stringify(profile));
-        return cb(false,{ facebookId: profile.id });
+        User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+            return cb(err, user);
+        });
       }
     ));
 
