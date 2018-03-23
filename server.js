@@ -4,12 +4,8 @@ const app              = express();                // Initializes express
 const bodyParser       = require("body-parser");
 const path             = require("path");
 const exphbs           = require("express-handlebars");
-const passport         = require("passport");
 const env              = require('dotenv').config();
 const session          = require('express-session');
-const parseurl         = require('parseurl')
-
-
 
 app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
 
@@ -27,10 +23,7 @@ app.use(session({
     logged_in: false
 }));
 
-require('./routes/authRoutes.js')(passport,app);
-
-
-
+require('./routes/authRoutes.js')(app);
 
 app.get('/test',(req,res)=>{
     res.sendFile( path.join(__dirname + `/public/test.html`));
