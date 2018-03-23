@@ -1,15 +1,16 @@
 const FacebookStrategy = require("passport-facebook").Strategy;
 const passport         = require("passport");
 
-module.exports = function(app){
+module.exports = function(app,session){
 
     passport.serializeUser(function(user, done) {
         console.log("serialize user");
+        session.user = user;
         done(null, user);
     });
       
     passport.deserializeUser(function(user, done) {
-        console.log("serialize user");
+        console.log("deserialize user");
         done(null, user);
     });
 
@@ -30,7 +31,9 @@ module.exports = function(app){
       }
     ));
 
-
+    app.use(express.cookieParser());
+    app.use(express.bodyParser());
+    app.use(express.cookieSession());
     app.use(passport.initialize());
     app.use(passport.session());
 

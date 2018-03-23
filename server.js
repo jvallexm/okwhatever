@@ -16,8 +16,12 @@ app.use( express.static(path.join(__dirname, 'public')) );
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-require('./routes/authRoutes.js')(app);
+require('./routes/authRoutes.js')(app,session);
 
 app.get('/test',(req,res)=>{
     res.sendFile( path.join(__dirname + `/public/test.html`));
+});
+
+app.get(`/`,(req,res)=>{
+    res.send(req.user);
 });
