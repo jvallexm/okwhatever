@@ -21,9 +21,8 @@ passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: "/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    return "hot poppers";
+  },()=>{
+      console.log("Hot poppers")
   }
 ));
 
