@@ -12,17 +12,15 @@ module.exports = function(app){
       },
       function(accessToken, refreshToken, profile, cb) {
         console.log(JSON.stringify(profile));
-        return cb(false,{ facebookId: profile.id });
+        if (profile) {
+            user = profile;
+            return cb(null, user);
+        }
+        else {
+            return cb(null, false);
+        }
       }
     ));
-
-    passport.serializeUser(function(user, done) {
-        done(null, user);
-    });
-      
-    passport.deserializeUser(function(user, done) {
-        done(null, user);
-    });
 
     app.use(passport.initialize());
     app.use(passport.session());
