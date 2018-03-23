@@ -24,7 +24,7 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log("you done logged in");
-    return;
+    return cb(user,err);
   }
 ));
 
