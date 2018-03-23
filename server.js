@@ -16,13 +16,6 @@ app.use( express.static(path.join(__dirname, 'public')) );
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    logged_in: false
-}));
-
 require('./routes/authRoutes.js')(app);
 
 app.get('/test',(req,res)=>{
