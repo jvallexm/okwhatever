@@ -14,6 +14,9 @@ module.exports = function(app){
       }
     ));
 
+    app.use(passport.initialize());
+    app.use(passport.session());
+
     app.get('/auth/facebook', passport.authenticate('facebook'));
 
     app.get('/auth/facebook/callback',
