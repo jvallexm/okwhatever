@@ -33,10 +33,10 @@ app.get('/auth/facebook',
   passport.authenticate('facebook'));
  
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  passport.authenticate('facebook', { failureRedirect: '/404' }),
   function(req, res) {
     // Successful authentication, redirect home. 
-    res.redirect('/fakepage');
+    res.send("ding");
   });
 
 app.get('/test',(req,res)=>{
