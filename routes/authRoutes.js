@@ -18,7 +18,7 @@ module.exports = function(app,session){
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "/auth/facebook/callback",
-        profileFields: ['id','displayName','me/likes','public_profile','user_birthday','user_location']
+        profileFields: ['id','displayName','public_profile','user_birthday','user_location']
       },
       function(accessToken, refreshToken, profile, cb) {
         console.log(JSON.stringify(profile));
