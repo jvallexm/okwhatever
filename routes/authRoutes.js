@@ -4,10 +4,12 @@ const passport         = require("passport");
 module.exports = function(app){
 
     passport.serializeUser(function(user, done) {
+        console.log("serialize user");
         done(null, user);
     });
       
     passport.deserializeUser(function(user, done) {
+        console.log("serialize user");
         done(null, user);
     });
 
