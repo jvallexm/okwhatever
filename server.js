@@ -23,7 +23,8 @@ passport.use(new FacebookStrategy({
     callbackURL: "/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log("YOU DONE LOGGED IN");
+    console.log("you done logged in");
+    return;
   }
 ));
 
