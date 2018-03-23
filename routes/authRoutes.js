@@ -12,7 +12,7 @@ module.exports = function(app,session){
     passport.deserializeUser(function(user, done) {
         console.log("deserialize user");
         done(null, user);
-    });
+    }); //Hot Poppers
 
     passport.use(new FacebookStrategy({
         clientID: process.env.FACEBOOK_APP_ID,
