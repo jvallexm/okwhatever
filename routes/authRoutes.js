@@ -4,6 +4,6 @@ module.exports = function(passport,app){
  
     app.get('/auth/facebook/callback?',(req,res)=>{
         req.session.logged_in = true;
-        res.send(req);
+        res.send("fff");
     });
 }
