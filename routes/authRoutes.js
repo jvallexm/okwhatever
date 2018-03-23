@@ -31,9 +31,6 @@ module.exports = function(app,session){
       }
     ));
 
-    app.use(express.cookieParser());
-    app.use(express.bodyParser());
-    app.use(express.cookieSession());
     app.use(passport.initialize());
     app.use(passport.session());
 
