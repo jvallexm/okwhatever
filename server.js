@@ -22,6 +22,6 @@ app.get('/test',(req,res)=>{
     res.sendFile( path.join(__dirname + `/public/test.html`));
 });
 
-app.get(`/`,(req,res)=>{
+app.get('/',(req,res)=>{
     res.send(req.user);
 });
