@@ -23,5 +23,6 @@ app.get('/test',(req,res)=>{
 });
 
 app.get('/',(req,res)=>{
+    console.log(req.user);
     res.send(req.user);
 });
