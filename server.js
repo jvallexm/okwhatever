@@ -23,8 +23,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log("you done logged in");
-    return cb(user,err);
+    return cb(err,profile);
   }
 ));
 
@@ -32,7 +31,7 @@ app.get('/auth/facebook',
   passport.authenticate('facebook'));
  
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/404' }),
+  passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
     // Successful authentication, redirect home. 
     res.send("ding");
