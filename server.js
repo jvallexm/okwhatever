@@ -23,7 +23,8 @@ passport.use(new FacebookStrategy({
     callbackURL: "/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    return cb(err,profile);
+    console.log("we sell personal information to highest bidder");
+    return cb(profile);
   }
 ));
 
