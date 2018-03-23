@@ -11,7 +11,7 @@ module.exports = function(app,session){
       
     passport.deserializeUser(function(user, done) {
         console.log("deserialize user");
-        done(null, user);
+        done(null, user); //hot poppers
     });
 
     passport.use(new FacebookStrategy({
