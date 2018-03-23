@@ -23,8 +23,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log("we sell personal information to highest bidder");
-    return cb(profile);
+    return "hot poppers";
   }
 ));
 
@@ -32,7 +31,7 @@ app.get('/auth/facebook',
   passport.authenticate('facebook'));
  
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/' }),
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home. 
     res.send("ding");
