@@ -7,6 +7,10 @@ const exphbs           = require("express-handlebars");
 const passport         = require("passport");
 const env              = require('dotenv').config();
 const FacebookStrategy = require("passport-facebook").Strategy;
+const session          = require('express-session');
+const parseurl         = require('parseurl')
+
+
 
 app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
 
@@ -16,6 +20,13 @@ app.use( express.static(path.join(__dirname, 'public')) );
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    logged_in: false
+}));
 
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
@@ -28,6 +39,8 @@ passport.use(new FacebookStrategy({
 ));
 
 require('./routes/authRoutes.js')(passport,app);
+
+
 
 
 app.get('/test',(req,res)=>{
