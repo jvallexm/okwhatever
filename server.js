@@ -26,7 +26,7 @@ app.get('/test',(req,res)=>{
 
 app.get('/login/:token',(req,res)=>{
 
-    jwt.veryify(req.params.token,"secret",(err,decoded)=>{
+    jwt.verify(req.params.token,"secret",(err,decoded)=>{
         if(err)
             res.send("error")
         res.send(decoded)
