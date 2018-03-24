@@ -47,6 +47,6 @@ module.exports = function(app,jwt){
             // Successful authentication, redirect home.
             let token = req.user.my_token;
             console.log(`sending token ${token}`);
-            res.send(token);
+            res.status(200).send({auth: true, token: token});
     });
 }
