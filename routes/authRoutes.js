@@ -46,7 +46,7 @@ module.exports = function(app,jwt){
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.get('/auth/facebook', passport.authenticate('facebook',{ scope: ['user_likes','public_profile','user_birthday','user_location','user_photos'] }));
+    app.get('/auth/facebook', passport.authenticate('facebook',{authType: 'rerequest', scope: ['user_likes','public_profile','user_birthday','user_location','user_photos','user_actions.music','user_actions.movies'] }));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
