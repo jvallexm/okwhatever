@@ -1,0 +1,118 @@
+body {
+    background-color: #ff68e8;
+}
+
+.jumbotron {
+    /*  padding: 0px;
+  margin-bottom: 0px;*/
+    background-color: #ff00d8;
+}
+
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+
+.row.content {
+    height: 550px
+}
+
+
+/* Set gray background color and 100% height */
+
+.sidenav {
+    background-color: #f1f1f1;
+    height: 150%;
+min-height: 100%;
+}
+
+
+/* On small screens, set height to 'auto' for the grid */
+
+@media screen and (max-width: 767px) {
+    .row.content {
+        height: auto;
+    }
+}
+
+.profilepic{
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-top: 10px;
+
+}
+
+.matchpic{
+	border: 1px solid black;
+	border-radius: 5px;
+/*	margin-top: 10px;*/
+margin: 0;
+/*width: 50%;*/
+float:left;
+height:auto;
+
+}
+
+* { box-sizing: border-box; }
+
+/* ---- grid ---- */
+
+.grid {
+/*  background: #EEE;
+  max-width: 1200px;*/
+	padding-left: 15px;
+	/*padding-right: 15px;*/
+}
+
+/* clearfix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 32.2%;
+   margin-bottom: 10px;
+}
+
+.grid-item {
+  /*height: 120px;*/
+  float: left;
+  background: white;
+  border: 2px solid #4978db;
+/*  border-color: hsla(0, 0%, 0%, 0.5);*/
+  border-radius: 5px;
+  padding-top: 10px; 
+}
+
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+.matchinfo {
+	margin-bottom: 10px;
+}
+
+
+.row {
+     margin-right: 0px; 
+   
+}
+
+.btn-secondary {
+	background: #4978db;
+
+}
