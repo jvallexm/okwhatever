@@ -3,10 +3,6 @@ const passport         = require("passport");
 
 module.exports = function(app,jwt){
 
-    const secret = {
-        'secret': 'secret'
-    }
-
     passport.serializeUser(function(user, done) {
         console.log("serialize user");
         done(null, user);
@@ -27,7 +23,7 @@ module.exports = function(app,jwt){
         console.log(JSON.stringify(profile));
         if (profile) {
             user = profile;
-            user.my_token = jwt.sign({id: user.id},"secret",{expiresIn:86400});
+            user.my_token = jwt.sign({id: user.id},process.env.COOKIE_SECRET,{expiresIn:86400});
             return cb(null, user);
         }
         else {
@@ -55,7 +51,7 @@ module.exports = function(app,jwt){
         let token = req.cookies.auth;
         console.log("token " + token);
         if(token){
-            jwt.verify(token,"secret",(err,data)=>{
+            jwt.verify(token,process.env.COOKIE_SECRET,(err,data)=>{
                 if(err)
                     return res.send(err);
                 else{
