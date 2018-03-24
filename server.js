@@ -6,12 +6,12 @@ const path        = require("path");
 const exphbs      = require("express-handlebars");
 const env         = require('dotenv').config();
 const jwt         = require('jsonwebtoken');
-const db          = require("./models");
+//const db          = require("./models");
 
 
-db.sequelize.sync().then(function(){
+//db.sequelize.sync().then(function(){
   app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
-})
+//})
 
 app.use( bodyParser.urlencoded({ extended: false })     ); 
 app.use( bodyParser.json()                              );
