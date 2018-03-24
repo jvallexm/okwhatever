@@ -49,4 +49,26 @@ module.exports = function(app,jwt){
             res.cookie('auth',token);
             res.redirect('/login');
     });
+
+    app.use((req,res,next)=>{
+
+        let token = req.cookies.auth;
+        console.log("token " + token);
+        if(token){
+            jwt.verify(token,"secret",(err,data)=>{
+                if(err)
+                    return res.send(err);
+                else{
+                    req.user_data = data;
+                    next();
+                }
+            })
+        } else {
+    
+            return res.redirect("/test");
+    
+        }
+    
+    });
+
 }

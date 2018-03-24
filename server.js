@@ -17,7 +17,7 @@ const cookieParser = require('cookie-parser')
 app.use( bodyParser.urlencoded({ extended: false })     ); 
 app.use( bodyParser.json()                              );
 app.use( express.static(path.join(__dirname, 'public')) );
-app.use(cookieParser())
+app.use( cookieParser()                                 );
 
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -28,27 +28,6 @@ require('./routes/authRoutes.js')(app,jwt);
 app.get('/test',(req,res)=>{
     console.log(`test request token ${req.user}`);
     res.sendFile( path.join(__dirname + `/public/test.html`));
-});
-
-app.use((req,res,next)=>{
-
-    let token = req.cookies.auth;
-    console.log("token " + token);
-    if(token){
-        jwt.verify(token,"secret",(err,data)=>{
-            if(err)
-                return res.send(err);
-            else{
-                req.user_data = data;
-                next();
-            }
-        })
-    } else {
-
-        return res.redirect("/test");
-
-    }
-
 });
 
 app.get('/login',(req,res)=>{
