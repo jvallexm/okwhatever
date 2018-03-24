@@ -24,8 +24,8 @@ app.get('/test',(req,res)=>{
     res.sendFile( path.join(__dirname + `/public/test.html`));
 });
 
-app.get('/',(req,res)=>{
+app.get('/login/:token',(req,res)=>{
 
-    res.send("ding");
+    res.send(req.params.token);
     
 });
