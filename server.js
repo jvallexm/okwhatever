@@ -23,6 +23,13 @@ app.use(cookieParser())
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+require('./routes/authRoutes.js')(app,jwt);
+
+app.get('/test',(req,res)=>{
+    console.log(`test request token ${req.user}`);
+    res.sendFile( path.join(__dirname + `/public/test.html`));
+});
+
 app.use((req,res,next)=>{
 
     let token = req.cookies.auth;
@@ -42,13 +49,6 @@ app.use((req,res,next)=>{
 
     }
 
-});
-
-require('./routes/authRoutes.js')(app,jwt);
-
-app.get('/test',(req,res)=>{
-    console.log(`test request token ${req.user}`);
-    res.sendFile( path.join(__dirname + `/public/test.html`));
 });
 
 app.get('/login',(req,res)=>{
