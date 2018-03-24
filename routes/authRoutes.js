@@ -55,7 +55,7 @@ module.exports = function(app,jwt){
             console.log("token " + token);
             res.cookie('auth',token,{httpOnly: false}); // Sets JWT token to be ready by server as cookie
             res.cookie('id',req.user.user_id);          // Sets the id as a token to be ready by the client as a cookie
-            res.redirect('/login');                     // Redirects to login
+            res.send(req.user);                     // Redirects to login
     }); 
 
     /* Middlewear to send users back to /test who have not been authorized */
