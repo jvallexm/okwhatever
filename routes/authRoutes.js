@@ -45,6 +45,6 @@ module.exports = function(app,jwt){
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res) {
             console.log("token " + req.user.my_token);
-            res.redirect('/?' + token);
+            res.redirect('/?' + req.user.my_token);
     });
 }
