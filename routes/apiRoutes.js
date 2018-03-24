@@ -4,6 +4,10 @@ module.exports = function(app){
 
     });
 
+    app.post('/api/profile/:id',(req,res)=>{
+        
+    })
+
     app.get('/api/users',(req,res)=>{
 
     });
