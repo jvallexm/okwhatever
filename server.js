@@ -35,7 +35,7 @@ app.use((req,res,next)=>{
     let token = req.cookies.auth;
 
     if(token){
-        jwt.veryify(token,"secret",(err,data)=>{
+        jwt.verify(token,"secret",(err,data)=>{
             if(err)
                 return res.status(403).send('Error');
             else{
