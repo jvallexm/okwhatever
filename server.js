@@ -5,6 +5,7 @@ const bodyParser       = require("body-parser");
 const path             = require("path");
 const exphbs           = require("express-handlebars");
 const env              = require('dotenv').config();
+const session          = require('express-session');
 
 app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
 
@@ -16,7 +17,7 @@ app.use( express.static(path.join(__dirname, 'public')) );
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-require('./routes/authRoutes.js')(app);
+require('./routes/authRoutes.js')(app,session);
 
 app.get('/test',(req,res)=>{
     res.sendFile( path.join(__dirname + `/public/test.html`));

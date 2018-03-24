@@ -11,14 +11,14 @@ module.exports = function(app,session){
       
     passport.deserializeUser(function(user, done) {
         console.log("deserialize user");
-        done(null, user); //hot poppers
+        done(null, user);
     });
 
     passport.use(new FacebookStrategy({
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "/auth/facebook/callback",
-        profileFields: ['email','birthday','first_name','location','picture','likes','photos']
+        profileFields: ['email','birthday','first_name','location','picture','photos']
       },
       function(accessToken, refreshToken, profile, cb) {
         console.log(JSON.stringify(profile));
