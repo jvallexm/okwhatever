@@ -37,7 +37,7 @@ app.use((req,res,next)=>{
     if(token){
         jwt.verify(token,"secret",(err,data)=>{
             if(err)
-                return res.status(403).send(err);
+                return res.send(err);
             else{
                 req.user_data = data;
                 next();
@@ -45,7 +45,7 @@ app.use((req,res,next)=>{
         })
     } else {
 
-        return res.redirect("/test");
+        return res.send("no ticket");
 
     }
 
