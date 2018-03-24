@@ -53,10 +53,6 @@ app.use((req,res,next)=>{
 
 app.get('/login',(req,res)=>{
 
-    jwt.verify(req.params.token,"secret",(err,decoded)=>{
-        if(err)
-            res.send("error")
-        res.send(decoded)
-    });
+    res.send(req.user_data);
     
 });
