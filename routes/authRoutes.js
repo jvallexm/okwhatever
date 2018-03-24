@@ -1,11 +1,14 @@
 const FacebookStrategy = require("passport-facebook").Strategy;
 const passport         = require("passport");
 
-module.exports = function(app,session){
+module.exports = function(app,jwt){
+
+    const secret = {
+        'secret': 'secret'
+    }
 
     passport.serializeUser(function(user, done) {
         console.log("serialize user");
-        session.user = user;
         done(null, user);
     });
       
@@ -18,7 +21,7 @@ module.exports = function(app,session){
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "/auth/facebook/callback",
-        profileFields: ['email','birthday','first_name','location','picture','photos']
+        profileFields: ['email','birthday','first_name','location','picture']
       },
       function(accessToken, refreshToken, profile, cb) {
         console.log(JSON.stringify(profile));
@@ -35,7 +38,7 @@ module.exports = function(app,session){
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.get('/auth/facebook', passport.authenticate('facebook',{ scope: ['user_likes','public_profile','user_birthday','user_location','photos'] }));
+    app.get('/auth/facebook', passport.authenticate('facebook',{ scope: ['user_likes','public_profile','user_birthday','user_location'] }));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
