@@ -1,11 +1,12 @@
-const express     = require("express");
-const port        = process.env.PORT || 8080; // Initialize the port
-const app         = express();                // Initializes express
-const bodyParser  = require("body-parser");
-const path        = require("path");
-const exphbs      = require("express-handlebars");
-const env         = require('dotenv').config();
-const jwt         = require('jsonwebtoken');
+const express      = require("express");
+const port         = process.env.PORT || 8080; // Initialize the port
+const app          = express();                // Initializes express
+const bodyParser   = require("body-parser");
+const path         = require("path");
+const exphbs       = require("express-handlebars");
+const env          = require('dotenv').config();
+const jwt          = require('jsonwebtoken');
+const cookieParser = require('cookie-parser')
 //const db          = require("./models");
 
 
@@ -16,10 +17,32 @@ const jwt         = require('jsonwebtoken');
 app.use( bodyParser.urlencoded({ extended: false })     ); 
 app.use( bodyParser.json()                              );
 app.use( express.static(path.join(__dirname, 'public')) );
+app.use(cookieParser())
 
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+app.use((req,res,next)=>{
+
+    let token = req.cookies.auth;
+
+    if(token){
+        jwt.veryify(token,"secret",(err,data)=>{
+            if(err)
+                return res.status(403).send('Error');
+            else{
+                req.user_data = data;
+                next();
+            }
+        })
+    } else {
+
+        return res.redirect("/test");
+
+    }
+
+});
 
 require('./routes/authRoutes.js')(app,jwt);
 
@@ -28,7 +51,7 @@ app.get('/test',(req,res)=>{
     res.sendFile( path.join(__dirname + `/public/test.html`));
 });
 
-app.get('/login/:token',(req,res)=>{
+app.get('/login',(req,res)=>{
 
     jwt.verify(req.params.token,"secret",(err,decoded)=>{
         if(err)
