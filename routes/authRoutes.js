@@ -3,29 +3,39 @@ const passport         = require("passport");
 
 module.exports = function(app,jwt){
 
+    /* Passport Serialize User */
+
     passport.serializeUser(function(user, done) {
         console.log("serialize user");
         done(null, user);
     });
+
+    /* Passport Deserialize User */
       
     passport.deserializeUser(function(user, done) {
         console.log("deserialize user");
         done(null, user);
     });
 
+    /* Passport Facebook Strategy */
+
     passport.use(new FacebookStrategy({
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: "/auth/facebook/callback",
+        callbackURL: "/auth/facebook/callback", 
         profileFields: ['email','birthday','first_name','location','picture']
       },
       function(accessToken, refreshToken, profile, cb) {
-        console.log(JSON.stringify(profile));
+        console.log(JSON.stringify(profile)); // Logs profile data
+    
         if (profile) {
-            user = profile;
-            user.my_token = jwt.sign({id: user.id},process.env.COOKIE_SECRET,{expiresIn:86400});
-            user.user_id = user.id;
-            return cb(null, user);
+            user = profile; // Sets the user to be the returned profiles
+            // Creates a JWT for the user
+            user.my_token = jwt.sign( {id: user.id},
+                                      process.env.COOKIE_SECRET,
+                                      {expiresIn:86400}          );
+            user.user_id = user.id; // Saves the user is to be set as a client side cookie
+            return cb(null, user);  // Returns the user
         }
         else {
             return cb(null, false);
@@ -43,10 +53,12 @@ module.exports = function(app,jwt){
         function(req, res) {
             let token = req.user.my_token;
             console.log("token " + token);
-            res.cookie('auth',token,{httpOnly: false});
-            res.cookie('id',req.user.user_id);
-            res.redirect('/login');
-    });
+            res.cookie('auth',token,{httpOnly: false}); // Sets JWT token to be ready by server as cookie
+            res.cookie('id',req.user.user_id);          // Sets the id as a token to be ready by the client as a cookie
+            res.redirect('/login');                     // Redirects to login
+    }); 
+
+    /* Middlewear to send users back to /test who have not been authorized */
 
     app.use((req,res,next)=>{
 
