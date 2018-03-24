@@ -1,8 +1,4 @@
-
-
-app.get('/foo',(req,res)=>{
-
-});const express      = require("express");
+const express      = require("express");
 const port         = process.env.PORT || 8080; // Initialize the port
 const app          = express();                // Initializes express
 const bodyParser   = require("body-parser");
