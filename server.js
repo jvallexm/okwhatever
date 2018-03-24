@@ -7,8 +7,11 @@ const exphbs           = require("express-handlebars");
 const passport         = require("passport");
 const env              = require('dotenv').config();
 const FacebookStrategy = require("passport-facebook").Strategy;
+const db               = require("./models");
 
-app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
+db.sequelize.sync().then(function(){
+  app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
+})
 
 app.use( bodyParser.urlencoded({ extended: false })     ); 
 app.use( bodyParser.json()                              );
