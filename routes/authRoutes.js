@@ -44,7 +44,7 @@ module.exports = function(app,jwt){
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res) {
-            console.log("token " + req.user.token);
+            console.log("token " + req.user.my_token);
             res.redirect('/');
     });
 }
