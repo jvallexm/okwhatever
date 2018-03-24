@@ -33,11 +33,11 @@ app.get('/test',(req,res)=>{
 app.use((req,res,next)=>{
 
     let token = req.cookies.auth;
-
+    console.log("token " + token);
     if(token){
         jwt.verify(token,"secret",(err,data)=>{
             if(err)
-                return res.status(403).send('Error');
+                return res.status(403).send(err);
             else{
                 req.user_data = data;
                 next();
