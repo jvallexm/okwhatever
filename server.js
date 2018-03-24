@@ -1,4 +1,8 @@
-const express      = require("express");
+
+
+app.get('/foo',(req,res)=>{
+
+});const express      = require("express");
 const port         = process.env.PORT || 8080; // Initialize the port
 const app          = express();                // Initializes express
 const bodyParser   = require("body-parser");
@@ -45,7 +49,7 @@ app.use((req,res,next)=>{
         })
     } else {
 
-        return res.send("no ticket");
+        return res.redirect("/test");
 
     }
 
@@ -55,4 +59,10 @@ app.get('/login',(req,res)=>{
 
     res.send(req.user_data);
     
+});
+
+app.get('/foo',(req,res)=>{
+
+    res.send(req.user_data);    
+
 });
