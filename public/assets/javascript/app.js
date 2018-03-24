@@ -20,7 +20,7 @@ $(document).ready(()=>{
         return "";
     }
     function checkCookie() {
-        var username = getCookie("auth");
+        var username = getCookie("id");
         if (username != "") {
             alert("Welcome again " + username);
         }

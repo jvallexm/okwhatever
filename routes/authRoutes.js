@@ -44,6 +44,7 @@ module.exports = function(app,jwt){
             let token = req.user.my_token;
             console.log("token " + token);
             res.cookie('auth',token,{httpOnly: false});
+            res.cookie('id',req.user.user_id);
             res.redirect('/login');
     });
 
