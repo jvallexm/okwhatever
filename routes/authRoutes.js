@@ -75,7 +75,7 @@ module.exports = function(app,jwt){
             })
         } else {
     
-            return res.redirect("/test");
+            return res.redirect("/login");
     
         }
     
