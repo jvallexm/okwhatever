@@ -23,7 +23,7 @@ module.exports = function(app,jwt){
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "/auth/facebook/callback", 
-        profileFields: ['email','birthday','first_name','location','picture']
+        profileFields: ['email','birthday','first_name','location','picture','photos']
       },
       function(accessToken, refreshToken, profile, cb) {
         console.log(JSON.stringify(profile)); // Logs profile data
@@ -46,7 +46,7 @@ module.exports = function(app,jwt){
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.get('/auth/facebook', passport.authenticate('facebook',{ scope: ['user_likes','public_profile','user_birthday','user_location'] }));
+    app.get('/auth/facebook', passport.authenticate('facebook',{ scope: ['user_likes','public_profile','user_birthday','user_location','user_photos'] }));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),

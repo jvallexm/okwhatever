@@ -24,8 +24,9 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.get('/test',(req,res)=>{
-    console.log(`test request token ${req.user}`);
+
     res.sendFile( path.join(__dirname + `/public/test.html`));
+    
 });
 
 require('./routes/authRoutes.js')(app,jwt);
