@@ -27,7 +27,7 @@ module.exports = function(app,jwt){
         console.log(JSON.stringify(profile));
         if (profile) {
             user = profile;
-            user.my_token = jwt.sign({id: user.id},secret,{expiresIn: 86400})
+            user.my_token = jwt.sign({id: user.id},"secret",{expiresIn: 86400})
             return cb(null, user);
         }
         else {
