@@ -21,7 +21,7 @@ app.set("view engine", "handlebars");
 require('./routes/authRoutes.js')(app,jwt);
 
 app.get('/test',(req,res)=>{
-    console.log(`test request token ${req.token}`);
+    console.log(`test request token ${req.user}`);
     res.sendFile( path.join(__dirname + `/public/test.html`));
 });
 
