@@ -24,6 +24,7 @@ module.exports = function(app,jwt){
         if (profile) {
             user = profile;
             user.my_token = jwt.sign({id: user.id},process.env.COOKIE_SECRET,{expiresIn:86400});
+            user.user_id = user.id;
             return cb(null, user);
         }
         else {
@@ -43,6 +44,7 @@ module.exports = function(app,jwt){
             let token = req.user.my_token;
             console.log("token " + token);
             res.cookie('auth',token);
+            res.cookie('id',req.user.user_id);
             res.redirect('/login');
     });
 
