@@ -1,6 +1,9 @@
 module.exports = function(sequelize, DataTypes){
     const message = sequelize.define("message", {
-        id:         DataTypes.STRING,
+        id:         {
+            type: DataTypes.STRING,
+            primaryKey: true
+        },
         fromId:     DataTypes.STRING,
         inboxTo:    DataTypes.BOOLEAN,
         inboxFrom:  DataTypes.BOOLEAN,
