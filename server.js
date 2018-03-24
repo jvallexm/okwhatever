@@ -38,6 +38,6 @@ app.get('/login',(req,res)=>{
 
 app.get('/foo',(req,res)=>{
 
-    res.send(req.id);    
+    res.send(req.user_data);    
 
 });
