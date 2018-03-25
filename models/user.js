@@ -4,13 +4,16 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.STRING,
             primaryKey: true
         },
-        image:         DataTypes.STRING,                   //not sure if string is correct.
-        name:          DataTypes.STRING,
-        likes:         DataTypes.STRING,
-        brithday:      DataTypes.STRING,
-        bio:           DataTypes.STRING,
-        gender:        DataTypes.STRING,
-        interested_in: DataTypes.STRING
+        image:         DataTypes.STRING,  // not sure if string is correct.
+        name:          DataTypes.STRING,  // User First Name
+        likes:         DataTypes.STRING,  // For FB likes, now
+        brithday:      DataTypes.INTEGER, // Parsed into age by client
+        bio:           DataTypes.STRING,  // A Short (or long) description of the person
+        gender:        DataTypes.STRING,  // Person's gender (give a lot of options for inclusivity)
+        interested_in: DataTypes.STRING,  // Information about who the user is interested in
+        faves:         DataTypes.STRING,  // A few of their favorite things
+        wants_to:      DataTypes.STRING , // Activities the user would want to do
+        flirts_on:     DataTypes.BOOLEAN  // Switch to toggle the "flirt" button
     });
     return user;
 }
