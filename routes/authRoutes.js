@@ -1,6 +1,7 @@
 const FacebookStrategy = require("passport-facebook").Strategy;
 const passport         = require("passport");
 const jwt              = require('jsonwebtoken');
+const path             = require('path');
 
 module.exports = function(app){
 
