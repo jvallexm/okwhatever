@@ -29,15 +29,5 @@ app.get('/login',(req,res)=>{
 });
 
 require('./routes/authRoutes.js')(app,jwt);
-
-app.get('/test',(req,res)=>{
-
-    res.send(req.user_data);
-    
-});
-
-app.get('/foo',(req,res)=>{
-
-    res.send(req.user_data);    
-
-});
+require('./routes/profileCheck.js')(app);
+require('./routes/htmlRoutes.js')(app);

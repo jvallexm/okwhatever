@@ -40,4 +40,21 @@ module.exports = function(app){
 
     });
 
+    // Testing routes
+
+    app.get('/test',(req,res)=>{
+
+        res.send(req.user_data);
+        
+    });
+    
+    app.get('/foo',(req,res)=>{
+    
+        res.send(req.user_data);    
+    
+    });
+        
+
+
+
 }
