@@ -72,7 +72,7 @@ module.exports = function(app){
             res.cookie('auth',token,{httpOnly: false}); // Sets JWT token to be ready by server as cookie
             res.cookie('id',req.user.user_id);          // Sets the id as a token to be ready by the client as a cookie
             res.send(req.user._json);                   // Redirects to login
-            
+
     }); 
 
     /* Middlewear to send users back to /login who have not been authorized */
@@ -89,7 +89,7 @@ module.exports = function(app){
                     req.user_data = data;
                     next();
                 }
-            })
+            });
         } else {
     
             return res.redirect("/login");
