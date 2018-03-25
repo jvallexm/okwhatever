@@ -58,7 +58,7 @@ module.exports = function(app,jwt){
             res.send(req.user._json);                     // Redirects to login
     }); 
 
-    /* Middlewear to send users back to /test who have not been authorized */
+    /* Middlewear to send users back to /login who have not been authorized */
 
     app.use((req,res,next)=>{
 
