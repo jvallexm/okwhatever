@@ -5,7 +5,6 @@ const bodyParser   = require("body-parser");
 const path         = require("path");
 const exphbs       = require("express-handlebars");
 const env          = require('dotenv').config();
-const jwt          = require('jsonwebtoken');
 const cookieParser = require('cookie-parser')
 //const db          = require("./models");
 
@@ -22,13 +21,7 @@ app.use( cookieParser()                                 );
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.get('/login',(req,res)=>{
-
-    res.sendFile( path.join(__dirname + `/public/login.html`));
-
-});
-
 require( './routes/authRoutes.js'   )(app);
 require( './routes/profileCheck.js' )(app);
-require( './routes/apiRoutes.js'    )(app)
+require( './routes/apiRoutes.js'    )(app);
 require( './routes/htmlRoutes.js'   )(app);

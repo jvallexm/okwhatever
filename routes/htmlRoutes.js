@@ -1,5 +1,12 @@
 module.exports = function(app){
 
+    // If logged in defaults to...
+
+    app.get(`/`,(req,res)=>{
+
+    });
+
+
     // Route to edit your profile
     app.get(`/edit`,(req,res)=>{
 
