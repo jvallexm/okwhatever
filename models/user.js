@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes){
         image:         DataTypes.STRING,                   //not sure if string is correct.
         name:          DataTypes.STRING,
         likes:         DataTypes.STRING,
-        brithdat:      DataTypes.STRING,
+        brithday:      DataTypes.STRING,
         bio:           DataTypes.STRING,
         gender:        DataTypes.STRING,
         interested_in: DataTypes.STRING
