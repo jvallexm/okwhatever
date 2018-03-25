@@ -13,8 +13,10 @@ module.exports = function(sequelize, DataTypes){
         interested_in: DataTypes.STRING,  // Information about who the user is interested in
         faves:         DataTypes.STRING,  // A few of their favorite things
         wants_to:      DataTypes.STRING , // Activities the user would want to do
-        flirts_on:     DataTypes.BOOLEAN  // Switch to toggle the "flirt" button
+        flirts_on:     DataTypes.BOOLEAN,  // Switch to toggle the "flirt" button
+        last_online:   DataTypes.INTEGER // When the user was last online
     });
+
     return user;
 }
 
