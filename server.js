@@ -31,7 +31,7 @@ app.get('/login',(req,res)=>{
     
 });
 
-require( './routes/authRoutes.js'   )(app);
+//require( './routes/authRoutes.js'   )(app);
 require( './routes/profileCheck.js' )(app);
 require( './routes/apiRoutes.js'    )(app);
 require( './routes/htmlRoutes.js'   )(app);
