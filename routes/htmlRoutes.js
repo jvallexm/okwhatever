@@ -1,19 +1,33 @@
 module.exports = function(app){
     
 
+    // Route to edit your profile
+    app.get(`/edit`,(req,res)=>{
+
+        let user = req.user_data.id;
+
+    });
+
+    // Middlewear to redirect to edit page if incomplete profile
+
+    app.use((req,res,next)=>{
+
+        // If you profile isn't complete...
+
+        //res.redirect(`/edit`);
+
+        //else
+
+        //next();
+
+
+    });
+
     // If logged in defaults to...
 
     app.get(`/`,(req,res)=>{
 
         res.redirect(`/matches`);
-
-    });
-
-
-    // Route to edit your profile
-    app.get(`/edit`,(req,res)=>{
-
-        let user = req.user_data.id;
 
     });
 
@@ -70,8 +84,11 @@ module.exports = function(app){
     });
         
 
+    // 404ED!!!
+
     app.get(`*`,(req,res)=>{
 
+        res.sendStatus(404).send("404ed!");
 
     });
 
