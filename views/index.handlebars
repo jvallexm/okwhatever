@@ -1,22 +1,31 @@
-    <div class="container-fluid">
-        <div class="row content">
-            <div class="col-sm-3 sidenav hidden-xs">
+<div class="container-fluid">
+
+    <div class="row content">
+
+        <div class="col-sm-3 sidenav hidden-xs">
+
             <img src="assets/images/okwhatever_outline.png" width=100% alt="">
+            {{sideuser}}
 
-        {{sideuser}}
+        </div>
 
-            </div>
-            <br>
-            <div class="col-sm-9">
+        <br>
+
+        <div class="col-sm-9">
+
             <div class="row">
-                    <div class="grid">
-                        <div class="grid-sizer">
+                
+                <div class="grid">
+                        
+                    <div class="grid-sizer"></div>
 
+                    {{each matches}}
 
-                        </div>
-                        {{each matches}}
-                    </div>
-            </div>
+                </div>
+
             </div>
         </div>
+
     </div>
+
+</div>
