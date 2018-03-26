@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes){
     const user = sequelize.define("user", {
+        
         id:      {
             type: DataTypes.STRING,
             primaryKey: true
@@ -18,6 +19,7 @@ module.exports = function(sequelize, DataTypes){
         city:          DataTypes.STRING, 
         state:         DataTypes.STRING,
         complete:      DataTypes.BOOLEAN
+
     });
 
     return user;
