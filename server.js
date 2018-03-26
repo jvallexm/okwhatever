@@ -19,8 +19,16 @@ app.use( bodyParser.json()                              );
 app.use( express.static(path.join(__dirname, 'public')) );
 app.use( cookieParser()                                 );
 
+const engine = {
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+    defaultLayout: "main",
+    partialsDir: path.join(__dirname + `/views/partials`)
+
+}
+
+console.log(path.join(__dirname + `/views/partials`));
+
+app.engine("handlebars", exphbs(engine));
 app.set("view engine", "handlebars");
 
     /* Will always send login first */
