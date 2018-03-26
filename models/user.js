@@ -14,7 +14,9 @@ module.exports = function(sequelize, DataTypes){
         faves:         DataTypes.STRING,  // A few of their favorite things
         wants_to:      DataTypes.STRING , // Activities the user would want to do
         flirts_on:     DataTypes.BOOLEAN, // Switch to toggle the "flirt" button
-        last_online:   DataTypes.INTEGER  // When the user was last online
+        last_online:   DataTypes.INTEGER,  // When the user was last online
+        city:          DataTypes.STRING,
+        state:         DataTypes.STRING
     });
 
     return user;
