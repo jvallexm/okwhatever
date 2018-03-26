@@ -4,6 +4,7 @@ $("#login").on("click",function(){
 });
 
 $(document).ready(()=>{
+
     function getCookie(cname) {
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
@@ -19,11 +20,14 @@ $(document).ready(()=>{
         }
         return "";
     }
+
     function checkCookie() {
         var username = getCookie("id");
         if (username != "") {
             alert("Welcome again " + username);
         }
     }
+
     checkCookie();
+    
 });
