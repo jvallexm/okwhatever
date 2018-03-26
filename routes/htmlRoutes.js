@@ -36,7 +36,12 @@ module.exports = function(app){
 
     app.get(`/matches`,(req,res)=>{
 
-        res.render("index");
+        res.render("index",{
+            test: {
+                name: "Hot Poppers",
+                image: "hotpoppers.jpg"
+            }
+        });
 
     });
 
