@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes){
         image:         DataTypes.STRING,  // not sure if string is correct.
         name:          DataTypes.STRING,  // User First Name
         likes:         DataTypes.STRING,  // For FB likes, now
-        brithday:      DataTypes.INTEGER, // Parsed into age by client
+        birthday:      DataTypes.INTEGER, // Parsed into age by client
         bio:           DataTypes.STRING,  // A Short (or long) description of the person
         gender:        DataTypes.STRING,  // Person's gender (give a lot of options for inclusivity)
         interested_in: DataTypes.STRING,  // Information about who the user is interested in
