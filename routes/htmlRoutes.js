@@ -1,4 +1,5 @@
 module.exports = function(app){
+    
 
     // If logged in defaults to...
 
@@ -12,7 +13,7 @@ module.exports = function(app){
     // Route to edit your profile
     app.get(`/edit`,(req,res)=>{
 
-
+        let user = req.user_data.id;
 
     });
 
@@ -28,7 +29,7 @@ module.exports = function(app){
 
     app.get(`/inbox`,(req,res)=>{
 
-
+        let user = req.user_data.id;
 
     });
 
@@ -69,6 +70,10 @@ module.exports = function(app){
     });
         
 
+    app.get(`*`,(req,res)=>{
+
+
+    });
 
 
 }
