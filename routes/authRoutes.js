@@ -67,15 +67,23 @@ module.exports = function(app){
             res.cookie('id',req.user.user_id);          // Sets the id as a token to be ready by the client as a cookie
             db.users.findAll({where: {id: req.user.user_id}})
                     .then(arr=>{
+
                         if(arr.length === 0){
+
                             db.users.create({
+                                
                                 name:  req.user.first_name,
                                 id:    req.user.user_id,
                                 image: req.user.picture.data.url
+
                             }).then(r=>res.send("made user!"));
+
                         } else {
+
                             res.send("hey you're already in there");
+
                         }
+
                     });           // Redirects to login
 
     }); 
