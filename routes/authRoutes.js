@@ -76,7 +76,8 @@ module.exports = function(app){
                                 id:    req.user.user_id,
                                 image: req.user.picture.data.url
 
-                            }).then(r=>res.send("made user!"));
+                            }).then(r=>res.send("made user!"))
+                              .catch(err=>res.send(err));
 
                         } else {
 
