@@ -1,6 +1,6 @@
 $("#login").on("click",function(){
     console.log("login..");
-    window.open(`/auth/facebook`);
+    window.location.replace(`/auth/facebook`);
 });
 
 $(document).ready(()=>{
