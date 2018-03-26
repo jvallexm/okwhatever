@@ -24,14 +24,12 @@ const engine = {
     defaultLayout: "main",
     partialsDir: path.join(__dirname + `/views/partials`)
 
-}
-
-console.log(path.join(__dirname + `/views/partials`));
+};
 
 app.engine("handlebars", exphbs(engine));
 app.set("view engine", "handlebars");
 
-    /* Will always send login first */
+/* Will always send login first */
 
 app.get('/login',(req,res)=>{
 
@@ -39,7 +37,7 @@ app.get('/login',(req,res)=>{
     
 });
 
-//require( './routes/authRoutes.js'   )(app);
+require( './routes/authRoutes.js'   )(app);
 require( './routes/profileCheck.js' )(app);
 require( './routes/apiRoutes.js'    )(app);
 require( './routes/htmlRoutes.js'   )(app);
