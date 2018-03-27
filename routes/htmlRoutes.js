@@ -7,6 +7,37 @@ module.exports = function(app){
     app.get(`/edit`,(req,res)=>{
 
         let user = req.user_data.id;
+        if(req.user_data){
+
+            db.user.findAll({where: {id: req.user_data.id}}).then(r=>{
+
+                let result;
+    
+                if(r.length == 0){
+                    result = {
+                        name: "Hot Poppers",
+                        image: "hotpoppers.jpg"
+                    }
+                } else {
+    
+                    result = r[0];
+    
+                }
+    
+                res.render("edit",{test: result});
+    
+            });
+
+        } else {
+
+            res.render("edit",{
+                test: {
+                    name: "Hot Poppers",
+                    image: "hotpoppers.jpg"
+                }
+            });
+
+        }
         
 
     });
