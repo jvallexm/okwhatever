@@ -1,3 +1,5 @@
+const db               = require('../models/index');
+
 module.exports = function(app){
     
 
@@ -5,23 +7,11 @@ module.exports = function(app){
     app.get(`/edit`,(req,res)=>{
 
         let user = req.user_data.id;
+        
 
     });
 
     // Middlewear to redirect to edit page if incomplete profile
-
-    app.use((req,res,next)=>{
-
-        // If you profile isn't complete...
-
-        //res.redirect(`/edit`);
-
-        //else
-
-        //next();
-
-
-    });
 
     // If logged in defaults to...
 
@@ -51,12 +41,39 @@ module.exports = function(app){
 
     app.get(`/matches`,(req,res)=>{
 
-        res.render("index",{
-            test: {
-                name: "Hot Poppers",
-                image: "hotpoppers.jpg"
-            }
-        });
+        if(req.user_data){
+
+            db.user.findall({where: {id: req.user_data.id}}).then(r=>{
+
+                let result;
+    
+                if(r.length == 0){
+                    result = {
+                        name: "Hot Poppers",
+                        image: "hotpoppers.jpg"
+                    }
+                } else {
+    
+                    result = r[0];
+    
+                }
+    
+                res.render(index,{test: result});
+    
+            });
+
+        } else {
+
+            res.render("index",{
+                test: {
+                    name: "Hot Poppers",
+                    image: "hotpoppers.jpg"
+                }
+            });
+
+        }
+
+        
 
     });
 
@@ -86,11 +103,14 @@ module.exports = function(app){
 
     // 404ED!!!
 
+    /*
+
     app.get(`*`,(req,res)=>{
 
         res.sendStatus(404).send("404ed!");
 
     });
 
+    */
 
 }
