@@ -14,7 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../public/assets/css/style.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,500,700,800" rel="stylesheet">
 </head>
 
@@ -60,8 +60,16 @@
         <p>Some text..</p>
       </div> -->
                 <div class="row">
-                    <form>
+       <form class="create-form">
                         <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="city">Your City</label>
+                                <input class="form-control" id="city" placeholder="City">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="state">Your State</label>
+                                <input class="form-control" id="state" placeholder="State">
+                            </div>
                             <div class="form-group col-md-4">
                                 <label for="birthday">Birthday</label>
                                 <input type="email" class="form-control" id="birthday" placeholder="Birthday">
