@@ -7,6 +7,7 @@ module.exports = function(app){
     app.get(`/edit`,(req,res)=>{
 
         let user = req.user_data.id;
+
         if(req.user_data){
 
             db.user.findAll({where: {id: req.user_data.id}}).then(r=>{
@@ -65,6 +66,16 @@ module.exports = function(app){
     app.get(`/inbox`,(req,res)=>{
 
         let user = req.user_data.id;
+        db.message.findAll({ where: { fromId: id }/{ toId: id }})
+                  .then(results =>{
+
+                    let send = {
+                        message: results
+                    }
+
+                    res.render("messages",send);
+
+                  });
 
     });
 
@@ -74,22 +85,26 @@ module.exports = function(app){
 
         if(req.user_data){
 
-            db.user.findAll({where: {id: req.user_data.id}}).then(r=>{
+            db.user.findAll({}).then(r=>{
 
-                let result;
-    
-                if(r.length == 0){
-                    result = {
-                        name: "Hot Poppers",
-                        image: "hotpoppers.jpg"
+                let you = req.user_data.id;
+
+                let test;
+
+                let matches = [];
+
+                for(let i=0;i<r.length;++i){
+
+                    if(r[i].id === you){
+                        test = r[i];
+                    } else if(r[i].complete) {
+                        matches.push(r[i]);
                     }
-                } else {
-    
-                    result = r[0];
-    
+
                 }
-    
-                res.render("index",{test: result});
+                
+                res.render("index",{test:  result,
+                                    match: matches});
     
             });
 
