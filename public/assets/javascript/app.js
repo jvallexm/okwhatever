@@ -30,6 +30,8 @@ $(document).ready(() => {
 
     checkCookie();
 
+
+// after new login, user enters data, then on submit button click triggers:
     $(".create-form").on("submit", function(event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
@@ -52,6 +54,29 @@ $(document).ready(() => {
         }).then(
             function() {
                 console.log("created new user user");
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+
+
+// post new message
+     $(".message-form").on("submit", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var newMsg = {
+            text: $("#text").val().trim()
+        };
+
+        // Send the POST request.
+        $.ajax("/api/messages/:user", {
+            type: "POST",
+            data: newMsg
+        }).then(
+            function() {
+                console.log("posted new message");
                 // Reload the page to get the updated list
                 location.reload();
             }
