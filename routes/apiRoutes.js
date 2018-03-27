@@ -22,9 +22,13 @@ module.exports = function(app){
     //updating a user
     app.post('/api/profile/update',(req,res)=>{
         console.log("updating user " + req.user_data.id);
+        console.log(req.body);
         let id = req.user_data.id;
+        let update = req.body;
+        if(update.birthday && update.bio && update.gender && update.faves && update.city && update.state)
+            update.complete = true;
         db.user.update(
-            req.body,
+            update,
             {where: {id: id}}
         )
         .then(result => res.json(result))
