@@ -74,9 +74,9 @@ module.exports = function(app){
 
                             let insert = {
                                 
-                                name:  req.user.first_name,
+                                name:  req.user._json.first_name,
                                 id:    req.user.user_id,
-                                image: "hot poppers"
+                                image: req.user._json.picture.data.url
 
                             };
                             console.log(insert);
