@@ -1,5 +1,7 @@
 body {
     background-color: #ff68e8;
+    font-family: 'Rokkitt', serif;
+    font-size: 1.6rem;
 }
 
 .jumbotron {
@@ -34,16 +36,16 @@ min-height: 100%;
 }
 
 .profilepic{
-	border: 1px solid black;
-	border-radius: 5px;
-	margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 10px;
 
 }
 
 .matchpic{
-	border: 1px solid black;
-	border-radius: 5px;
-/*	margin-top: 10px;*/
+  border: 1px solid black;
+  border-radius: 5px;
+/*  margin-top: 10px;*/
 margin: 0;
 /*width: 50%;*/
 float:left;
@@ -58,8 +60,8 @@ height:auto;
 .grid {
 /*  background: #EEE;
   max-width: 1200px;*/
-	padding-left: 15px;
-	/*padding-right: 15px;*/
+  padding-left: 15px;
+  /*padding-right: 15px;*/
 }
 
 /* clearfix */
@@ -103,7 +105,7 @@ height:auto;
 }
 
 .matchinfo {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 
@@ -112,7 +114,39 @@ height:auto;
    
 }
 
-.btn-secondary {
-	background: #4978db;
+.btn-success {
+  width: 100%;
+}
 
+.btn-secondary {
+  background: #4978db;
+  color: white;
+  margin-top: 5px; 
+  font-weight: 300;
+  font-style: italic;
+    width: 100%;
+}
+
+h4 {  
+font-weight: 700;
+font-size: 1.8rem;
+margin-bottom: 0;
+
+}
+
+h3 {  
+font-weight: 800;
+font-size: 2.5rem;
+margin-bottom: 0;
+
+}
+
+.btn-column {
+  padding-left: 0;
+
+}
+
+.form-group {
+  padding-left: 15px;
+  padding-right: 0;
 }
