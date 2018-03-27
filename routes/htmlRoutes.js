@@ -43,7 +43,7 @@ module.exports = function(app){
 
         if(req.user_data){
 
-            db.user.findall({where: {id: req.user_data.id}}).then(r=>{
+            db.user.findAll({where: {id: req.user_data.id}}).then(r=>{
 
                 let result;
     
