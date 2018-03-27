@@ -1,14 +1,15 @@
-$("#login").on("click",function(){
+$("#login").on("click", function() {
     console.log("login..");
-    window.open(`/auth/facebook`);
+    window.location.replace(`/auth/facebook`);
 });
 
-$(document).ready(()=>{
+$(document).ready(() => {
+
     function getCookie(cname) {
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
         var ca = decodedCookie.split(';');
-        for(var i = 0; i <ca.length; i++) {
+        for (var i = 0; i < ca.length; i++) {
             var c = ca[i];
             while (c.charAt(0) == ' ') {
                 c = c.substring(1);
@@ -19,11 +20,42 @@ $(document).ready(()=>{
         }
         return "";
     }
+
     function checkCookie() {
         var username = getCookie("id");
         if (username != "") {
             alert("Welcome again " + username);
         }
     }
+
     checkCookie();
+
+    $(".create-form").on("submit", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var newUser = {
+            birthday: $("#birthday").val().trim(),
+            bio: $("#bio").val().trim(),
+            gender: $("#gender").val().trim(),
+            interested_in: $("#sexuality").val().trim(),
+            faves: $("#favorite1").val().trim(),
+            wants_to: $("#interestedIn").val().trim(),
+            city: $("#city").val().trim(),
+            state: $("#state").val().trim()
+        };
+
+        // Send the POST request.
+        $.ajax("/api/profile/update", {
+            type: "POST",
+            data: newUser
+        }).then(
+            function() {
+                console.log("created new user user");
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+
 });

@@ -8,8 +8,10 @@ const env          = require('dotenv').config();
 const cookieParser = require('cookie-parser')
 const db           = require("./models");
 
-db.sequelize.sync().then(function(){
+db.sequelize.sync().then(()=>{
+
   app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
+  
 });
 
 app.use( bodyParser.urlencoded({ extended: false })     ); 
@@ -17,11 +19,17 @@ app.use( bodyParser.json()                              );
 app.use( express.static(path.join(__dirname, 'public')) );
 app.use( cookieParser()                                 );
 
+const engine = {
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+    defaultLayout: "main",
+    partialsDir: path.join(__dirname + `/views/partials`)
+
+};
+
+app.engine("handlebars", exphbs(engine));
 app.set("view engine", "handlebars");
 
-    /* Will always send login first */
+/* Will always send login first */
 
 app.get('/login',(req,res)=>{
 
@@ -29,7 +37,7 @@ app.get('/login',(req,res)=>{
     
 });
 
-//require( './routes/authRoutes.js'   )(app);
+require( './routes/authRoutes.js'   )(app);
 require( './routes/profileCheck.js' )(app);
 require( './routes/apiRoutes.js'    )(app);
 require( './routes/htmlRoutes.js'   )(app);

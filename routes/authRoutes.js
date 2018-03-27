@@ -2,6 +2,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 const passport         = require("passport");
 const jwt              = require('jsonwebtoken');
 const path             = require('path');
+const db               = require('../models/index');
 
 module.exports = function(app){
 
@@ -64,7 +65,30 @@ module.exports = function(app){
             console.log("token " + token);
             res.cookie('auth',token,{httpOnly: false}); // Sets JWT token to be ready by server as cookie
             res.cookie('id',req.user.user_id);          // Sets the id as a token to be ready by the client as a cookie
-            res.send(req.user._json);                   // Redirects to login
+            db.user.findAll({where: {id: req.user.user_id}})
+                    .then(arr=>{
+
+                        console.log(req.user._json);
+                        
+                        if(arr.length === 0){
+
+                            let insert = {
+                                
+                                name:  req.user._json.first_name,
+                                id:    req.user.user_id,
+                                image: req.user._json.picture.data.url
+
+                            };
+                            console.log(insert);
+                            db.user.create(insert).then(res.send("made user!"))
+
+                        } else {
+
+                            res.send("hey you're already in there");
+
+                        }
+
+                    });           // Redirects to login
 
     }); 
 

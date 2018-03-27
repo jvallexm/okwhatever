@@ -1,16 +1,33 @@
 module.exports = function(app){
+    
+
+    // Route to edit your profile
+    app.get(`/edit`,(req,res)=>{
+
+        let user = req.user_data.id;
+
+    });
+
+    // Middlewear to redirect to edit page if incomplete profile
+
+    app.use((req,res,next)=>{
+
+        // If you profile isn't complete...
+
+        //res.redirect(`/edit`);
+
+        //else
+
+        //next();
+
+
+    });
 
     // If logged in defaults to...
 
     app.get(`/`,(req,res)=>{
 
-    });
-
-
-    // Route to edit your profile
-    app.get(`/edit`,(req,res)=>{
-
-
+        res.redirect(`/matches`);
 
     });
 
@@ -26,7 +43,7 @@ module.exports = function(app){
 
     app.get(`/inbox`,(req,res)=>{
 
-
+        let user = req.user_data.id;
 
     });
 
@@ -34,7 +51,12 @@ module.exports = function(app){
 
     app.get(`/matches`,(req,res)=>{
 
-
+        res.render("index",{
+            test: {
+                name: "Hot Poppers",
+                image: "hotpoppers.jpg"
+            }
+        });
 
     });
 
@@ -62,6 +84,13 @@ module.exports = function(app){
     });
         
 
+    // 404ED!!!
+
+    app.get(`*`,(req,res)=>{
+
+        res.sendStatus(404).send("404ed!");
+
+    });
 
 
 }
