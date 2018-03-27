@@ -42,7 +42,7 @@ module.exports = function(app){
             // Creates a JWT for the user
             user.my_token = jwt.sign( {id: user.id},
                                       process.env.COOKIE_SECRET,
-                                      {expiresIn:1}          );
+                                      {expiresIn: 86400}          );
             user.user_id = user.id; // Saves the user is to be set as a client side cookie
             return cb(null, user);  // Returns the user
         }
@@ -99,22 +99,23 @@ module.exports = function(app){
         let token = req.cookies.auth;
         console.log("token " + token);
         if(token){
+
             jwt.verify(token,process.env.COOKIE_SECRET,(err,data)=>{
 
-                if(err){
+                if(err) {
+
                     console.log("*** JWT Error ***")
                     console.log(err);
-                    return res.send(err);
-                }
-                // if jwt error
-                else if(data.expiredAt){
                     return res.redirect("/login");
-                }
-                else{
+
+                } else {
+
                     req.user_data = data;
                     next();
+
                 }
             });
+
         } else {
     
             return res.redirect("/login");
