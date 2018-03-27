@@ -68,7 +68,7 @@ module.exports = function(app){
             db.user.findAll({where: {id: req.user.user_id}})
                     .then(arr=>{
 
-                        console.log(req.user.picture);
+                        console.log(req.user);
                         
                         if(arr.length === 0){
 
@@ -76,7 +76,7 @@ module.exports = function(app){
                                 
                                 name:  req.user.first_name,
                                 id:    req.user.user_id,
-                                image: req.user.picture.data.url
+                                image: "hot poppers"
 
                             };
                             console.log(insert);
