@@ -1,0 +1,33 @@
+<div class="container-fluid">
+
+    <div class="row content">
+
+        <div class="col-sm-3 sidenav hidden-xs">
+
+            <img src="assets/images/okwhatever_outline.png" width=100% alt="">
+            {{>sidenav/sidenav-block test}}
+
+        </div>
+
+        <br>
+
+        <div class="col-sm-9">
+
+            <div class="row">
+                
+                <div class="grid">
+                        
+                    <div class="grid-sizer"></div>
+
+{{#each match}} {{> matches/match-block}}  {{/each}}
+
+
+                </div>
+
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
