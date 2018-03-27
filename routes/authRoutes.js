@@ -100,6 +100,10 @@ module.exports = function(app){
         console.log("token " + token);
         if(token){
             jwt.verify(token,process.env.COOKIE_SECRET,(err,data)=>{
+
+                console.log("**** Processing JWT ****")
+                console.log(data);
+
                 if(err)
                     return res.send(err);
                 // if jwt error
