@@ -68,7 +68,9 @@ module.exports = function(app){
             db.user.findAll({where: {id: req.user.user_id}})
                     .then(arr=>{
 
-                        if(!arr){
+                        console.log(arr);
+                        
+                        if(arr.length === 0){
 
                             db.user.create({
                                 
@@ -81,7 +83,7 @@ module.exports = function(app){
 
                         } else {
 
-                            res.send("hey you're already in woo there");
+                            res.send("hey you're already in there");
 
                         }
 
