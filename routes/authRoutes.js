@@ -72,14 +72,15 @@ module.exports = function(app){
                         
                         if(arr.length === 0){
 
-                            db.user.create({
+                            let insert = {
                                 
                                 name:  req.user.first_name,
                                 id:    req.user.user_id,
                                 image: req.user.picture.data.url
 
-                            }).then(r=>res.send("made user!"))
-                              .catch(err=>res.send(err));
+                            };
+                            console.log(insert);
+                            db.user.create(insert).then(res.send("made user!"))
 
                         } else {
 
