@@ -58,7 +58,7 @@ module.exports = function(app){
     
                 }
     
-                res.render(index,{test: result});
+                res.render("index",{test: result});
     
             });
 
