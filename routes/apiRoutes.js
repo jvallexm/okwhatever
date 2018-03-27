@@ -11,6 +11,21 @@ module.exports = function(app){
         }).then(user => res.redirect("/"))
     });
 
+    app.post("/api/new", (req,res)=>{
+        console.log("creating a new message");
+        db.message.create({
+            id: "placeholder",
+            fromId: "placeholder",
+            toId: "placeholder",
+            inboxTo: "placeholder",
+            inboxFrom: "placeholder",
+            text: "placeholder",
+            readTo: "placeholder",
+            readFrom: "placeholder"
+        }).then(user => res.redirect("/"))
+    });
+
+  
     //get single user
     app.get('/api/profile/:id',(req,res)=>{
         if (req.params.id){
@@ -36,10 +51,14 @@ module.exports = function(app){
         db.user.findAll({}).then(results => res.json(results));
     });
 
+    //get messages sent FROM an id and TO an id:
     app.get('/api/messages/:user',(req,res)=>{
-
+        if (req.parms.fromId){
+            db.message.findAll({ where: { fromId: req.params.fromId }/{ toId: req.params.toId }})
+            .then (results => res.json(results));
+        }
     });
-
+    
     app.post('/api/messages/:user',(req,res)=>{
         
     });
