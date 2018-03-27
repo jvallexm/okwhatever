@@ -68,7 +68,7 @@ module.exports = function(app){
             db.user.findAll({where: {id: req.user.user_id}})
                     .then(arr=>{
 
-                        console.log(req.user);
+                        console.log(req.user.picture.data);
                         
                         if(arr.length === 0){
 
