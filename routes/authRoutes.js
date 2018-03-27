@@ -103,7 +103,7 @@ module.exports = function(app){
                 if(err)
                     return res.send(err);
                 // if jwt error
-                else if(req.user_data.expiredAt){
+                else if(data.expiredAt){
                     return res.redirect("/login");
                 }
                 else{
