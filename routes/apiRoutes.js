@@ -3,15 +3,6 @@ const db = require("../models/index");
 module.exports = function(app){
 
     app.post("/api/new", (req,res)=>{
-        console.log("creating a new user");
-        db.user.create({
-            id: "placeholder",
-            image: "placeholder",
-            name: "placeholder"
-        }).then(user => res.redirect("/"))
-    });
-
-    app.post("/api/new", (req,res)=>{
         console.log("creating a new message");
         db.message.create({
             id: "placeholder",
@@ -22,10 +13,9 @@ module.exports = function(app){
             text: "placeholder",
             readTo: "placeholder",
             readFrom: "placeholder"
-        }).then(user => res.redirect("/"))
+        }).then(user => res.redirect("/"));
     });
 
-  
     //get single user
     app.get('/api/profile/:id',(req,res)=>{
         if (req.params.id){
