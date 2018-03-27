@@ -68,7 +68,7 @@ module.exports = function(app){
             db.user.findAll({where: {id: req.user.user_id}})
                     .then(arr=>{
 
-                        if(arr.length === 0){
+                        if(!arr){
 
                             db.user.create({
                                 
