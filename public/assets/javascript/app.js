@@ -37,14 +37,14 @@ $(document).ready(() => {
         event.preventDefault();
 
         var newUser = {
-            birthday: $("#birthday").val().trim(),
-            bio: $("#bio").val().trim(),
-            gender: $("#gender").val().trim(),
+            birthday:      $("#birthday").val().trim(),
+            bio:           $("#bio").val().trim(),
+            gender:        $("#gender").val().trim(),
             interested_in: $("#sexuality").val().trim(),
-            faves: $("#favorite1").val().trim(),
-            wants_to: $("#interestedIn").val().trim(),
-            city: $("#city").val().trim(),
-            state: $("#state").val().trim()
+            faves:         `${$("#favorite1").val().trim()};;;${$("#favorite2").val().trim()};;;${$("#favorite3").val().trim()}`,
+            wants_to:      $("#interestedIn").val().trim(),
+            city:          $("#city").val().trim(),
+            state:         $("#state").val().trim()
         };
 
         // Send the POST request.
