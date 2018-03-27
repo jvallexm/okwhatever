@@ -101,11 +101,11 @@ module.exports = function(app){
         if(token){
             jwt.verify(token,process.env.COOKIE_SECRET,(err,data)=>{
 
-                console.log("**** Processing JWT ****")
-                console.log(data);
-
-                if(err)
+                if(err){
+                    console.log("*** JWT Error ***")
+                    console.log(err);
                     return res.send(err);
+                }
                 // if jwt error
                 else if(data.expiredAt){
                     return res.redirect("/login");
