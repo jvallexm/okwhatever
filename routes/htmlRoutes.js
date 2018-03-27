@@ -65,17 +65,26 @@ module.exports = function(app){
 
     app.get(`/inbox`,(req,res)=>{
 
-        let user = req.user_data.id;
-        db.message.findAll({ where: { fromId: id }/{ toId: id }})
-                  .then(results =>{
+        
+        if(req.user_data){
+            let user = req.user_data.id;
+            db.message.findAll({ where: { fromId: id }/{ toId: id }})
+                    .then(results =>{
 
-                    let send = {
-                        message: results
-                    }
+                        let send = {
+                            message: results
+                        }
 
-                    res.render("messages",send);
+                        res.render("messages",send);
 
-                  });
+                    });
+        } else {
+
+            res.render("messages",{
+                message: []
+            });
+
+        }
 
     });
 
@@ -103,18 +112,19 @@ module.exports = function(app){
 
                 }
                 
-                res.render("index",{test:  result,
-                                    match: matches});
+                res.render("matches",{test:  result,
+                                      match: matches});
     
             });
 
         } else {
 
-            res.render("index",{
+            res.render("matches",{
                 test: {
                     name: "Hot Poppers",
                     image: "hotpoppers.jpg"
-                }
+                },
+                match: []
             });
 
         }
