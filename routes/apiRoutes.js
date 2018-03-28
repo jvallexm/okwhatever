@@ -2,53 +2,72 @@ const db = require("../models/index");
 
 module.exports = function(app){
 
-    app.post("/api/new", (req,res)=>{
+    app.post("/api/send", (req,res)=>{
+
         console.log("creating a new message");
+
         db.message.create({
-            id: "placeholder",
-            fromId: "placeholder",
+
+            id: req.user_data.id + new Date().getTime(),
+            fromId: req.user_data.id,
             toId: "placeholder",
-            inboxTo: "placeholder",
-            inboxFrom: "placeholder",
-            text: "placeholder",
-            readTo: "placeholder",
-            readFrom: "placeholder"
+            inboxTo: true,
+            inboxFrom: true,
+            text: req.body.text,
+            readTo: false,
+            readFrom: true
+
         }).then(user => res.redirect("/"));
+        
     });
 
     //get single user
     app.get('/api/profile/:id',(req,res)=>{
-        if (req.params.id){
+        if (req.params.id === req.user_data.id){
             db.user.findAll({ where: { id: req.params.id }})
-                   .then(results => res.json(results));
+                   .then(results => res.json(results[0]));
+        } else {
+            res.send(false)
         }
     });
 
     //updating a user
     app.post('/api/profile/update',(req,res)=>{
 
-        console.log("updating user " + req.user_data.id);
-        // console.log(req.body);
+        console.log("updating user");
+        
+        if(req.user_data){
 
-        let id = req.user_data.id; // Id of the user being updated
-        let update = req.body;     // Object being sent to the API
+            console.log(req.user_data.id);
+            let id = req.user_data.id; // Id of the user being updated
+            let update = req.body;     // Object being sent to the API
 
-        if(update.birthday && update.bio && update.gender && update.faves && update.city && update.state)
-            update.complete = true; // If the required fields are filled out it marks your profile as complete
+            if(update.birthday && update.bio && update.gender && update.faves && update.city && update.state)
+                update.complete = true; // If the required fields are filled out it marks your profile as complete
 
-        db.user.update(  // Updates the db
-            update,
-            {where: {id: id}}
-        )
-        .then(result => res.json(true)) // Returns true once it's complete
-        .catch(err => res.json(err));   // Otherwise returns the error
+            db.user.update(  // Updates the db
+                update,
+                {where: {id: id}}
+            )
+            .then(result => res.json(true)) // Returns true once it's complete
+            .catch(err => res.json(err));   // Otherwise returns the error
+            
+        } else {
 
+            console.log("You're not logged in!");
+            console.log(req.body);
+            res.send("ding");
+            
+        }
+        
     });
 
     //get all users
     app.get('/api/users',(req,res)=>{
+
         db.user.findAll({})
                .then(results => res.json(results));
+               
     });
 
     //get messages sent FROM an id and TO an id:
@@ -58,10 +77,7 @@ module.exports = function(app){
 
         db.message.findAll({ where: { fromId: id }/{ toId: id }})
                   .then(results => res.json(results));
-    });
-    
-    app.post('/api/messages/:user',(req,res)=>{
-        
+                  
     });
 
 }

@@ -31,6 +31,35 @@ $(document).ready(() => {
     checkCookie();
 
 
+    function popultate(){
+
+        let id = getCookie("id");
+        $.get("/api/profile/" + id).done((r)=>{
+
+            if(r){
+
+                $("#birthday").val(r.birthday);
+                $("#bio").val(r.bio);
+                $("#gender").val(r.gender);
+                $("#sexuality").val(r.interested_in);
+                let faves = r.faves.split(";;;");
+                $("#favorite1").val(faves[0]);
+                $("#favorite2").val(faves[1]);
+                $("#favorite3").val(faves[2]);
+                $("#city").val(r.city);
+                $("#state").val(r.state);
+                $("#interestedIn").val(r.wants_to);
+
+            } else {
+
+                console.log("ERROR!!");
+
+            }
+
+        });
+
+    }
+
 // after new login, user enters data, then on submit button click triggers:
     $(".create-form").on("submit", function(event) {
         // Make sure to preventDefault on a submit event.
@@ -61,7 +90,11 @@ $(document).ready(() => {
     });
 
 
-// post new message
+    $(".flirt").on("click", function(event) {
+        $('#myModal').modal('show');
+    });
+
+    // post new message
      $(".message-form").on("submit", function(event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
@@ -82,5 +115,7 @@ $(document).ready(() => {
             }
         );
     });
+
+    popultate();
 
 });
