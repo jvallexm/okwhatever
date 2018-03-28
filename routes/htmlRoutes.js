@@ -15,7 +15,7 @@ module.exports = function(app){
 
                 let result;
     
-                if(r.length == 0){
+                if(!you){
                     result = {
                         name: "Hot Poppers",
                         image: "hotpoppers.jpg"
