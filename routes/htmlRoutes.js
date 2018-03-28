@@ -1,4 +1,5 @@
-const db               = require('../models/index');
+const db    = require('../models/index');
+const User  = require('../controllers/userController');
 
 module.exports = function(app){
     
@@ -10,7 +11,7 @@ module.exports = function(app){
 
         if(req.user_data){
 
-            db.user.findAll({where: {id: req.user_data.id}}).then(r=>{
+            User.findOne(req,(you)=>{
 
                 let result;
     
@@ -21,12 +22,12 @@ module.exports = function(app){
                     }
                 } else {
     
-                    result = r[0];
+                    result = you;
     
                 }
     
                 res.render("edit",{test: result});
-    
+
             });
 
         } else {
