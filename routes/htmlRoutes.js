@@ -108,7 +108,6 @@ module.exports = function(app){
                     if(r[i].id === you){
                         test = r[i];
                     } else if(r[i].complete) {
-                        r.favesArray = r.faves.split(";;;");
                         matches.push(r[i]);
                     }
 
