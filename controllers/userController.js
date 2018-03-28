@@ -4,7 +4,7 @@ module.exports = {
 
     findOne: function(req,cb){
 
-        db.user.findAll({where: {id: req.user.user_id}})
+        db.user.findAll({where: {id: req.user.id}})
                .then(arr=>{
 
                     cb(arr[0]);
