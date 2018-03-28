@@ -60,29 +60,8 @@ module.exports = function(app){
                   .then(results => res.json(results));
     });
     
-//a controller function that:
-//takes a request object and a callback function. 
+    app.post('/api/messages/:user',(req,res)=>{
+   
+    });
 
-//then sends back in the callback function: 
-//the entry in the database for the id of the user passed in the req.user_data object
-
-//exectuting insert into messages....
-app.post('/api/messages/:user',(req,res)=>{
-    let message = {...req.body,
-        id: 1, 
-        fromId: " ",
-        toId: " " , 
-        inboxTo: false, 
-        inboxFrom: true, 
-        text: "Hey", 
-        readTo: true, 
-        readFrom: true
     }
-
-    db.message.create(message).then(results => res.json(results))
-
-
-
-});
-
-}
