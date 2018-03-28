@@ -48,7 +48,7 @@ $(document).ready(() => {
                 $("#favorite3").val(faves[2]);
                 $("#city").val(r.city);
                 $("#state").val(r.state);
-                $("interestedIn").val(r.wants_to);
+                $("#interestedIn").val(r.wants_to);
 
             } else {
 
