@@ -15,10 +15,11 @@ var $grid = $('.grid').masonry({
 $(".hidetrick").hide();
 
 $grid.on( 'click', '.grid-item', function() {
+	var id = $(this).data("id");
   // change size of item via class
-  $( this ).toggleClass('grid-item--gigante');
-  $(".hidetrick").toggle();
-  $(".glyphicon-play").hide();
+  	$( this ).toggleClass('grid-item--gigante');
+  	$(".hidetrick").toggle();
+  // $(".glyphicon-play").hide();
   // trigger layout
-  $grid.masonry();
+  	$grid.masonry();
 });
