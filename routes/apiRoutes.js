@@ -27,22 +27,26 @@ module.exports = function(app){
     //updating a user
     app.post('/api/profile/update',(req,res)=>{
 
-        console.log("updating user " + req.user_data.id);
-        // console.log(req.body);
+        console.log("updating user");
+        if(req.user_data){
+            console.log(req.user_data.id);
+            let id = req.user_data.id; // Id of the user being updated
+            let update = req.body;     // Object being sent to the API
 
-        let id = req.user_data.id; // Id of the user being updated
-        let update = req.body;     // Object being sent to the API
+            if(update.birthday && update.bio && update.gender && update.faves && update.city && update.state)
+                update.complete = true; // If the required fields are filled out it marks your profile as complete
 
-        if(update.birthday && update.bio && update.gender && update.faves && update.city && update.state)
-            update.complete = true; // If the required fields are filled out it marks your profile as complete
-
-        db.user.update(  // Updates the db
-            update,
-            {where: {id: id}}
-        )
-        .then(result => res.json(true)) // Returns true once it's complete
-        .catch(err => res.json(err));   // Otherwise returns the error
-
+            db.user.update(  // Updates the db
+                update,
+                {where: {id: id}}
+            )
+            .then(result => res.json(true)) // Returns true once it's complete
+            .catch(err => res.json(err));   // Otherwise returns the error
+        } else {
+            console.log("You're not logged in!");
+            console.log(req.body);
+            res.send("ding");
+        }
     });
 
     //get all users
