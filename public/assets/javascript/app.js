@@ -90,6 +90,10 @@ $(document).ready(() => {
     });
 
 
+$(".flirt").on("click", function(event) {
+    $('#myModal').modal('show');
+};
+
     // post new message
      $(".message-form").on("submit", function(event) {
         // Make sure to preventDefault on a submit event.
