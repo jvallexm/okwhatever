@@ -34,7 +34,7 @@ $(document).ready(() => {
     function popultate(){
 
         let id = getCookie("id");
-        $.get("/api/user/" + id).done((r)=>{
+        $.get("/api/profile/" + id).done((r)=>{
 
             if(r){
 
