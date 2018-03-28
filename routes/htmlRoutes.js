@@ -16,10 +16,12 @@ module.exports = function(app){
                 let result;
     
                 if(r.length == 0){
+                    
                     result = {
                         name: "Hot Poppers",
                         image: "hotpoppers.jpg"
-                    }
+                    };
+
                 } else {
     
                     result = you;

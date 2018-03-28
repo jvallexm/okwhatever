@@ -9,7 +9,7 @@ module.exports = {
 
                     cb(arr[0]);
 
-               })
+               });
 
     }
 
