@@ -61,7 +61,7 @@ height:auto;
 /*  background: #EEE;
   max-width: 1200px;*/
   padding-left: 15px;
-  /*padding-right: 15px;*/
+  padding-right: -15px;
 }
 
 /* clearfix */
@@ -75,7 +75,7 @@ height:auto;
 
 .grid-sizer,
 .grid-item {
-  width: 32.2%;
+  width: 31%;
    margin-bottom: 10px;
 }
 
@@ -102,6 +102,22 @@ height:auto;
 .grid-item img {
   display: block;
   max-width: 100%;
+}
+
+.grid-item--gigante {
+  width: 64%;
+  height: 500px;
+}
+
+.grid-item--gigante img {
+  width: 70%;
+
+}
+
+.grid-item:hover {
+  background: #dfdfdf;
+  border-color: white;
+  cursor: pointer;
 }
 
 .matchinfo {
@@ -169,5 +185,4 @@ p {
   font-size: 150%;
   color: green;
   margin-top: -10px;
-
 }
