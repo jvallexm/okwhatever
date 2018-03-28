@@ -90,9 +90,9 @@ $(document).ready(() => {
     });
 
 
-$(".flirt").on("click", function(event) {
-    $('#myModal').modal('show');
-};
+    $(".flirt").on("click", function(event) {
+        $('#myModal').modal('show');
+    });
 
     // post new message
      $(".message-form").on("submit", function(event) {

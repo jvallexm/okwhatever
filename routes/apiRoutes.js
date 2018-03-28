@@ -8,14 +8,14 @@ module.exports = function(app){
 
         db.message.create({
 
-            id: "placeholder",
-            fromId: "placeholder",
+            id: req.user_data.id + new Date().getTime(),
+            fromId: req.user_data.id,
             toId: "placeholder",
-            inboxTo: "placeholder",
-            inboxFrom: "placeholder",
-            text: "placeholder",
-            readTo: "placeholder",
-            readFrom: "placeholder"
+            inboxTo: true,
+            inboxFrom: true,
+            text: req.body.text,
+            readTo: false,
+            readFrom: true
 
         }).then(user => res.redirect("/"));
         
@@ -78,10 +78,6 @@ module.exports = function(app){
         db.message.findAll({ where: { fromId: id }/{ toId: id }})
                   .then(results => res.json(results));
                   
-    });
-    
-    app.post('/api/messages/:user',(req,res)=>{
-        
     });
 
 }
