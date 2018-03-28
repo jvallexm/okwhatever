@@ -80,11 +80,11 @@ module.exports = function(app){
 
                             };
                             console.log(insert);
-                            db.user.create(insert).then(res.sendFile(`../public/redirect.html`))
+                            db.user.create(insert).then(res.sendFile(path.join(__dirname + `../public/redirect.html`)));
 
                         } else {
 
-                            res.sendFile(`../public/redirect.html`);
+                            res.sendFile(path.join(__dirname + `../public/redirect.html`));
 
                         }
 
