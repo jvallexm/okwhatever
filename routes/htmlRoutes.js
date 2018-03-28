@@ -113,7 +113,7 @@ module.exports = function(app){
 
                 }
                 
-                res.render("matches",{test:  result,
+                res.render("matches",{test:  test,
                                       match: matches});
     
             });
