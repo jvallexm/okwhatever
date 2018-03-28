@@ -21,15 +21,6 @@ $(document).ready(() => {
         return "";
     }
 
-    function checkCookie() {
-        var username = getCookie("id");
-        if (username != "") {
-            alert("Welcome again " + username);
-        }
-    }
-
-    checkCookie();
-
 
     function popultate(){
 
