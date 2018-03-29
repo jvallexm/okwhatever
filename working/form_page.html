@@ -16,9 +16,11 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="../public/assets/css/style.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,500,700,800" rel="stylesheet">
+    
 </head>
 
 <body>
+    <div id="validation"></div>
     <nav class="navbar navbar-inverse visible-xs">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -42,8 +44,8 @@
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-3 sidenav hidden-xs">
-                <img src="assets/images/okwhatever_outline.png" width=100% alt="">
-                <img src="assets/images/profile.jpeg" class="profilepic" width=100% alt="">
+                <img src="../public/assets/images/okwhatever_outline.png" width=100% alt="">
+                <!-- <img src="../public/assets/images/profile.jpeg" class="profilepic" width=100% alt=""> -->
                 <h3>Puckerton Buckled</h3>
                 <!--       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1">Dashboard</a></li>
@@ -60,6 +62,7 @@
         <p>Some text..</p>
       </div> -->
                 <div class="row">
+                  
        <form class="create-form">
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -71,9 +74,12 @@
                                 <input class="form-control" id="state" placeholder="State">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="birthday">Birthday</label>
-                                <input type="email" class="form-control" id="birthday" placeholder="Birthday">
+                                <label for="date">Date</label>
+                                <input class="datepicker form-control" data-date-format="mm/dd/yyyy" placeholder="MM/DD/YYY"></input>  
                             </div>
+
+                            
+
                             <div class="form-group col-md-4">
                                 <label for="gender">Gender</label>
                                 <select class="form-control" id="gender">
@@ -159,6 +165,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script src="assets/js/masonry_custom.js"></script>
+<script src="../public/assets/javascript/validation.js" ></script>
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<!-- <script src="assets/js/masonry_custom.js"></script> -->
 
 </html>
