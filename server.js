@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser')
 const db           = require("./models");
 const server       = require('http').createServer(app);
 const io           = require('socket.io')(server);
+const jwt          = require('jsonwebtoken');
 
 db.sequelize.sync().then(()=>{
 
@@ -43,7 +44,8 @@ require( './routes/authRoutes.js'   )(app,path);
 
 io.on("connection",(client)=>{
     console.log("Someone done connected");
-    console.log(client.handshake.headers.user_data);
+    console.log(client.handshake.headers.cookie);
+
 });
 
 require( './routes/apiRoutes.js'    )(app);
