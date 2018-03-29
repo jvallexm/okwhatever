@@ -7,9 +7,8 @@ const exphbs       = require("express-handlebars");
 const env          = require('dotenv').config();
 const cookieParser = require('cookie-parser')
 const db           = require("./models");
-
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const server       = require('http').createServer(app);
+const io           = require('socket.io')(server);
 
 db.sequelize.sync().then(()=>{
 

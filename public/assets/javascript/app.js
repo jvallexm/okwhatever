@@ -1,3 +1,5 @@
+import io from 'socket.io-client';
+
 $("#login").on("click", function() {
     console.log("login..");
     window.location.replace(`/auth/facebook`);
