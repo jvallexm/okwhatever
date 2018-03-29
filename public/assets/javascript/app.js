@@ -147,9 +147,22 @@ $(document).ready(() => {
     });
 
 
+    var msgid;
+    var flirtornot;
+
     $(".flirt").on("click", function(event) {
+        msgid = $(this).data("id");
+        flirtornot = true;
         $('#myModal').modal('show');
     });
+
+    $(".whatever").on("click", function(event) {
+        msgid = $(this).data("id");
+        flirtornot = false;
+        $('#myModal').modal('show');
+    });
+
+
 
     // post new message
      $(".message-form").on("submit", function(event) {
@@ -157,11 +170,13 @@ $(document).ready(() => {
         event.preventDefault();
 
         var newMsg = {
-            text: $("#message").val().trim()
+            text: $("#message").val().trim(),
+            id: msgid,
+            flirt: flirtornot
         };
 
         // Send the POST request.
-        $.ajax("/api/messages/:user", {
+        $.ajax("/api/send", {
             type: "POST",
             data: newMsg
         }).then(
