@@ -11,9 +11,6 @@ $(document).ready(function () {
     let bio = Boolean;
     let interested = Boolean;
 
-
-  
-
     $(".btn").on("click", function(event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
