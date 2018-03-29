@@ -69,11 +69,11 @@ module.exports = function(app){
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { fromId: user }})
-                    .then(results =>{
+            db.message.findAll({ where: { toId: user }})
+                    .then(inbox =>{
 
                         let send = {
-                            message: results
+                            message: inbox
                         }
 
                         res.render("messages",send);
