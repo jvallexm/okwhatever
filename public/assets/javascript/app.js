@@ -182,7 +182,8 @@ $(document).ready(() => {
         }).then(
             function() {
                 console.log("posted new message");
-                // Reload the page to get the updated list
+                // confirmation modal
+                $('#successModal').modal('show');
             }
         );
     });
