@@ -99,13 +99,22 @@ module.exports = function(app){
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { fromId: user }, include: [db.user]})
+            db.message.findAll({ where: { fromId: user }, include: [{model: db.user, as: "to"}]})
                        .then(inbox =>{
                            
+                            let newMessages = [];
+
+                            inbox.forEach(i=>{
+
+                                i.user = i.to;
+                                newMessages.push(i);
+
+                            });
+
                             User.findOne(req,(r)=>{
 
                                 let send = {
-                                    message: inbox,
+                                    message: newMessages,
                                     test: r,
                                     title: "Sent"
                                 }
