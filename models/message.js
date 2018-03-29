@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes){
         }});
         message.belongsTo(models.user, 
         {   
-            as: "from",
+            as: "to",
             foreignKey: {
                 allowNull: false
         }});
