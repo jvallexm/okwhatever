@@ -69,7 +69,7 @@ $(document).ready(() => {
             state:         $("#state").val().trim()
         };
 
-        console.log("Birthday: " + $("#birthday"));
+        console.log("Birthday: " + JSON.stringify($("#birthday")));
 
         let isValidated = false;
 
