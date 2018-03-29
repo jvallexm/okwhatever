@@ -8,11 +8,12 @@
                             <h4>{{user.name}}</h4>
                             <p>{{text}}</p>
                         </div>
+                        {{#if readTo}}
+                            <button class="btn">Read</button>
+                        {{else}}
+                            <button class="btn">Mark As Read</button>
+                        {{/if}}
                     </div>
-                    {{#if readTo}}
-                        <button class="btn">Read</button>
-                    {{else}}
-                        <button class="btn">Mark As Read</button>
-                    {{/if}}
+
   
                 </div>
