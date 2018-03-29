@@ -44,7 +44,7 @@ module.exports = function(app){
 
     });
 
-    // Middlewear to redirect to edit page if incomplete profile
+    // Middlewear to redirect to edit page if incomplete profile    
 
     // If logged in defaults to...
 
@@ -69,7 +69,7 @@ module.exports = function(app){
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { toId: user }})
+            db.message.findAll({ where: { toId: user }, include: db[user]})
                        .then(inbox =>{
                             User.findOne(req,(r)=>{
 
