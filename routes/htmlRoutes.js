@@ -71,6 +71,7 @@ module.exports = function(app){
             let user = req.user_data.id;
             db.message.findAll({ where: { toId: user }, include: [db.user]})
                        .then(inbox =>{
+                            console.log(inbox);
                             User.findOne(req,(r)=>{
 
                                 let send = {
