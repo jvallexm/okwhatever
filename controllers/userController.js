@@ -19,7 +19,7 @@ module.exports = {
         db.user.findAll({})
             .then(arr=>{
 
-                cb(arr[0]);
+                cb(arr);
         })
     },
 

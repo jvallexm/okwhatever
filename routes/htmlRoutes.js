@@ -95,7 +95,7 @@ module.exports = function(app){
 
         if(req.user_data){
 
-            db.user.findAll({}).then(r=>{
+            User.findAll(r=>{
 
                 let you = req.user_data.id;
 
@@ -107,6 +107,7 @@ module.exports = function(app){
 
                     if(r[i].id === you){
                         test = r[i];
+                        matches.push(r[i]);
                     } else if(r[i].complete) {
                         matches.push(r[i]);
                     }
