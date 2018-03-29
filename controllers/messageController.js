@@ -1,6 +1,10 @@
 const db = require('../models/index');
 
+/* Database controllers for messages */
+
 module.exports = {
+
+    /* Returns user's inbox */
 
     inbox: function(user,cb){
 
@@ -9,12 +13,16 @@ module.exports = {
 
     },
 
+    /* Returns user's sent message */
+
     outbox: function(user,cb){
 
         db.message.findAll({ where: { fromId: user }, include: [{model: db.user, as: "to"}]})
                   .then(inbox => cb(inbox));
 
     },
+
+    /* Returns the number of unread messages */
 
     unread: function(user,cb){
 

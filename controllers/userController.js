@@ -1,6 +1,10 @@
 const db = require('../models/index');
 
+/* Controllers for users database */
+
 module.exports = {
+
+    /* Find and return a single user */
 
     findOne: function(req,cb){
 
@@ -14,13 +18,16 @@ module.exports = {
 
     },
 
+    /* find and return all users */
+
     findAll: function(req,cb){
 
         db.user.findAll({})
             .then(arr=>{
 
                 cb(arr);
-        })
+        });
+        
     },
 
     

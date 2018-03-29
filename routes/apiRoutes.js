@@ -2,10 +2,11 @@ const db = require("../models/index");
 
 module.exports = function(app){
 
+    /* Route to snd a new message */
+
     app.post("/api/send", (req,res)=>{
 
         console.log("creating a new message");
-        console.log(req.body);
 
         let flirt = false;
 
@@ -29,13 +30,8 @@ module.exports = function(app){
         
     });
 
-    //get single user
-    app.get('/api/profile/:id',(req,res)=>{
-        db.user.findAll({ where: { id: req.params.id }})
-               .then(results => res.json(results[0]));
-    });
+    /* Route to update a user profile */
 
-    //updating a user
     app.post('/api/profile/update',(req,res)=>{
 
         console.log("updating user");
@@ -65,6 +61,8 @@ module.exports = function(app){
         }
         
     });
+
+    /* Route to change messages to read in the database */
 
     app.post('/api/message/read',(err,res)=>{
 
