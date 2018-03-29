@@ -30,8 +30,12 @@ module.exports = function(app){
         
     });
 
-    /* Route to update a user profile */
+    app.get('/api/profile/:id',(req,res)=>{
+        db.user.findAll({ where: { id: req.params.id }})
+               .then(results => res.json(results[0]));
+    });
 
+    //updating a user
     app.post('/api/profile/update',(req,res)=>{
 
         console.log("updating user");
@@ -61,8 +65,6 @@ module.exports = function(app){
         }
         
     });
-
-    /* Route to change messages to read in the database */
 
     app.post('/api/message/read',(err,res)=>{
 
