@@ -89,4 +89,10 @@ module.exports = function(app){
                   
     });
 
+    api.get(`/api/allmessages`,(req,res)=>{
+
+        db.message.findAll({}).then(r=>res.json(r));
+
+    });
+
 }
