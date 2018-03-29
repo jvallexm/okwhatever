@@ -151,7 +151,7 @@ module.exports = function(app){
 
                     if(r[i].id === you){
                         test = r[i];
-                        matches.push(r[i]);
+                        //matches.push(r[i]);
                     } else if(r[i].complete) {
                         matches.push(r[i]);
                     }
