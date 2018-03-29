@@ -13,7 +13,7 @@ module.exports = {
     outbox: function(user,cb){
 
         db.message.findAll({ where: { fromId: user }, include: [{model: db.user, as: "to"}]})
-        .then(inbox => cb(inbox));
+                  .then(inbox => cb(inbox));
 
     }
 

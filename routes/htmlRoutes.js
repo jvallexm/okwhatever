@@ -70,7 +70,7 @@ module.exports = function(app){
         if(req.user_data){
             let user = req.user_data.id;
 
-            Message.inbox(user,(cb)=>{
+            Message.inbox(user,(inbox)=>{
 
                 User.findOne(req,(r)=>{
 
