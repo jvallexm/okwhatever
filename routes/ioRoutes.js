@@ -18,7 +18,7 @@ module.exports = function(io){
     
         });
         
-        socket.on("disconnect",(client)=>{
+        client.on("disconnect",(client)=>{
             console.log("someone done disconnected");
             users.splice(users.indexOf(client),1);
         });
