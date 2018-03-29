@@ -95,7 +95,7 @@ module.exports = function(app){
 
         if(req.user_data){
 
-            User.findAll((r)=>{
+            User.findAll(req,(r)=>{
 
                 let you = req.user_data.id;
 
