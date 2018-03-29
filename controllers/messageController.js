@@ -15,6 +15,11 @@ module.exports = {
         db.message.findAll({ where: { fromId: user }, include: [{model: db.user, as: "to"}]})
                   .then(inbox => cb(inbox));
 
+    },
+
+    unread: function(user,cb){
+
+
     }
 
 }

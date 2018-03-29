@@ -156,7 +156,7 @@ module.exports = function(app){
         if(req.user_data){
 
             User.findAll(req,(r)=>{
-
+                
                 let you = req.user_data.id;
 
                 let test;
@@ -173,9 +173,27 @@ module.exports = function(app){
                     }
 
                 }
+
+                Message.inbox(you,(inbox)=>{
+
+                    let unread = 0;
+
+                    inbox.forEach(i=>{
+
+                        if(!i.readTo){
+                            unread++;
+                        }
+
+                    });
+
+                    if(unread > 0)
+                        test.unread = unread;
+
+                    res.render("matches",{test:  test,
+                                          match: matches});
+
+                });
                 
-                res.render("matches",{test:  test,
-                                      match: matches});
     
             });
 
