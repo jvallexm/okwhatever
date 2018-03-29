@@ -4,8 +4,7 @@ module.exports = {
 
     inbox: function(user,cb){
 
-        db.message.findAll({where: {toId: user},
-                            include: [db.user]})
+        db.message.findAll({where: {toId: user}, include: [db.user]})
                   .then(inbox => cb(inbox));
 
     },

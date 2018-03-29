@@ -27,8 +27,15 @@ module.exports = function(app){
                     result = you;
     
                 }
-    
-                res.render("edit",{test: result});
+
+                Message.unread(you,(unread)=>{
+
+                    if(unread > 0)
+                        result.unread = unread;
+
+                    res.render("edit",{test:  result});
+
+                });
 
             });
 
@@ -86,6 +93,19 @@ module.exports = function(app){
                         inbox: true
                     }
 
+                    let unread = 0;
+
+                    inbox.forEach(i=>{
+
+                        if(!i.readTo){
+                            unread++;
+                        }
+
+                    });
+
+                    if(unread > 0)
+                        send.test.unread = unread;
+                    
                     res.render("messages",send);
 
                 })
@@ -132,8 +152,16 @@ module.exports = function(app){
                         title: "Sent",
                         inbox: false
                     }
-        
-                    res.render("messages",send);
+                    
+                    Message.unread(user,(unread)=>{
+
+                        if(unread > 0)
+                            send.test.unread = unread;
+
+                        res.render("messages",send);
+                        
+                    })
+                    
 
                 });
 
@@ -210,20 +238,6 @@ module.exports = function(app){
 
 
 
-    });
-
-    // Testing routes
-
-    app.get('/test',(req,res)=>{
-
-        res.send(req.user_data);
-        
-    });
-    
-    app.get('/foo',(req,res)=>{
-    
-        res.send(req.user_data);    
-    
     });
 
 
