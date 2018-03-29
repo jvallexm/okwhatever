@@ -17,8 +17,8 @@ module.exports = function(sequelize, DataTypes){
 
     message.associate = function(models){
 
-        message.belongsTo(models.user, {as: 'userID', foreignKey: 'userId'});
-        message.belongsTo(models.user, {as: 'fromId', foreignKey: 'fromId'});
+        message.belongsTo(models.user, {as: 'userId', foreignKey: 'id'});
+        message.belongsTo(models.user, {as: 'fromId', foreignKey: 'id'});
 
     }
     
