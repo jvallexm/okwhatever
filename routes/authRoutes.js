@@ -30,7 +30,7 @@ module.exports = function(app,path){
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "/auth/facebook/callback", 
-        profileFields: ['email','birthday','first_name','picture.type(large)','cover_photo']
+        profileFields: ['email','birthday','first_name','picture.type(large)']
 
       },
       function(accessToken, refreshToken, profile, cb) {
@@ -54,7 +54,7 @@ module.exports = function(app,path){
     app.use( passport.initialize() );
     app.use( passport.session()    );
 
-    app.get('/auth/facebook', passport.authenticate('facebook',{authType: 'rerequest', scope: ['public_profile'] }));
+    app.get('/auth/facebook', passport.authenticate('facebook',{authType: 'rerequest', scope: ['public_profile','photos'] }));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
