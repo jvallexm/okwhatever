@@ -5,6 +5,14 @@ const db               = require('../models/index');
 
 module.exports = function(app,path){
 
+    /* Sends login first */
+
+    app.get('/login',(req,res)=>{
+
+        res.sendFile( path.join(__dirname + `/public/login.html`));
+        
+    });
+
     /* Passport Serialize User */
 
     passport.serializeUser(function(user, done) {

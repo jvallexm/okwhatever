@@ -33,12 +33,6 @@ app.set("view engine", "handlebars");
 
 /* Will always send login first */
 
-app.get('/login',(req,res)=>{
-
-    res.sendFile( path.join(__dirname + `/public/login.html`));
-    
-});
-
 require( './routes/authRoutes.js' )(app,path);
 require( './routes/apiRoutes.js'  )(app);
 require( './routes/ioRoutes.js'   )(io)
