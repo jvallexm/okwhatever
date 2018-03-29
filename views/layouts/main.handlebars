@@ -22,10 +22,34 @@
 
 {{{body}}}
 
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">Send a message</h3>
+                </div>
+                <div class="divider"></div>
+                <br/>
+                <div class="row text-center">
+                    
+                    <form class="message-form">
+                        <div class="form-group">
+                            <label for="newmessage">New Message</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="send a message... or whatever"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script src="assets/js/masonry_custom.js"></script>
+<script src="assets/javascript/masonry_custom.js"></script>
+<script src="assets/javascript/app.js"></script>
 
 </html>

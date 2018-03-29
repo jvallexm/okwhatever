@@ -1,3 +1,6 @@
+const db    = require('../models/index');
+const User  = require('../controllers/userController');
+
 module.exports = function(app){
     
 
@@ -6,22 +9,42 @@ module.exports = function(app){
 
         let user = req.user_data.id;
 
+        if(req.user_data){
+
+            User.findOne(req,(you)=>{
+
+                let result;
+    
+                if(!you){
+                    result = {
+                        name: "Hot Poppers",
+                        image: "hotpoppers.jpg"
+                    }
+                } else {
+    
+                    result = you;
+    
+                }
+    
+                res.render("edit",{test: result});
+
+            });
+
+        } else {
+
+            res.render("edit",{
+                test: {
+                    name: "Hot Poppers",
+                    image: "hotpoppers.jpg"
+                }
+            });
+
+        }
+        
+
     });
 
     // Middlewear to redirect to edit page if incomplete profile
-
-    app.use((req,res,next)=>{
-
-        // If you profile isn't complete...
-
-        //res.redirect(`/edit`);
-
-        //else
-
-        //next();
-
-
-    });
 
     // If logged in defaults to...
 
@@ -43,7 +66,26 @@ module.exports = function(app){
 
     app.get(`/inbox`,(req,res)=>{
 
-        let user = req.user_data.id;
+        
+        if(req.user_data){
+            let user = req.user_data.id;
+            db.message.findAll({ where: { fromId: id }/{ toId: id }})
+                    .then(results =>{
+
+                        let send = {
+                            message: results
+                        }
+
+                        res.render("messages",send);
+
+                    });
+        } else {
+
+            res.render("messages",{
+                message: []
+            });
+
+        }
 
     });
 
@@ -51,12 +93,44 @@ module.exports = function(app){
 
     app.get(`/matches`,(req,res)=>{
 
-        res.render("index",{
-            test: {
-                name: "Hot Poppers",
-                image: "hotpoppers.jpg"
-            }
-        });
+        if(req.user_data){
+
+            db.user.findAll({}).then(r=>{
+
+                let you = req.user_data.id;
+
+                let test;
+
+                let matches = [];
+
+                for(let i=0;i<r.length;++i){
+
+                    if(r[i].id === you){
+                        test = r[i];
+                    } else if(r[i].complete) {
+                        matches.push(r[i]);
+                    }
+
+                }
+                
+                res.render("matches",{test:  test,
+                                      match: matches});
+    
+            });
+
+        } else {
+
+            res.render("matches",{
+                test: {
+                    name: "Hot Poppers",
+                    image: "hotpoppers.jpg"
+                },
+                match: []
+            });
+
+        }
+
+        
 
     });
 
@@ -86,11 +160,14 @@ module.exports = function(app){
 
     // 404ED!!!
 
+    /*
+
     app.get(`*`,(req,res)=>{
 
         res.sendStatus(404).send("404ed!");
 
     });
 
+    */
 
 }

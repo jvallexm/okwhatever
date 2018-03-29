@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes){
         inboxFrom:  DataTypes.BOOLEAN, // If the message is in the 'from' user inbox
         text:       DataTypes.STRING,  // Text of the message
         readTo:     DataTypes.BOOLEAN, // If the 'to' user has read the message
-        readFrom:   DataTypes.BOOLEAN  // if the 'fron' user has read the message
+        readFrom:   DataTypes.BOOLEAN,  // if the 'fron' user has read the message
+        isFlirt:    DataTypes.BOOLEAN
     });
     
     return message;
