@@ -8,9 +8,12 @@ const env          = require('dotenv').config();
 const cookieParser = require('cookie-parser')
 const db           = require("./models");
 
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
 db.sequelize.sync().then(()=>{
 
-  app.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
+  server.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
   
 });
 
@@ -39,13 +42,9 @@ app.get('/login',(req,res)=>{
 
 require( './routes/authRoutes.js'   )(app,path);
 
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-
 io.on("connection",()=>{
     console.log("Someone done connected");
-})
-server.listen(port);
+});
 
 require( './routes/apiRoutes.js'    )(app);
 require( './routes/htmlRoutes.js'   )(app);
