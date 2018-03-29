@@ -66,22 +66,21 @@ module.exports = function(app){
         
     });
 
+    api.post('/api/message/read',(err,res)=>{
+
+        db.message.update({readTo: true},{where: {id: req.body.id}})
+                  .then((r)=>{
+                      res.send("ding");
+                  })
+
+    });
+
     //get all users
     app.get('/api/users',(req,res)=>{
 
         db.user.findAll({})
                .then(results => res.json(results));
                
-    });
-
-    //get messages sent FROM an id and TO an id:
-    app.get('/api/messages/',(req,res)=>{
-
-        let id = req.user_data.id;
-
-        db.message.findAll({ where: { fromId: id }/{ toId: id }})
-                  .then(results => res.json(results));
-                  
     });
 
     app.get(`/api/allmessages`,(req,res)=>{

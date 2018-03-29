@@ -213,18 +213,12 @@ module.exports = function(app){
         res.send(req.user_data);    
     
     });
-        
 
-    // 404ED!!!
-
-    /*
 
     app.get(`*`,(req,res)=>{
 
-        res.sendStatus(404).send("404ed!");
+        res.send("404ed!");
 
     });
-
-    */
 
 }
