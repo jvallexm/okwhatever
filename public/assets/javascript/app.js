@@ -51,7 +51,9 @@ $(document).ready(() => {
 
     }
 
-// after new login, user enters data, then on submit button click triggers:
+    $('.datepicker').datepicker();
+
+    // after new login, user enters data, then on submit button click triggers:
     $(".create-form").on("submit", function(event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
