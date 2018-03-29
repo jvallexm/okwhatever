@@ -1,6 +1,6 @@
 const db       = require('../models/index');
 const User     = require('../controllers/userController');
-const Message  = require('../controllers/userController');
+const Message  = require('../controllers/messageController');
 
 module.exports = function(app){
     
