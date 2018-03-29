@@ -43,7 +43,7 @@ require( './routes/authRoutes.js'   )(app,path);
 
 io.on("connection",(client)=>{
     console.log("Someone done connected");
-    console.log(client.handshake.headers);
+    console.log(client.handshake.headers.user_data);
 });
 
 require( './routes/apiRoutes.js'    )(app);
