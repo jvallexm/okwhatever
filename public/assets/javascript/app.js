@@ -141,7 +141,7 @@ $(document).ready(() => {
                     location.reload();
                 }
             );
-        }); 
+        } 
     });
 
 
