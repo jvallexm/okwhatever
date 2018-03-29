@@ -16,14 +16,11 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,500,700,800" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 </head>
 
 <body>
-
-{{{body}}}
-
+    {{{body}}}
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
@@ -34,7 +31,6 @@
                 <div class="divider"></div>
                 <br/>
                 <div class="row text-center">
-                    
                     <form class="message-form">
                         <div class="form-group">
                             <label for="newmessage">New Message</label>
@@ -42,7 +38,23 @@
                         </div>
                         <button type="submit" class="btn btn-primary pull-right">Submit</button>
                     </form>
-
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="successModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4>Great!</h4>
+                    <p>Your message has been sent successfully.</p>
+                    <button class="btn btn-success" data-dismiss="modal"><span>Back To Your Matches</span> <i class="material-icons">&#xE5C8;</i></button>
                 </div>
             </div>
         </div>
@@ -52,7 +64,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="assets/javascript/masonry_custom.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script src="assets/javascript/app.js"></script>
 
