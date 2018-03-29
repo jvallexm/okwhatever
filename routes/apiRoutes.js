@@ -22,7 +22,8 @@ module.exports = function(app){
             text: req.body.text,
             readTo: false,
             readFrom: true,
-            isFlirt: flirt
+            isFlirt: flirt,
+            userId: req.user_data.id
 
         }).then(user => res.send("ding"));
         

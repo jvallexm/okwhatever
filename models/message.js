@@ -14,13 +14,14 @@ module.exports = function(sequelize, DataTypes){
         isFlirt:    DataTypes.BOOLEAN
     });
 
-    /* message.associate = function(models){
+    message.associate = function(models){
 
-        message.belongsTo(models.user,{
-            targetKey: "id"
-        });
+        message.belongsTo(models.user, 
+        {foreignKey: {
+            allowNull: false
+        }});
 
-    } */
+    }
     
     return message;
 }
