@@ -38,6 +38,14 @@ app.get('/login',(req,res)=>{
 });
 
 require( './routes/authRoutes.js'   )(app,path);
-require( './routes/profileCheck.js' )(app);
+
+const server = require('http').createServer(app);
+const io = require('socket.io')
+
+io.on("connection",()=>{
+    console.log("Someone done connected");
+})
+server.listen(port);
+
 require( './routes/apiRoutes.js'    )(app);
 require( './routes/htmlRoutes.js'   )(app);
