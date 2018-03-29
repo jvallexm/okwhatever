@@ -69,7 +69,7 @@ module.exports = function(app){
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { fromId: id }/{ toId: id }})
+            db.message.findAll({ where: { fromId: user }/{ toId: user }})
                     .then(results =>{
 
                         let send = {
