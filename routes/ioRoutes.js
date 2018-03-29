@@ -21,21 +21,25 @@ module.exports = function(io){
 
     io.on("connection",(client)=>{
         console.log("Someone done connected");
+
+        if(client.cookie){
         
-        parseClientCookie(client,(data)=>{
+            parseClientCookie(client,(data)=>{
 
-            client.user_data = data;
-            console.log(client.user_data);
-            users.push(client);
-            console.log("total users " + users.length);
+                client.user_data = data;
+                console.log(client.user_data);
+                users.push(client);
+                console.log("total users " + users.length);
 
-        });
+            });
 
-        client.on("disconnect",(client)=>{
-            console.log("someone done disconnected");
-            users.splice(users.indexOf(client),1);
-        });
-    
+            client.on("disconnect",(client)=>{
+                console.log("someone done disconnected");
+                users.splice(users.indexOf(client),1);
+            });
+
+        }
+        
     });
 
 
