@@ -118,7 +118,7 @@ module.exports = function(app){
                                     message: newMessages,
                                     test: r,
                                     title: "Sent",
-                                    inbox: false;
+                                    inbox: false
                                 }
         
                                 res.render("messages",send);
