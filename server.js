@@ -40,7 +40,7 @@ app.get('/login',(req,res)=>{
 require( './routes/authRoutes.js'   )(app,path);
 
 const server = require('http').createServer(app);
-const io = require('socket.io')
+const io = require('socket.io')(server);
 
 io.on("connection",()=>{
     console.log("Someone done connected");
