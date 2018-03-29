@@ -41,7 +41,7 @@ app.get('/login',(req,res)=>{
 
 require( './routes/authRoutes.js'   )(app,path);
 
-io.on("connection",()=>{
+io.on("connection",(client)=>{
     console.log("Someone done connected");
     console.log(client.handshake.headers);
 });
