@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes){
 
         message.belongsTo(models.user,{
             foreignKey: "fromId",
-            targetKey: "fromId"
+            targetKey: "id"
         });
 
     }
