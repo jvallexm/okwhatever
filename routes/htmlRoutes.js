@@ -70,14 +70,17 @@ module.exports = function(app){
         if(req.user_data){
             let user = req.user_data.id;
             db.message.findAll({ where: { toId: user }})
-                    .then(inbox =>{
+                       .then(inbox =>{
+                            User.findOne(req,(r)=>{
 
-                        let send = {
-                            message: inbox
-                        }
+                                let send = {
+                                    message: inbox,
+                                    test: r
+                                }
+        
+                                res.render("messages",send);
 
-                        res.render("messages",send);
-
+                            })
                     });
         } else {
 
