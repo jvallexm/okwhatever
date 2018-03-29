@@ -1,10 +1,9 @@
 const FacebookStrategy = require("passport-facebook").Strategy;
 const passport         = require("passport");
 const jwt              = require('jsonwebtoken');
-const path             = require('path');
 const db               = require('../models/index');
 
-module.exports = function(app){
+module.exports = function(app,path){
 
     /* Passport Serialize User */
 
