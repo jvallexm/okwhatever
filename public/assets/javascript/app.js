@@ -157,7 +157,7 @@ $(document).ready(() => {
         event.preventDefault();
 
         var newMsg = {
-            text: $("#text").val().trim()
+            text: $("#message").val().trim()
         };
 
         // Send the POST request.
