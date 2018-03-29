@@ -10,7 +10,7 @@ module.exports = function(io){
         jwt.verify(token,process.env.COOKIE_SECRET,(err,data)=>{
     
             if(data)
-                return data;
+               cb(data);
     
         });
         
@@ -21,10 +21,15 @@ module.exports = function(io){
 
     io.on("connection",(client)=>{
         console.log("Someone done connected");
-        client.user_data = parseClientCookie(client);
-        console.log(client.user_data);
-        users.push(client);
-        console.log("total users " + users.length);
+        
+        parseClientCookie(client,(data)=>{
+
+            client.user_data = data;
+            console.log(client.user_data);
+            users.push(client);
+            console.log("total users " + users.length);
+
+        });
 
         client.on("disconnect",(client)=>{
             console.log("someone done disconnected");
