@@ -77,7 +77,8 @@ module.exports = function(app){
                                 let send = {
                                     message: inbox,
                                     test: r,
-                                    title: "Inbox"
+                                    title: "Inbox",
+                                    inbox: true
                                 }
         
                                 res.render("messages",send);
@@ -116,7 +117,8 @@ module.exports = function(app){
                                 let send = {
                                     message: newMessages,
                                     test: r,
-                                    title: "Sent"
+                                    title: "Sent",
+                                    inbox: false;
                                 }
         
                                 res.render("messages",send);

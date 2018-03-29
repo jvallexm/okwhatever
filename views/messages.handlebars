@@ -24,8 +24,11 @@
                 <div class="grid">
                         
                     <div class="grid-sizer"></div>
-
-{{#each message}} {{> message/replies-block}}  {{/each}}
+                    {{if inbox}}
+                        {{#each message}} {{> message/replies-block}}  {{/each}}
+                    {{else}}
+                        {{#each message}} {{> message/sent-block}}     {{/each}}
+                    {{/if}}}}
 
                 </div>
 
