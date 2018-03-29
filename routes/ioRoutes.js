@@ -20,4 +20,9 @@ module.exports = function(io){
     
     });
 
+    io.on("disconnect",(client)=>{
+        console.log("someone done disconnected");
+        users.splice(users.indexOf(client),1);
+    });
+
 }
