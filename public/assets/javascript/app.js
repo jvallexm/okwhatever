@@ -1,3 +1,5 @@
+const socket = io();
+
 $("#login").on("click", function() {
     console.log("login..");
     window.location.replace(`/auth/facebook`);
