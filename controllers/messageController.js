@@ -19,6 +19,24 @@ module.exports = {
 
     unread: function(user,cb){
 
+        db.message.findAll({where: {toId: user},
+            include: [db.user]})
+                 .then(inbox => {
+                     
+                    let unread = 0;
+
+                    inbox.forEach(i=>{
+
+                        if(!i.readTo){
+                            unread++;
+                        }
+
+                    });
+
+                    cb(unread);
+
+                 });
+
 
     }
 

@@ -174,17 +174,7 @@ module.exports = function(app){
 
                 }
 
-                Message.inbox(you,(inbox)=>{
-
-                    let unread = 0;
-
-                    inbox.forEach(i=>{
-
-                        if(!i.readTo){
-                            unread++;
-                        }
-
-                    });
+                Message.unread(you,(unread)=>{
 
                     if(unread > 0)
                         test.unread = unread;
