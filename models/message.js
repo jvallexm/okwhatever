@@ -4,7 +4,6 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.STRING,
             primaryKey: true
         },
-        fromId:     DataTypes.STRING,  // Id of the user the message is from
         toId:       DataTypes.STRING,
         inboxTo:    DataTypes.BOOLEAN, // If the message is in the 'to' user inbox
         inboxFrom:  DataTypes.BOOLEAN, // If the message is in the 'from' user inbox
