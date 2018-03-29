@@ -5,7 +5,9 @@ module.exports = function(app){
     app.post("/api/send", (req,res)=>{
 
         console.log("creating a new message");
-
+        console.log(req.body);
+        /*
+        
         db.message.create({
 
             id: req.user_data.id + new Date().getTime(),
@@ -17,7 +19,8 @@ module.exports = function(app){
             readTo: false,
             readFrom: true
 
-        }).then(user => res.redirect("/"));
+        }).then(user => res.redirect("/"));*/
+        res.send("ding")
         
     });
 
