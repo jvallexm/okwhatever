@@ -6,20 +6,26 @@ module.exports = function(app){
 
         console.log("creating a new message");
         console.log(req.body);
-        /*
-        
+
+        let flirt = false;
+
+        if(req.body.flirt == "true")
+            flirt = true;
+            
         db.message.create({
 
             id: req.user_data.id + new Date().getTime(),
             fromId: req.user_data.id,
-            toId: "placeholder",
+            toId: req.body.id,
             inboxTo: true,
             inboxFrom: true,
             text: req.body.text,
             readTo: false,
-            readFrom: true
+            readFrom: true,
+            isFlirt: flirt
 
-        }).then(user => res.redirect("/"));*/
+        }).then(user => res.send("ding"));
+
         res.send("ding")
         
     });
