@@ -16,13 +16,15 @@ module.exports = function(io){
             if(data)
                 console.log(data);
     
-        })
+        });
+        
+        socket.on("disconnect",(client)=>{
+            console.log("someone done disconnected");
+            users.splice(users.indexOf(client),1);
+        });
     
     });
 
-    io.on("disconnect",(client)=>{
-        console.log("someone done disconnected");
-        users.splice(users.indexOf(client),1);
-    });
+
 
 }
