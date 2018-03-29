@@ -1,9 +1,9 @@
-const db    = require('../models/index');
-const User  = require('../controllers/userController');
+const db       = require('../models/index');
+const User     = require('../controllers/userController');
+const Message  = require('../controllers/userController');
 
 module.exports = function(app){
     
-
     // Route to edit your profile
     app.get(`/edit`,(req,res)=>{
 
@@ -12,14 +12,16 @@ module.exports = function(app){
         if(req.user_data){
 
             User.findOne(req,(you)=>{
-
+                
                 let result;
     
                 if(!you){
+
                     result = {
                         name: "Hot Poppers",
                         image: "hotpoppers.jpg"
                     }
+
                 } else {
     
                     result = you;
@@ -39,8 +41,7 @@ module.exports = function(app){
                 }
             });
 
-        }
-        
+        }   
 
     });
 
@@ -65,31 +66,32 @@ module.exports = function(app){
     // Route to check inbox
 
     app.get(`/inbox`,(req,res)=>{
-
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { toId: user }, include: [db.user]})
-                       .then(inbox =>{
 
-                            User.findOne(req,(r)=>{
+            Message.inbox(user,(cb)=>{
 
-                                let send = {
-                                    message: inbox.sort((a,b)=>{
-                                        if(a.createdAt > b.createdAt)
-                                            return -1;
-                                        else
-                                            return 1;
-                                    }),
-                                    test: r,
-                                    title: "Inbox",
-                                    inbox: true
-                                }
-        
-                                res.render("messages",send);
+                User.findOne(req,(r)=>{
 
-                            })
-                    });
+                    let send = {
+                        message: inbox.sort((a,b)=>{
+                            if(a.createdAt > b.createdAt)
+                                return -1;
+                            else
+                                return 1;
+                        }),
+                        test: r,
+                        title: "Inbox",
+                        inbox: true
+                    }
+
+                    res.render("messages",send);
+
+                })
+
+            });
+
         } else {
 
             res.render("messages",{
@@ -105,36 +107,38 @@ module.exports = function(app){
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { fromId: user }, include: [{model: db.user, as: "to"}]})
-                       .then(inbox =>{
-                           
-                            let newMessages = [];
 
-                            inbox.forEach(i=>{
+            Message.outbox(user,(inbox)=>{
 
-                                i.user = i.to;
-                                newMessages.push(i);
+                let newMessages = [];
 
-                            });
+                inbox.forEach(i=>{
 
-                            User.findOne(req,(r)=>{
+                    i.user = i.to;
+                    newMessages.push(i);
 
-                                let send = {
-                                    message: newMessages.sort((a,b)=>{
+                });
+
+                User.findOne(req,(r)=>{
+
+                    let send = {
+                        message: newMessages.sort((a,b)=>{
                                         if(a.createdAt > b.createdAt)
                                             return -1;
                                         else
                                             return 1;
                                     }),
-                                    test: r,
-                                    title: "Sent",
-                                    inbox: false
-                                }
+                        test: r,
+                        title: "Sent",
+                        inbox: false
+                    }
         
-                                res.render("messages",send);
+                    res.render("messages",send);
 
-                            })
-                    });
+                });
+
+            });
+
         } else {
 
             res.render("messages",{
