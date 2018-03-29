@@ -22,6 +22,14 @@ module.exports = function(sequelize, DataTypes){
 
     });
 
+    user.associate = function(models){
+
+        user.hasMany(models.message,{
+            onDelete: "cascade"
+        });
+
+    }
+
     return user;
 }
 

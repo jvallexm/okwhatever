@@ -13,6 +13,15 @@ module.exports = function(sequelize, DataTypes){
         readFrom:   DataTypes.BOOLEAN,  // if the 'fron' user has read the message
         isFlirt:    DataTypes.BOOLEAN
     });
+
+    message.associate = function(models){
+
+        message.belongsTo(models.user,{
+            foreignKey: "fromId",
+            targetKey: "fromId"
+        });
+
+    }
     
     return message;
 }

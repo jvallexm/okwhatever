@@ -30,12 +30,8 @@ module.exports = function(app){
 
     //get single user
     app.get('/api/profile/:id',(req,res)=>{
-        if (req.params.id === req.user_data.id){
-            db.user.findAll({ where: { id: req.params.id }})
-                   .then(results => res.json(results[0]));
-        } else {
-            res.send(false)
-        }
+        db.user.findAll({ where: { id: req.params.id }})
+               .then(results => res.json(results[0]));
     });
 
     //updating a user
