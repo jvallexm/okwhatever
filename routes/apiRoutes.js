@@ -25,8 +25,6 @@ module.exports = function(app){
             isFlirt: flirt
 
         }).then(user => res.send("ding"));
-
-        res.send("ding")
         
     });
 

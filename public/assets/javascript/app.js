@@ -59,7 +59,7 @@ $(document).ready(() => {
         event.preventDefault();
 
         var newUser = {
-            birthday:      $("#birthday").val().trim(),
+            birthday:      $("#birthday").val(),
             bio:           $("#bio").val().trim(),
             gender:        $("#gender").val().trim(),
             interested_in: $("#sexuality").val().trim(),
