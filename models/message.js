@@ -11,15 +11,15 @@ module.exports = function(sequelize, DataTypes){
         text:       DataTypes.STRING,  // Text of the message
         readTo:     DataTypes.BOOLEAN, // If the 'to' user has read the message
         readFrom:   DataTypes.BOOLEAN,  // if the 'fron' user has read the message
-        isFlirt:    DataTypes.BOOLEAN
+        isFlirt:    DataTypes.BOOLEAN,
+        toName:     DataTypes.STRING,
+        toImage:    DataTypes.STRING
     });
 
     message.associate = function(models){
 
-        message.belongsTo(models.user, 
-        {foreignKey: {
-            allowNull: false
-        }});
+        message.belongsTo(models.user, {as: 'userID', foreignKey: 'userId'});
+        message.belongsTo(models.user, {as: 'fromId', foreignKey: 'fromId'});
 
     }
     
