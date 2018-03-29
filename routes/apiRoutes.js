@@ -86,7 +86,7 @@ module.exports = function(app){
 
     app.get(`/api/allmessages`,(req,res)=>{
 
-        db.message.findAll({}).then(r=>res.json(r));
+        db.message.findAll({include: [db.user]}).then(r=>res.json(r));
 
     });
 
