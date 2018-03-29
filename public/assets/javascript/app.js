@@ -187,6 +187,8 @@ $(document).ready(() => {
             function() {
                 console.log("posted new message");
                 // confirmation modal
+                $("#myModal").modal('hide');
+                $("#message").val("");
                 $('#successModal').modal('show');
             }
         );
