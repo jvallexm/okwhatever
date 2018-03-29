@@ -75,7 +75,12 @@ module.exports = function(app){
                             User.findOne(req,(r)=>{
 
                                 let send = {
-                                    message: inbox,
+                                    message: inbox.sort((a,b)=>{
+                                        if(a.createdAt > b.createdAt)
+                                            return -1;
+                                        else
+                                            return 1;
+                                    }),
                                     test: r,
                                     title: "Inbox",
                                     inbox: true
@@ -115,7 +120,12 @@ module.exports = function(app){
                             User.findOne(req,(r)=>{
 
                                 let send = {
-                                    message: newMessages,
+                                    message: newMessages.sort((a,b)=>{
+                                        if(a.createdAt > b.createdAt)
+                                            return -1;
+                                        else
+                                            return 1;
+                                    }),
                                     test: r,
                                     title: "Sent",
                                     inbox: false
