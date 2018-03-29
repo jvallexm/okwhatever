@@ -30,7 +30,7 @@ module.exports = function(app,path){
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "/auth/facebook/callback", 
-        profileFields: ['email','birthday','first_name','age_range','about','location','picture.type(large)','likes','music','movies','television']
+        profileFields: ['email','birthday','first_name','age_range','about','location','picture','likes','music','movies','television']
 
       },
       function(accessToken, refreshToken, profile, cb) {
