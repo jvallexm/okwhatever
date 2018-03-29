@@ -69,6 +69,8 @@ $(document).ready(() => {
             state:         $("#state").val().trim()
         };
 
+        console.log("Birthday: " + newUser.birthday)
+
         let isValidated = false;
 
         $("#validation").text("")
@@ -140,7 +142,7 @@ $(document).ready(() => {
                 function() {
                     console.log("created new user user");
                     // Reload the page to get the updated list
-                    location.reload();
+                    $("#validation").val("Profile updated!")
                 }
             );
         } 
