@@ -71,12 +71,43 @@ module.exports = function(app){
             let user = req.user_data.id;
             db.message.findAll({ where: { toId: user }, include: [db.user]})
                        .then(inbox =>{
-                            console.log(inbox[0].user);
+
                             User.findOne(req,(r)=>{
 
                                 let send = {
                                     message: inbox,
-                                    test: r
+                                    test: r,
+                                    title: "Inbox"
+                                }
+        
+                                res.render("messages",send);
+
+                            })
+                    });
+        } else {
+
+            res.render("messages",{
+                message: []
+            });
+
+        }
+
+    });
+
+    app.get(`/sent`,(req,res)=>{
+
+        
+        if(req.user_data){
+            let user = req.user_data.id;
+            db.message.findAll({ where: { fromId: user }, include: [db.user]})
+                       .then(inbox =>{
+                           
+                            User.findOne(req,(r)=>{
+
+                                let send = {
+                                    message: inbox,
+                                    test: r,
+                                    title: "Sent"
                                 }
         
                                 res.render("messages",send);
