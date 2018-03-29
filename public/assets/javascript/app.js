@@ -69,7 +69,7 @@ $(document).ready(() => {
             state:         $("#state").val().trim()
         };
 
-        console.log("Birthday: " + newUser.birthday)
+        console.log("Birthday: " + $("#birthday"));
 
         let isValidated = false;
 
