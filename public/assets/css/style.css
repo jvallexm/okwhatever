@@ -295,3 +295,9 @@ p {
     width: 100%;
     margin-top: 15px;
   }
+
+  .login-btn {
+    border-width: 0;
+    background-color: #ff00d8;
+    padding: 15px;
+  }
