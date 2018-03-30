@@ -34,8 +34,9 @@ module.exports = function(app){
     app.use(`/`,(req,res,next)=>{
 
         User.findOne(req,(r)=>{
-            if(r.complete)
-                next();
+            if(r)
+                if(r.complete)
+                    next();
             else{
                 User.findOne(req,(you)=>{
                     res.render("edit",{
