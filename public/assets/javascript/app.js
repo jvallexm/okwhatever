@@ -206,12 +206,18 @@ $(document).ready(() => {
         }).then(
             function() {
                 console.log("posted new message");
+                socket.emit("send message",{fromID: msgid});
                 // confirmation modal
                 $("#myModal").modal('hide');
                 $("#message").val("");
                 $('#successModal').modal('show');
             }
         );
+    });
+
+    socket.on("new message",(from)=>{
+        console.log("New message from")
+        console.log(from);
     });
 
     popultate();
