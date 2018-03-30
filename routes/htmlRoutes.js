@@ -39,7 +39,7 @@ module.exports = function(app){
             else{
                 User.findOne(req,(you)=>{
                     res.render("edit",{
-                        test: you,
+                        you: you,
                         message: "You need to finish your profile before you can do anything else!"
                     })
                 })
@@ -196,7 +196,7 @@ module.exports = function(app){
 
                 }
 
-                Message.unread(you,(unread)=>{
+                Message.unread(itYou,(unread)=>{
 
                     if(unread > 0)
                         you.unread = unread;
