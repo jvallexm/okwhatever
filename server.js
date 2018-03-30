@@ -8,8 +8,7 @@ const env          = require('dotenv').config();         // Dot env file
 const cookieParser = require('cookie-parser')            // Cookie Parser
 const db           = require("./models");                // Sequelize database routes
 const server       = require('http').createServer(app);  // Creates a server for socket.io
-const socket       = require('socket.io');
-const io           = socket()(server);       // Creates socket.io server
+const io           = require('socket.io')(server);       // Creates socket.io server
 
 db.sequelize.sync().then(()=>{  // Initializes mysql database
 
