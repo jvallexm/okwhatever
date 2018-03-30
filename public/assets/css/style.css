@@ -110,7 +110,7 @@ height:auto;
 }
 
 .grid-item--gigante img {
-  width: 70%;
+  width: 50%;
 
 }
 
@@ -131,7 +131,7 @@ height:auto;
 }
 
 .btn-success {
-  width: 100px;
+  width: 120px;
 }
 
 .btn-secondary {
@@ -140,7 +140,7 @@ height:auto;
   margin-top: 5px; 
   font-weight: 300;
   font-style: italic;
-    width: 100px;
+    width: 120px;
 }
 
 h4 {  
