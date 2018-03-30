@@ -59,8 +59,14 @@ module.exports = function(app){
         User.findOne(req,(r)=>{
             if(r.complete)
                 next();
-            else
-                res.redirect(`/edit`);
+            else{
+                User.findOne(req,(you)=>{
+                    res.render("edit",{
+                        test: you,
+                        message: "You need to finish your profile before you can do anything else!"
+                    })
+                })
+            }
         })
 
     });
