@@ -3,11 +3,9 @@
     <div class="row content">
 
         <div class="col-sm-3 sidenav hidden-xs">
-
             <a href="/matches">
                 <img src="assets/images/okwhatever_outline.png" width=100% alt="">
             </a>
-            
             {{>sidenav/sidenav-block test}}
 
         </div>
@@ -16,13 +14,21 @@
 
         <div class="col-sm-9">
 
+            <h1>{{title}}</h1>
+
+            <a href="/inbox"><button class="btn">Inbox</button></a>
+            <a href="/sent"><button class="btn">Sent</button></a>
+
             <div class="row">
                 
                 <div class="grid">
                         
                     <div class="grid-sizer"></div>
-
-                    {{>form/form-block}}
+                    {{#if inbox}}
+                        {{#each message}} {{> message/replies-block}}  {{/each}}
+                    {{else}}
+                        {{#each message}} {{> message/sent-block}}     {{/each}}
+                    {{/if}}
 
                 </div>
 

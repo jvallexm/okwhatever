@@ -3,11 +3,9 @@
     <div class="row content">
 
         <div class="col-sm-3 sidenav hidden-xs">
-
             <a href="/matches">
                 <img src="assets/images/okwhatever_outline.png" width=100% alt="">
             </a>
-            
             {{>sidenav/sidenav-block test}}
 
         </div>
@@ -22,7 +20,8 @@
                         
                     <div class="grid-sizer"></div>
 
-                    {{>form/form-block}}
+{{#each match}} {{> matches/match-block}}  {{/each}}
+
 
                 </div>
 

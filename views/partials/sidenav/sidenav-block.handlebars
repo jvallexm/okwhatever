@@ -1,5 +1,13 @@
-<img src="{{image}}" class="profilepic" width=100% alt="">
+<a href="/edit">
+    <img src="{{image}}" id="it-me" class="profilepic" width=100% alt="">
+</a>
 
-<h3>{{name}}</h3>
+<h3>Welcome {{name}}!</h3>
+
+<a href="/inbox">
+
+    <button class="btn">Messages <span id="unread">{{#if unread}}{{unread}}{{/if}}</span></button>
+
+</a>
 
 <br>

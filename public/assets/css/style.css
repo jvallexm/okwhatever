@@ -1,5 +1,7 @@
 body {
     background-color: #ff68e8;
+    font-family: 'Rokkitt', serif;
+    font-size: 1.6rem;
 }
 
 .jumbotron {
@@ -34,16 +36,16 @@ min-height: 100%;
 }
 
 .profilepic{
-	border: 1px solid black;
-	border-radius: 5px;
-	margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 10px;
 
 }
 
 .matchpic{
-	border: 1px solid black;
-	border-radius: 5px;
-/*	margin-top: 10px;*/
+  border: 1px solid black;
+  border-radius: 5px;
+/*  margin-top: 10px;*/
 margin: 0;
 /*width: 50%;*/
 float:left;
@@ -58,8 +60,8 @@ height:auto;
 .grid {
 /*  background: #EEE;
   max-width: 1200px;*/
-	padding-left: 15px;
-	/*padding-right: 15px;*/
+  padding-left: 15px;
+  padding-right: -15px;
 }
 
 /* clearfix */
@@ -73,7 +75,7 @@ height:auto;
 
 .grid-sizer,
 .grid-item {
-  width: 32.2%;
+  width: 31%;
    margin-bottom: 10px;
 }
 
@@ -102,8 +104,24 @@ height:auto;
   max-width: 100%;
 }
 
+.grid-item--gigante {
+  width: 64%;
+  height: 500px;
+}
+
+.grid-item--gigante img {
+  width: 70%;
+
+}
+
+.grid-item:hover {
+  background: #dfdfdf;
+  border-color: white;
+  cursor: pointer;
+}
+
 .matchinfo {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 
@@ -112,7 +130,146 @@ height:auto;
    
 }
 
+.btn-success {
+  width: 100%;
+}
+
 .btn-secondary {
-	background: #4978db;
+  background: #4978db;
+  color: white;
+  margin-top: 5px; 
+  font-weight: 300;
+  font-style: italic;
+    width: 100%;
+}
+
+h4 {  
+font-weight: 700;
+font-size: 1.8rem;
+margin-bottom: 0;
 
 }
+
+h3 {  
+font-weight: 800;
+font-size: 2.5rem;
+margin-bottom: 0;
+
+}
+
+.btn-column {
+  padding-left: 0;
+
+}
+
+.form-group {
+  padding-left: 15px;
+  padding-right: 0;
+}
+
+p {
+  margin-top: 10px;
+  margin-bottom: 0;
+  line-height: normal;
+}
+
+.listbold {
+  font-weight: 700;
+}
+
+.preference {
+  font-style: italic;
+}
+
+.glyphicon.glyphicon-play{
+  font-size: 150%;
+  color: green;
+  margin-top: -10px;
+}
+
+.modal-confirm {    
+    color: #434e65;
+    width: 525px;
+  }
+  .modal-confirm .modal-content {
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+  }
+  .modal-confirm .modal-header {
+    background: #47c9a2;
+    border-bottom: none;   
+        position: relative;
+    text-align: center;
+    margin: -20px -20px 0;
+    border-radius: 5px 5px 0 0;
+    padding: 35px;
+  }
+  .modal-confirm h4 {
+    text-align: center;
+    font-size: 36px;
+    margin: 10px 0;
+  }
+  .modal-confirm .form-control, .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px; 
+  }
+  .modal-confirm .close {
+        position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 0.5;
+  }
+  .modal-confirm .close:hover {
+    opacity: 0.8;
+  }
+  .modal-confirm .icon-box {
+    color: #fff;    
+    width: 95px;
+    height: 95px;
+    display: inline-block;
+    border-radius: 50%;
+    z-index: 9;
+    border: 5px solid #fff;
+    padding: 15px;
+    text-align: center;
+  }
+  .modal-confirm .icon-box i {
+    font-size: 64px;
+    margin: -4px 0 0 -4px;
+  }
+  .modal-confirm.modal-dialog {
+    margin-top: 80px;
+  }
+    .modal-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #eeb711;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border-radius: 30px;
+    margin-top: 10px;
+    padding: 6px 20px;
+        border: none;
+    }
+  .modal-confirm .btn:hover, .modal-confirm .btn:focus {
+    background: #eda645;
+    outline: none;
+  }
+  .modal-confirm .btn span {
+    margin: 1px 3px 0;
+    float: left;
+  }
+  .modal-confirm .btn i {
+    margin-left: 1px;
+    font-size: 20px;
+    float: right;
+  }
+  .trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+  }
