@@ -2,10 +2,11 @@ const db = require("../models/index");
 
 module.exports = function(app){
 
+    /* Route to snd a new message */
+
     app.post("/api/send", (req,res)=>{
 
         console.log("creating a new message");
-        console.log(req.body);
 
         let flirt = false;
 
@@ -29,7 +30,6 @@ module.exports = function(app){
         
     });
 
-    //get single user
     app.get('/api/profile/:id',(req,res)=>{
         db.user.findAll({ where: { id: req.params.id }})
                .then(results => res.json(results[0]));
@@ -66,22 +66,21 @@ module.exports = function(app){
         
     });
 
+    app.post('/api/message/read',(err,res)=>{
+
+        db.message.update({readTo: true},{where: {id: req.body.id}})
+                  .then((r)=>{
+                      res.send("ding");
+                  })
+
+    });
+
     //get all users
     app.get('/api/users',(req,res)=>{
 
         db.user.findAll({})
                .then(results => res.json(results));
                
-    });
-
-    //get messages sent FROM an id and TO an id:
-    app.get('/api/messages/',(req,res)=>{
-
-        let id = req.user_data.id;
-
-        db.message.findAll({ where: { fromId: id }/{ toId: id }})
-                  .then(results => res.json(results));
-                  
     });
 
     app.get(`/api/allmessages`,(req,res)=>{

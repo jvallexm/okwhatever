@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes){
+    
     const user = sequelize.define("user", {
         
         id:      {
@@ -16,11 +17,13 @@ module.exports = function(sequelize, DataTypes){
         wants_to:      DataTypes.STRING,  // Activities the user would want to do
         flirts_on:     DataTypes.BOOLEAN, // Switch to toggle the "flirt" button
         last_online:   DataTypes.INTEGER, // When the user was last online
-        city:          DataTypes.STRING, 
-        state:         DataTypes.STRING,
-        complete:      DataTypes.BOOLEAN
+        city:          DataTypes.STRING,  // User's city
+        state:         DataTypes.STRING,  // User's state
+        complete:      DataTypes.BOOLEAN  // is set to complete once a user has completed their profile
 
     });
+
+    /* Associates messages with users */
 
     user.associate = function(models){
 
