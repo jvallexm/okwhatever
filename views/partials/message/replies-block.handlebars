@@ -1,11 +1,16 @@
+<div class="row msgrow flirt-{{isFlirt}}">
+                    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{user.name}} says:</h3>
+        </div>
+    <div class="panel-body">
 
-                <div class="row flirt-{{isFlirt}}">
-                    <div class="col-sm-2">
-                        <img src={{user.image}}>
-                    </div>
-                    <div class="col-sm-10 {{send-recieve}}">
+        <div class="col-sm-2">
+            <img class="msgimage" src={{user.image}}>
+        </div>
+        <div class="col-sm-10 {{send-recieve}}">
                         <div class="well">
-                            <h4>{{user.name}}</h4>
                             <p>{{text}}</p>
                         </div>
                         {{#if readTo}}
@@ -14,6 +19,8 @@
                             <button class="btn read" data-id={{id}}> Mark As Read </button>
                         {{/if}}
                     </div>
+        </div>
+    </div>
+</div>
 
-  
-                </div>
+
