@@ -179,7 +179,7 @@ module.exports = function(app){
 
             User.findAll(req,(r)=>{
                 
-                let you = req.user_data.id;
+                let itYou = req.user_data.id;
 
                 let you;
 
@@ -187,7 +187,7 @@ module.exports = function(app){
 
                 for(let i=0;i<r.length;++i){
 
-                    if(r[i].id === you){
+                    if(r[i].id === itYou){
                         you = r[i];
                         //matches.push(r[i]);
                     } else if(r[i].complete) {
