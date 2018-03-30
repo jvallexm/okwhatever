@@ -99,7 +99,7 @@ module.exports = function(app,path){
             // Successful authentication, redirect home.
             res.json({
                 id: req.user.id,
-                name: req.name.givenName,
+                name: req.user.name.givenName,
                 image: req.user.photos[0].value
             });
     });
