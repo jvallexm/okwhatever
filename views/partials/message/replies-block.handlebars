@@ -13,14 +13,14 @@
                         <div class="well">
                             <p class="msgtext">{{text}}</p>
                         </div>
-
-                                                <button type="button" class="btn btn-success btn-match pull-right flirt" data-id="{{id}}">Flirt</button>
-                                <button type="button" class="btn btn-secondary btn-match pull-right whatever" data-id="{{id}}">Whatever</button>
                         {{#if readTo}}
-                            <button class="btn msgbtn btn-success pull-right"> Read </button>
+                            <button class="btn msgbtn btn-success pull-right"> Read </button>&nbsp;
                         {{else}}
-                            <button class="btn msgbtn btn-info read pull-right" data-id={{id}}> Mark As Read </button>
+                            <button class="btn msgbtn btn-info read pull-right" data-id={{id}}> Mark As Read </button>&nbsp;
                         {{/if}}
+
+                                <button type="button" class="btn btn-secondary btn-match pull-right whatever" data-id="{{user.id}}">Whatever</button>&nbsp;
+                                                <button type="button" class="btn btn-success btn-match pull-right flirt" data-id="{{user.id}}">Flirt</button>&nbsp;
                     </div>
         </div>
     </div>
