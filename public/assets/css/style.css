@@ -106,8 +106,8 @@ height:auto;
 
 .grid-item--gigante {
   width: 64%;
-  height: 500px;
-}
+/*  height: 500px;
+*/}
 
 .grid-item--gigante img {
   width: 50%;
