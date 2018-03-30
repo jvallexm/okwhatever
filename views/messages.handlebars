@@ -16,8 +16,12 @@
 
             <h1>{{title}}</h1>
 
-            <a href="/inbox"><button class="btn">Inbox</button></a>
-            <a href="/sent"><button class="btn">Sent</button></a>
+
+                    {{#if inbox}}
+                        <a href="/sent"><button class="btn pull-right">Sent Msgs</button></a>
+                    {{else}}
+                        <a href="/inbox"><button class="btn pull-right">Inbox</button></a>
+                    {{/if}}
 
             <div class="row">
                 
