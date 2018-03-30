@@ -50,7 +50,7 @@ module.exports = function(io){
             console.log(message);
             
             users.forEach(i=>{
-
+                console.log(`#### checking if ${message.fromId} is ${i.user_data.id} ####`)
                 if(i.user_data.id == message.toId){
                     db.user.findAll({where: {id: message.fromId}})
                            .then(arr=>{
