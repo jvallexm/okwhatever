@@ -10,11 +10,11 @@ const db           = require("./models");
 const server       = require('http').createServer(app);
 const io           = require('socket.io')(server);
 
-//db.sequelize.sync().then(()=>{
+db.sequelize.sync().then(()=>{
 
   server.listen(port, ()=> console.log(`listening on port ${port}`)); // I hear you, dog
   
-//});
+});
 
 app.use( bodyParser.urlencoded({ extended: false })     ); 
 app.use( bodyParser.json()                              );
@@ -33,7 +33,7 @@ app.set("view engine", "handlebars");
 
 /* Will always send login first */
 
-//require( './routes/authRoutes.js' )(app,path);
+require( './routes/authRoutes.js' )(app,path);
 require( './routes/apiRoutes.js'  )(app);
 require( './routes/ioRoutes.js'   )(io)
 require( './routes/htmlRoutes.js' )(app);
