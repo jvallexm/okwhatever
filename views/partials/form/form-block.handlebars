@@ -1,86 +1,113 @@
-                    <div id="validation"></div>
-                    <form class="create-form">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="city">Your City</label>
-                                <input class="form-control" id="city" placeholder="City">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="state">Your State</label>
-                                <input class="form-control" id="state" placeholder="State">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="state">Birthday</label>
-                            <div class="input-group date" data-provide="datepicker">
-                                <input type="text" class="form-control" id="birthday"> 
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="gender">Gender</label>
-                                <select class="form-control" id="gender">
-                                    <option value="" selected disabled hidden>Choose...</option>
-                                    <option>Female</option>
-                                    <option>Male</option>
-                                    <option>Agender</option>
-                                    <option>Androgynous</option>
-                                    <option>Bigender</option>
-                                    <option>Cis man</option>
-                                    <option>Cis woman</option>
-                                    <option>Genderfluid</option>
-                                    <option>Genderqueer</option>
-                                    <option>Hijra</option>
-                                    <option>Intersex</option>
-                                    <option>Non-binary</option>
-                                    <option>Pangender</option>
-                                    <option>Transfeminine</option>
-                                    <option>Transgender</option>
-                                    <option>Transmasculine</option>
-                                    <option>Transsexual</option>
-                                    <option>Trans man</option>
-                                    <option>Trans woman</option>
-                                    <option>Two-spirit</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="sexuality">Sexuality</label>
-                                <select class="form-control" id="sexuality">
-                                    <option value="" selected disabled hidden>Choose...</option>
-                                    <option>Straight</option>
-                                    <option>Gay</option>
-                                    <option>Bisexual</option>
-                                    <option>Asexual</option>
-                                    <option>Demisexual</option>
-                                    <option>Heteroflexible</option>
-                                    <option>Homoflexible</option>
-                                    <option>Lesbian</option>
-                                    <option>Pansexual</option>
-                                    <option>Queer</option>
-                                    <option>Questioning</option>
-                                    <option>Sapiosexual</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="favorite1">A Few of My Favorite Things:</label>
-                            <input type="text" class="form-control" id="favorite1" placeholder="i.e., Doctor Who">
-                            <input type="text" class="form-control" id="favorite2" placeholder="i.e., Crunchcoat">
-                            <input type="text" class="form-control" id="favorite3" placeholder="i.e., Squirrel Girl">
-                        </div>
-                        <div class="form-group">
-                            <label for="bio">Bio</label>
-                            <textarea class="form-control" id="bio" rows="4" placeholder="a brief history of your life until now"></textarea>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="interestedIn">Interested in:</label>
-                                <input type="text" class="form-control" id="interestedIn" placeholder="Dating? Friendship? Getting A Pizza?">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary pull-right profilebtn">Submit</button>
-                    </form>
+                            <form class="well form-horizontal" id="contact_form">
+                                    <fieldset>
+
+                                            <!-- ROW 1 -->
+                                            <div class="form-row col-md-12" >
+                                            
+                                                <div class="form-group col-md-4">
+                                                    <label for="city">Your City</label>
+                                                    <input class="form-control" name="city" id="city" placeholder="City">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="state">Your State</label>
+                                                    <input class="form-control" name="state" id="state" placeholder="State">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="date">Date</label>
+                                                    <input class="datepicker form-control" name="date" id="datePicker" data-date-format="mm-dd-yyyy" placeholder="MM-DD-YYYY"></input>  
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- ROW 2 --> 
+                                            <div class="form-row col-md-12" >
+                                                <div class="form-group col-md-6">
+                                                    <label for="gender">Gender</label>
+                                                    <select class="form-control" name="gender" id="gender">
+                                                        <option value="" selected disabled hidden>Choose...</option>
+                                                        <option>Female</option>
+                                                        <option>Male</option>
+                                                        <option>Agender</option>
+                                                        <option>Androgynous</option>
+                                                        <option>Bigender</option>
+                                                        <option>Cis man</option>
+                                                        <option>Cis woman</option>
+                                                        <option>Genderfluid</option>
+                                                        <option>Genderqueer</option>
+                                                        <option>Hijra</option>
+                                                        <option>Intersex</option>
+                                                        <option>Non-binary</option>
+                                                        <option>Pangender</option>
+                                                        <option>Transfeminine</option>
+                                                        <option>Transgender</option>
+                                                        <option>Transmasculine</option>
+                                                        <option>Transsexual</option>
+                                                        <option>Trans man</option>
+                                                        <option>Trans woman</option>
+                                                        <option>Two-spirit</option>
+                                                        <option>Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="sexuality">Sexuality</label>
+                                                    <select class="form-control" name="sexuality" id="sexuality">
+                                                        <option value="" selected disabled hidden>Choose...</option>
+                                                        <option>Straight</option>
+                                                        <option>Gay</option>
+                                                        <option>Bisexual</option>
+                                                        <option>Asexual</option>
+                                                        <option>Demisexual</option>
+                                                        <option>Heteroflexible</option>
+                                                        <option>Homoflexible</option>
+                                                        <option>Lesbian</option>
+                                                        <option>Pansexual</option>
+                                                        <option>Queer</option>
+                                                        <option>Questioning</option>
+                                                        <option>Sapiosexual</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <!-- ROW 3 -->
+                                            <div class="form-row col-md-12" >
+                                                <div class="form-group col-md-12">
+                                                    <label for="favorite1">A Few of My Favorite Things:</label>
+                                                    <input type="text" name="fav1" class="form-control" id="favorite1" placeholder="i.e., Doctor Who">
+                                                </div>
+                                            </div>
+
+                                            <!-- ROW 4 -->
+                                            <div class="form-row col-md-12" >
+                                                <div class="form-group col-md-12">
+                                                    <label for="favorite1">A Few of My Favorite Things:</label>
+                                                    <input type="text" name="fav2" class="form-control" id="favorite2" placeholder="i.e., Crunchcoat">
+                                                </div>
+                                            </div>
+
+                                                <!-- ROW 5 -->
+                                            <div class="form-row col-md-12" >
+                                                <div class="form-group col-md-12">
+                                                    <label for="favorite1">A Few of My Favorite Things:</label>
+                                                    <input type="text" name="fav3" class="form-control" id="favorite3" placeholder="i.e., Squirrel Girl">
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- ROW 6 -->
+                                            <div class="form-group col-md-12">
+                                                <label for="bio">Bio</label>
+                                                <textarea name="bio" class="form-control" id="bio" rows="4" placeholder="a brief history of your life until now"></textarea>
+                                            </div>
+
+                                            <!-- ROW 7 -->
+                                            <div class="form-row col-md-12">
+                                                <div class="form-group">
+                                                    <label for="interestedIn">Interested in:</label>
+                                                    <input type="text" name="interestedIn" class="form-control" id="interestedIn" placeholder="Dating? Friendship? Getting A Pizza?">
+                                                </div>
+                                            </div>
+
+
+                                            <button type="submit" class="btn btn-primary pull-right">Submit</button>
+
+                                    </fieldset>
+                            </form>
