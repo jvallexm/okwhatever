@@ -62,6 +62,34 @@ $(document).ready(() => {
 
     $("#contact_form").on("submit",(e)=>{
         e.preventDefault();
+
+        e.preventDefault();
+
+        let newUser = {
+            birthday:      $("#birthday").val(),
+            bio:           $("#bio").val().trim(),
+            gender:        $("#gender").val().trim(),
+            interested_in: $("#sexuality").val().trim(),
+            faves:         `${$("#favorite1").val().trim()};;;${$("#favorite2").val().trim()};;;${$("#favorite3").val().trim()}`,
+            wants_to:      $("#interestedIn").val().trim(),
+            city:          $("#city").val().trim(),
+            state:         $("#state").val().trim()
+        };
+
+        // Use Ajax to submit form data
+        $.ajax("/api/profile/update", {
+            type: "POST",
+            data: newUser
+        }).then(
+            function() {
+                console.log("created new user user");
+                // Reload the page to get the updated list
+                $("#validation").val("Profile updated!")
+                $('#successModal').modal('show');
+                $('#modal2msg').text('Your Profile has been successfully updated!');
+            }
+        );
+
     });
 
     $('#contact_form').bootstrapValidator({
@@ -173,35 +201,6 @@ $(document).ready(() => {
 
         }
            
-        })
-        .on('success.form.bv', function(e) {
-            // Prevent form submission
-            e.preventDefault();
-
-            let newUser = {
-                birthday:      $("#birthday").val(),
-                bio:           $("#bio").val().trim(),
-                gender:        $("#gender").val().trim(),
-                interested_in: $("#sexuality").val().trim(),
-                faves:         `${$("#favorite1").val().trim()};;;${$("#favorite2").val().trim()};;;${$("#favorite3").val().trim()}`,
-                wants_to:      $("#interestedIn").val().trim(),
-                city:          $("#city").val().trim(),
-                state:         $("#state").val().trim()
-            };
-
-            // Use Ajax to submit form data
-            $.ajax("/api/profile/update", {
-                type: "POST",
-                data: newUser
-            }).then(
-                function() {
-                    console.log("created new user user");
-                    // Reload the page to get the updated list
-                    $("#validation").val("Profile updated!")
-                    $('#successModal').modal('show');
-                    $('#modal2msg').text('Your Profile has been successfully updated!');
-                }
-            );
         });
 
 
