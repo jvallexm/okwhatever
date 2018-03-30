@@ -146,6 +146,7 @@ $(document).ready(() => {
                     // Reload the page to get the updated list
                     $("#validation").val("Profile updated!")
                     $('#successModal').modal('show');
+                    $('#modal2msg').text('Your Profile has been successfully updated!');
                 }
             );
         } 
