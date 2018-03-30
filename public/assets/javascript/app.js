@@ -218,7 +218,8 @@ $(document).ready(() => {
     });
 
     socket.on("new message",(from)=>{
-        console.log("New message from")
+        
+        console.log("New message from");
         console.log(from);
 
         /* Generate modal here */
@@ -237,6 +238,7 @@ $(document).ready(() => {
             $("#msg-btn").prepend(unread);
 
         }
+
     });
 
     popultate();
