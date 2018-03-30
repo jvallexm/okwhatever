@@ -1,3 +1,5 @@
+const socket = io();
+
 $("#login").on("click", function() {
     console.log("login..");
     window.location.replace(`/auth/facebook`);
@@ -21,15 +23,6 @@ $(document).ready(() => {
         return "";
     }
 
-    function checkCookie() {
-        var username = getCookie("id");
-        if (username != "") {
-            alert("Welcome again " + username);
-        }
-    }
-
-    checkCookie();
-
 
     function popultate(){
 
@@ -42,10 +35,12 @@ $(document).ready(() => {
                 $("#bio").val(r.bio);
                 $("#gender").val(r.gender);
                 $("#sexuality").val(r.interested_in);
-                let faves = r.faves.split(";;;");
-                $("#favorite1").val(faves[0]);
-                $("#favorite2").val(faves[1]);
-                $("#favorite3").val(faves[2]);
+                if(r.faves){
+                    let faves = r.faves.split(";;;");
+                    $("#favorite1").val(faves[0]);     
+                    $("#favorite2").val(faves[1]);
+                    $("#favorite3").val(faves[2]);
+                }
                 $("#city").val(r.city);
                 $("#state").val(r.state);
                 $("#interestedIn").val(r.wants_to);
@@ -60,13 +55,15 @@ $(document).ready(() => {
 
     }
 
-// after new login, user enters data, then on submit button click triggers:
+    $('.datepicker').datepicker();
+
+    // after new login, user enters data, then on submit button click triggers:
     $(".create-form").on("submit", function(event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
         var newUser = {
-            birthday:      $("#birthday").val().trim(),
+            birthday:      $("#birthday").val(),
             bio:           $("#bio").val().trim(),
             gender:        $("#gender").val().trim(),
             interested_in: $("#sexuality").val().trim(),
@@ -76,22 +73,121 @@ $(document).ready(() => {
             state:         $("#state").val().trim()
         };
 
-        // Send the POST request.
-        $.ajax("/api/profile/update", {
-            type: "POST",
-            data: newUser
-        }).then(
-            function() {
-                console.log("created new user user");
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
+        console.log(newUser.birthday);
+
+        let isValidated = false;
+
+        $("#validation").text("")
+
+        if ($('.datepicker').val() === "") {
+            date = false;
+        } else {date = true;};
+
+        if ($('#gender').val() === null) {
+            gender = false;
+        }else {gender = true;};
+
+        if ($('#sexuality').val() === null) {
+           sexuality = false;
+        }else {sexuality = true;};
+
+        if ($('#favorite1').val() === "") {
+            favThing1 = false;
+        }else {favThing1 = true;};
+
+        if ($('#favorite2').val() === "") {
+            favThing2 = false;
+        }else {favThing2 = true;};
+
+        if ($('#favorite3').val() === "") {
+            favThing3 = false;
+        }else {favThing3 = true;};
+
+        if ($('#bio').val() === "") {
+            bio = false;
+        }else {bio = true;};
+        
+        if ($('#interestedIn').val() === "") {
+            interested = false;
+        }else {interested = true;};
+
+        if (date===false){
+            $("#validation").append(" please fill out a date. ");
+        };
+        if (gender===false){
+            $("#validation").append(" please fill out a gender. ");
+        };
+        if (sexuality===false){
+            $("#validation").append(" please fill out a sexuality. ");
+        };
+        if (favThing1===false){
+            $("#validation").append(" please fill out favorite thing 1. ");
+        };
+        if (favThing2===false){
+            $("#validation").append(" please fill out favorite thing 2. ");
+        };
+        if (favThing3===false){
+            $("#validation").append(" please fill out favorite thing 3. ");
+        };
+        if (bio===false){
+            $("#validation").append(" please fill out a bio. ");
+        };
+        if (interested===false){
+            $("#validation").append(" please fill out some of your interests. ");
+        };
+
+        if ($("#validation").val().trim() === ""){
+            isValidated = true;
+            // Send the POST request.
+            $.ajax("/api/profile/update", {
+                type: "POST",
+                data: newUser
+            }).then(
+                function() {
+                    console.log("created new user user");
+                    // Reload the page to get the updated list
+                    $("#validation").val("Profile updated!")
+                    $('#successModal').modal('show');
+                    $('#modal2msg').text('Your Profile has been successfully updated!');
+                }
+            );
+        } 
     });
 
 
+    var msgid;
+    var flirtornot;
+
     $(".flirt").on("click", function(event) {
+        msgid = $(this).data("id");
+        flirtornot = true;
         $('#myModal').modal('show');
+    });
+
+    $(".whatever").on("click", function(event) {
+        msgid = $(this).data("id");
+        flirtornot = false;
+        $('#myModal').modal('show');
+    });
+
+    $(".read").on("click",function(e){
+
+        $.ajax(`/api/message/read`,{
+            type: 'POST',
+            data: {id: $(this).attr("data-id")}
+        }).then((r)=>{
+            $(this).removeClass("btn-info read")
+                   .addClass("btn-secondary")
+                   .text("");
+            $(this).append($("<span>").addClass("glyphicon glyphicon-check"));
+                   //.html(`<span class="glyphicon glyphicon-check"></span>`);
+            let newUnread = parseInt($("#unread").text()) - 1;
+            if(newUnread == 0)
+                $("#unread").text("");
+            else
+                $("#unread").text(newUnread);
+        });
+
     });
 
     // post new message
@@ -100,20 +196,47 @@ $(document).ready(() => {
         event.preventDefault();
 
         var newMsg = {
-            text: $("#text").val().trim()
+            text: $("#message").val().trim(),
+            id: msgid,
+            flirt: flirtornot
         };
 
         // Send the POST request.
-        $.ajax("/api/messages/:user", {
+        $.ajax("/api/send", {
             type: "POST",
             data: newMsg
         }).then(
             function() {
                 console.log("posted new message");
-                // Reload the page to get the updated list
-                location.reload();
+                socket.emit("send message",{toId: msgid, fromId: getCookie("id")});
+                // confirmation modal
+                $("#myModal").modal('hide');
+                $("#message").val("");
+                $('#successModal').modal('show');
             }
         );
+    });
+
+    socket.on("new message",(from)=>{
+        console.log("New message from")
+        console.log(from);
+
+        /* Generate modal here */
+
+        if($("unread").length){
+
+            let newUnread = parseInt($("#unread").text()) - 1;
+            if(newUnread == 0)
+                $("#unread").text("");
+            else
+                $("#unread").text(newUnread);
+
+        } else {
+
+            let unread = $("<span>").attr("id","unread").text("1");
+            $("#msg-btn").prepend(unread);
+
+        }
     });
 
     popultate();

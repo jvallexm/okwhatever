@@ -1,4 +1,4 @@
-
+                    <div id="validation"></div>
                     <form class="create-form">
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -9,9 +9,16 @@
                                 <label for="state">Your State</label>
                                 <input class="form-control" id="state" placeholder="State">
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="birthday">Birthday</label>
-                                <input class="form-control" id="birthday" placeholder="Birthday">
+                                <label for="state">Birthday</label>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" class="form-control" id="birthday"> 
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="gender">Gender</label>
@@ -75,5 +82,5 @@
                                 <input type="text" class="form-control" id="interestedIn" placeholder="Dating? Friendship? Getting A Pizza?">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                        <button type="submit" class="btn btn-primary pull-right profilebtn">Submit</button>
                     </form>

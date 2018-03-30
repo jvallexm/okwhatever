@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
 
     <div class="row content">
@@ -7,7 +8,7 @@
             <a href="/matches">
                 <img src="assets/images/okwhatever_outline.png" width=100% alt="">
             </a>
-            {{>sidenav/sidenav-block test}}
+            {{>sidenav/sidenav-block you}}
 
         </div>
 
@@ -20,6 +21,10 @@
                 <div class="grid">
                         
                     <div class="grid-sizer"></div>
+
+                    {{#if message}}
+                        {{message}}
+                    {{/if}}
 
                     {{>form/form-block}}
 

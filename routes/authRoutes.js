@@ -1,10 +1,18 @@
 const FacebookStrategy = require("passport-facebook").Strategy;
+const GoogleStrategy     = require('passport-google-oauth20').Strategy;
 const passport         = require("passport");
 const jwt              = require('jsonwebtoken');
-const path             = require('path');
 const db               = require('../models/index');
 
-module.exports = function(app){
+module.exports = function(app,path){
+
+    /* Will always send login first */
+
+    app.get('/login',(req,res)=>{
+
+        res.sendFile( path.join(__dirname + `/../public/login.html`));
+        
+    });
 
     /* Passport Serialize User */
 
@@ -24,19 +32,20 @@ module.exports = function(app){
 
     });
 
-    /* Passport Facebook Strategy */
+   
 
-    passport.use(new FacebookStrategy({
+    /* Passport Google Strategy */
+
+    passport.use(new GoogleStrategy({
 
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: "/auth/facebook/callback", 
-        profileFields: ['email','birthday','first_name','age_range','about','location','picture.type(large)','likes','music','movies','television']
+        callbackURL: "/auth/google/callback"
 
       },
       function(accessToken, refreshToken, profile, cb) {
-        console.log(JSON.stringify(profile)); // Logs profile data
-    
+        console.log(profile); // Logs profile data
+        user = profile;
         if (profile) {
             user = profile; // Sets the user to be the returned profiles
             // Creates a JWT for the user
@@ -47,24 +56,25 @@ module.exports = function(app){
             return cb(null, user);  // Returns the user
         }
         else {
-            return cb(null, false);
+            return cb(null, false); //fff
         }
       }
     ));
 
+
     app.use( passport.initialize() );
     app.use( passport.session()    );
 
-    app.get('/auth/facebook', passport.authenticate('facebook',{authType: 'rerequest', scope: ['user_likes','public_profile','user_birthday','user_location','user_photos','user_actions.music','user_actions.movies'] }));
+    app.get('/auth/facebook', passport.authenticate('facebook',{authType: 'rerequest', scope: ['public_profile','photos'] }));
 
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', { failureRedirect: '/login' }),
+    app.get('/auth/google/callback', 
+        passport.authenticate('google', { failureRedirect: '/login' }),
         function(req, res) {
 
             let token = req.user.my_token;
-            console.log("token " + token);
             res.cookie('auth',token,{httpOnly: false}); // Sets JWT token to be ready by server as cookie
             res.cookie('id',req.user.user_id);          // Sets the id as a token to be ready by the client as a cookie
+            
             db.user.findAll({where: {id: req.user.user_id}})
                    .then(arr=>{
 
@@ -74,23 +84,26 @@ module.exports = function(app){
 
                             let insert = {
                                 
-                                name:  req.user._json.first_name,
-                                id:    req.user.user_id,
-                                image: req.user._json.picture.data.url
+                                id: req.user.id,
+                                name: req.user.name.givenName,
+                                image: req.user.photos[0].value.split("?")[0]
 
                             };
                             console.log(insert);
-                            db.user.create(insert).then(res.send("made user!"))
+                            db.user.create(insert).then(res.sendFile(path.join(__dirname + `/../public/redirect.html`)));
 
                         } else {
 
-                            res.send("hey you're already in there");
+                            res.sendFile(path.join(__dirname + `/../public/redirect.html`));
 
                         }
 
                     });           // Redirects to login
 
-    }); 
+    });
+
+    app.get('/auth/google',   passport.authenticate('google',{scope: ['profile'] }));
+
 
     /* Middlewear to send users back to /login who have not been authorized */
 

@@ -2,33 +2,37 @@ const db = require("../models/index");
 
 module.exports = function(app){
 
+    /* Route to snd a new message */
+
     app.post("/api/send", (req,res)=>{
 
         console.log("creating a new message");
 
+        let flirt = false;
+
+        if(req.body.flirt == "true")
+            flirt = true;
+            
         db.message.create({
 
             id: req.user_data.id + new Date().getTime(),
             fromId: req.user_data.id,
-            toId: "placeholder",
+            toId: req.body.id,
             inboxTo: true,
             inboxFrom: true,
             text: req.body.text,
             readTo: false,
-            readFrom: true
+            readFrom: true,
+            isFlirt: flirt,
+            userId: req.user_data.id
 
-        }).then(user => res.redirect("/"));
+        }).then(user => res.send("ding"));
         
     });
 
-    //get single user
     app.get('/api/profile/:id',(req,res)=>{
-        if (req.params.id === req.user_data.id){
-            db.user.findAll({ where: { id: req.params.id }})
-                   .then(results => res.json(results[0]));
-        } else {
-            res.send(false)
-        }
+        db.user.findAll({ where: { id: req.params.id }})
+               .then(results => res.json(results[0]));
     });
 
     //updating a user
@@ -62,6 +66,15 @@ module.exports = function(app){
         
     });
 
+    app.post('/api/message/read',(req,res)=>{
+
+        db.message.update({readTo: true},{where: {id: req.body.id}})
+                  .then((r)=>{
+                      res.send("ding");
+                  })
+
+    });
+
     //get all users
     app.get('/api/users',(req,res)=>{
 
@@ -70,14 +83,10 @@ module.exports = function(app){
                
     });
 
-    //get messages sent FROM an id and TO an id:
-    app.get('/api/messages/',(req,res)=>{
+    app.get(`/api/allmessages`,(req,res)=>{
 
-        let id = req.user_data.id;
+        db.message.findAll({include: [db.user, {model: db.user, as: 'to'}]}).then(r=>res.json(r));
 
-        db.message.findAll({ where: { fromId: id }/{ toId: id }})
-                  .then(results => res.json(results));
-                  
     });
 
 }

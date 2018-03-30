@@ -6,7 +6,7 @@
             <a href="/matches">
                 <img src="assets/images/okwhatever_outline.png" width=100% alt="">
             </a>
-            {{>sidenav/sidenav-block test}}
+            {{>sidenav/sidenav-block you}}
 
         </div>
 
@@ -14,15 +14,26 @@
 
         <div class="col-sm-9">
 
+            <h1>{{title}}</h1>
+
+            <div class="row">
+                    {{#if inbox}}
+                        <a href="/sent"><button class="btn pull-right">Sent Msgs</button></a>
+                    {{else}}
+                        <a href="/inbox"><button class="btn pull-right">Inbox</button></a>
+                    {{/if}}
+            </div>
+
             <div class="row">
                 
                 <div class="grid">
                         
                     <div class="grid-sizer"></div>
-
-{{#each message}} {{> message/replies-block}}  {{/each}}
-
-{{>message/replies-block}}
+                    {{#if inbox}}
+                        {{#each message}} {{> message/replies-block}}  {{/each}}
+                    {{else}}
+                        {{#each message}} {{> message/sent-block}}     {{/each}}
+                    {{/if}}
 
                 </div>
 

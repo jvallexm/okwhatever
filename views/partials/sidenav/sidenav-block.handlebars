@@ -2,6 +2,12 @@
     <img src="{{image}}" id="it-me" class="profilepic" width=100% alt="">
 </a>
 
-<h3>{{name}}</h3>
+<h3>Welcome {{name}}!</h3>
+
+
+
+    <button id="msg-btn" class="btn msg-alert" onclick="window.location.href='/inbox'"><span id="unread">{{#if unread}}{{unread}}{{/if}}</span> Messages for You</button>
+
+
 
 <br>

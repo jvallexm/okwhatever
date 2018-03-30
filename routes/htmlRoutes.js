@@ -1,9 +1,9 @@
-const db    = require('../models/index');
-const User  = require('../controllers/userController');
+const db       = require('../models/index');
+const User     = require('../controllers/userController');
+const Message  = require('../controllers/messageController');
 
 module.exports = function(app){
     
-
     // Route to edit your profile
     app.get(`/edit`,(req,res)=>{
 
@@ -12,39 +12,42 @@ module.exports = function(app){
         if(req.user_data){
 
             User.findOne(req,(you)=>{
+                
+                
+                Message.unread(you.id,(unread)=>{
 
-                let result;
-    
-                if(!you){
-                    result = {
-                        name: "Hot Poppers",
-                        image: "hotpoppers.jpg"
-                    }
-                } else {
-    
-                    result = you;
-    
-                }
-    
-                res.render("edit",{test: result});
+                    if(unread > 0)
+                        you.unread = unread;
 
-            });
+                    res.render("edit",{you:  you});
 
-        } else {
+                });
 
-            res.render("edit",{
-                test: {
-                    name: "Hot Poppers",
-                    image: "hotpoppers.jpg"
-                }
             });
 
         }
-        
 
     });
 
-    // Middlewear to redirect to edit page if incomplete profile
+    // Middlewear to redirect to edit page if incomplete profile    
+
+    app.use(`/`,(req,res,next)=>{
+
+        User.findOne(req,(r)=>{
+            if(r)
+                if(r.complete)
+                    next();
+            else{
+                User.findOne(req,(you)=>{
+                    res.render("edit",{
+                        you: you,
+                        message: "You need to finish your profile before you can do anything else!"
+                    })
+                })
+            }
+        })
+
+    });
 
     // If logged in defaults to...
 
@@ -65,20 +68,100 @@ module.exports = function(app){
     // Route to check inbox
 
     app.get(`/inbox`,(req,res)=>{
+        
+        if(req.user_data){
+            let user = req.user_data.id;
+
+            Message.inbox(user,(inbox)=>{
+
+                User.findOne(req,(r)=>{
+
+                    let send = {
+                        message: inbox.sort((a,b)=>{
+                            if(a.createdAt > b.createdAt)
+                                return -1;
+                            else
+                                return 1;
+                        }),
+                        you: r,
+                        title: "Inbox",
+                        inbox: true
+                    }
+
+                    let unread = 0;
+
+                    inbox.forEach(i=>{
+
+                        if(!i.readTo){
+                            unread++;
+                        }
+
+                    });
+
+                    if(unread > 0)
+                        send.you.unread = unread;
+                    
+                    res.render("messages",send);
+
+                })
+
+            });
+
+        } else {
+
+            res.render("messages",{
+                message: []
+            });
+
+        }
+
+    });
+
+    app.get(`/sent`,(req,res)=>{
 
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { fromId: id }/{ toId: id }})
-                    .then(results =>{
 
-                        let send = {
-                            message: results
-                        }
+            Message.outbox(user,(inbox)=>{
+
+                let newMessages = [];
+
+                inbox.forEach(i=>{
+
+                    i.user = i.to;
+                    newMessages.push(i);
+
+                });
+
+                User.findOne(req,(r)=>{
+
+                    let send = {
+                        message: newMessages.sort((a,b)=>{
+                                        if(a.createdAt > b.createdAt)
+                                            return -1;
+                                        else
+                                            return 1;
+                                    }),
+                        you: r,
+                        title: "Sent",
+                        inbox: false
+                    }
+                    
+                    Message.unread(user,(unread)=>{
+
+                        if(unread > 0)
+                            send.you.unread = unread;
 
                         res.render("messages",send);
+                        
+                    })
+                    
 
-                    });
+                });
+
+            });
+
         } else {
 
             res.render("messages",{
@@ -95,33 +178,51 @@ module.exports = function(app){
 
         if(req.user_data){
 
-            db.user.findAll({}).then(r=>{
+            User.findAll(req,(r)=>{
+                
+                let itYou = req.user_data.id;
 
-                let you = req.user_data.id;
-
-                let test;
+                let you;
 
                 let matches = [];
 
                 for(let i=0;i<r.length;++i){
 
-                    if(r[i].id === you){
-                        test = r[i];
+                    if(r[i].id === itYou){
+                        you = r[i];
+                        //matches.push(r[i]);
                     } else if(r[i].complete) {
+                        let faves = r[i].faves.split(";;;").join(" - ");
+                        r[i].faves = faves;
                         matches.push(r[i]);
+                        
                     }
 
                 }
+
+                Message.unread(itYou,(unread)=>{
+
+                    if(unread > 0)
+                        you.unread = unread;
+
+                    res.render("matches",{you:  you,
+                                          match: matches.sort((a,b)=>{
+                                            if(a.createdAt > b.createdAt)
+                                                    return -1;
+                                                else
+                                                    return 1;
+                                          })
+                    });
+
+                });
                 
-                res.render("matches",{test:  test,
-                                      match: matches});
     
             });
 
         } else {
 
             res.render("matches",{
-                test: {
+                you: {
                     name: "Hot Poppers",
                     image: "hotpoppers.jpg"
                 },
@@ -143,31 +244,11 @@ module.exports = function(app){
 
     });
 
-    // Testing routes
-
-    app.get('/test',(req,res)=>{
-
-        res.send(req.user_data);
-        
-    });
-    
-    app.get('/foo',(req,res)=>{
-    
-        res.send(req.user_data);    
-    
-    });
-        
-
-    // 404ED!!!
-
-    /*
 
     app.get(`*`,(req,res)=>{
 
-        res.sendStatus(404).send("404ed!");
+        res.send("404ed!");
 
     });
-
-    */
 
 }
