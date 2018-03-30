@@ -45,9 +45,9 @@ min-height: 100%;
 .matchpic{
   border: 1px solid black;
   border-radius: 5px;
-/*  margin-top: 10px;*/
-margin: 0;
-/*width: 50%;*/
+  margin-right: 15px;
+/*margin: 0;*/
+width: 50%;
 float:left;
 height:auto;
 
