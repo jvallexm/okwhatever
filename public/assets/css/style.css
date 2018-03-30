@@ -131,7 +131,7 @@ height:auto;
 }
 
 .btn-success {
-  width: 100%;
+  width: 100px;
 }
 
 .btn-secondary {
@@ -140,7 +140,7 @@ height:auto;
   margin-top: 5px; 
   font-weight: 300;
   font-style: italic;
-    width: 100%;
+    width: 100px;
 }
 
 h4 {  
