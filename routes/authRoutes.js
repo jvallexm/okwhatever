@@ -5,11 +5,7 @@ const db               = require('../models/index');
 
 module.exports = function(app,path){
 
-<<<<<<< HEAD
     /* Will always send login first */
-=======
-    /* Sends login first */
->>>>>>> 573b78aded08b645698d9809ae9098940432b681
 
     app.get('/login',(req,res)=>{
 
