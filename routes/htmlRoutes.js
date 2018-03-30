@@ -13,42 +13,19 @@ module.exports = function(app){
 
             User.findOne(req,(you)=>{
                 
-                let result;
-    
-                if(!you){
-
-                    result = {
-                        name: "Hot Poppers",
-                        image: "hotpoppers.jpg"
-                    }
-
-                } else {
-    
-                    result = you;
-    
-                }
                 
                 Message.unread(you.id,(unread)=>{
 
                     if(unread > 0)
                         result.unread = unread;
 
-                    res.render("edit",{test:  result});
+                    res.render("edit",{you:  you});
 
                 });
 
             });
 
-        } else {
-
-            res.render("edit",{
-                test: {
-                    name: "Hot Poppers",
-                    image: "hotpoppers.jpg"
-                }
-            });
-
-        }   
+        }
 
     });
 
@@ -105,7 +82,7 @@ module.exports = function(app){
                             else
                                 return 1;
                         }),
-                        test: r,
+                        you: r,
                         title: "Inbox",
                         inbox: true
                     }
@@ -121,7 +98,7 @@ module.exports = function(app){
                     });
 
                     if(unread > 0)
-                        send.test.unread = unread;
+                        send.you.unread = unread;
                     
                     res.render("messages",send);
 
@@ -165,7 +142,7 @@ module.exports = function(app){
                                         else
                                             return 1;
                                     }),
-                        test: r,
+                        you: r,
                         title: "Sent",
                         inbox: false
                     }
@@ -173,7 +150,7 @@ module.exports = function(app){
                     Message.unread(user,(unread)=>{
 
                         if(unread > 0)
-                            send.test.unread = unread;
+                            send.you.unread = unread;
 
                         res.render("messages",send);
                         
@@ -204,14 +181,14 @@ module.exports = function(app){
                 
                 let you = req.user_data.id;
 
-                let test;
+                let you;
 
                 let matches = [];
 
                 for(let i=0;i<r.length;++i){
 
                     if(r[i].id === you){
-                        test = r[i];
+                        you = r[i];
                         //matches.push(r[i]);
                     } else if(r[i].complete) {
                         matches.push(r[i]);
@@ -222,9 +199,9 @@ module.exports = function(app){
                 Message.unread(you,(unread)=>{
 
                     if(unread > 0)
-                        test.unread = unread;
+                        you.unread = unread;
 
-                    res.render("matches",{test:  test,
+                    res.render("matches",{you:  you,
                                           match: matches});
 
                 });
@@ -235,7 +212,7 @@ module.exports = function(app){
         } else {
 
             res.render("matches",{
-                test: {
+                you: {
                     name: "Hot Poppers",
                     image: "hotpoppers.jpg"
                 },
