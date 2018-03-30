@@ -17,7 +17,7 @@ module.exports = function(app){
                 Message.unread(you.id,(unread)=>{
 
                     if(unread > 0)
-                        result.unread = unread;
+                        you.unread = unread;
 
                     res.render("edit",{you:  you});
 
