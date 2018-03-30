@@ -1,4 +1,5 @@
 const FacebookStrategy = require("passport-facebook").Strategy;
+var GoogleStrategy     = require('passport-google-oauth20').Strategy;
 const passport         = require("passport");
 const jwt              = require('jsonwebtoken');
 const db               = require('../models/index');
@@ -59,10 +60,38 @@ module.exports = function(app,path){
       }
     ));
 
+        /* Passport Facebook Strategy */
+
+    passport.use(new GoogleStrategy({
+
+        clientID: process.env.FACEBOOK_APP_ID,
+        clientSecret: process.env.FACEBOOK_APP_SECRET,
+        callbackURL: "/auth/google/callback"
+
+      },
+      function(accessToken, refreshToken, profile, cb) {
+        console.log(profile); // Logs profile data
+        user = profile;
+        return cb(null, user);
+      }
+    ));
+
+
     app.use( passport.initialize() );
     app.use( passport.session()    );
 
     app.get('/auth/facebook', passport.authenticate('facebook',{authType: 'rerequest', scope: ['public_profile','photos'] }));
+
+    app.get('/auth/google/callback', 
+        passport.authenticate('google', { failureRedirect: '/login' }),
+        function(req, res) {
+            // Successful authentication, redirect home.
+            res.json(req.profile);
+    });
+
+    app.get('/auth/google',   passport.authenticate('google',{scope: ['profile'] }));
+
+
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
