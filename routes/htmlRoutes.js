@@ -1,9 +1,9 @@
-const db    = require('../models/index');
-const User  = require('../controllers/userController');
+const db       = require('../models/index');
+const User     = require('../controllers/userController');
+const Message  = require('../controllers/messageController');
 
 module.exports = function(app){
     
-
     // Route to edit your profile
     app.get(`/edit`,(req,res)=>{
 
@@ -12,21 +12,30 @@ module.exports = function(app){
         if(req.user_data){
 
             User.findOne(req,(you)=>{
-
+                
                 let result;
     
                 if(!you){
+
                     result = {
                         name: "Hot Poppers",
                         image: "hotpoppers.jpg"
                     }
+
                 } else {
     
                     result = you;
     
                 }
-    
-                res.render("edit",{test: result});
+
+                Message.unread(you.id,(unread)=>{
+
+                    if(unread > 0)
+                        result.unread = unread;
+
+                    res.render("edit",{test:  result});
+
+                });
 
             });
 
@@ -39,8 +48,7 @@ module.exports = function(app){
                 }
             });
 
-        }
-        
+        }   
 
     });
 
@@ -65,31 +73,45 @@ module.exports = function(app){
     // Route to check inbox
 
     app.get(`/inbox`,(req,res)=>{
-
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { toId: user }, include: [db.user]})
-                       .then(inbox =>{
 
-                            User.findOne(req,(r)=>{
+            Message.inbox(user,(inbox)=>{
 
-                                let send = {
-                                    message: inbox.sort((a,b)=>{
-                                        if(a.createdAt > b.createdAt)
-                                            return -1;
-                                        else
-                                            return 1;
-                                    }),
-                                    test: r,
-                                    title: "Inbox",
-                                    inbox: true
-                                }
-        
-                                res.render("messages",send);
+                User.findOne(req,(r)=>{
 
-                            })
+                    let send = {
+                        message: inbox.sort((a,b)=>{
+                            if(a.createdAt > b.createdAt)
+                                return -1;
+                            else
+                                return 1;
+                        }),
+                        test: r,
+                        title: "Inbox",
+                        inbox: true
+                    }
+
+                    let unread = 0;
+
+                    inbox.forEach(i=>{
+
+                        if(!i.readTo){
+                            unread++;
+                        }
+
                     });
+
+                    if(unread > 0)
+                        send.test.unread = unread;
+                    
+                    res.render("messages",send);
+
+                })
+
+            });
+
         } else {
 
             res.render("messages",{
@@ -105,36 +127,46 @@ module.exports = function(app){
         
         if(req.user_data){
             let user = req.user_data.id;
-            db.message.findAll({ where: { fromId: user }, include: [{model: db.user, as: "to"}]})
-                       .then(inbox =>{
-                           
-                            let newMessages = [];
 
-                            inbox.forEach(i=>{
+            Message.outbox(user,(inbox)=>{
 
-                                i.user = i.to;
-                                newMessages.push(i);
+                let newMessages = [];
 
-                            });
+                inbox.forEach(i=>{
 
-                            User.findOne(req,(r)=>{
+                    i.user = i.to;
+                    newMessages.push(i);
 
-                                let send = {
-                                    message: newMessages.sort((a,b)=>{
+                });
+
+                User.findOne(req,(r)=>{
+
+                    let send = {
+                        message: newMessages.sort((a,b)=>{
                                         if(a.createdAt > b.createdAt)
                                             return -1;
                                         else
                                             return 1;
                                     }),
-                                    test: r,
-                                    title: "Sent",
-                                    inbox: false
-                                }
-        
-                                res.render("messages",send);
+                        test: r,
+                        title: "Sent",
+                        inbox: false
+                    }
+                    
+                    Message.unread(user,(unread)=>{
 
-                            })
-                    });
+                        if(unread > 0)
+                            send.test.unread = unread;
+
+                        res.render("messages",send);
+                        
+                    })
+                    
+
+                });
+
+            });
+
         } else {
 
             res.render("messages",{
@@ -152,7 +184,7 @@ module.exports = function(app){
         if(req.user_data){
 
             User.findAll(req,(r)=>{
-
+                
                 let you = req.user_data.id;
 
                 let test;
@@ -169,9 +201,17 @@ module.exports = function(app){
                     }
 
                 }
+
+                Message.unread(you,(unread)=>{
+
+                    if(unread > 0)
+                        test.unread = unread;
+
+                    res.render("matches",{test:  test,
+                                          match: matches});
+
+                });
                 
-                res.render("matches",{test:  test,
-                                      match: matches});
     
             });
 
@@ -200,27 +240,11 @@ module.exports = function(app){
 
     });
 
-    // Testing routes
 
-    app.get('/test',(req,res)=>{
-
-        res.send(req.user_data);
-        
-    });
-    
-    app.get('/foo',(req,res)=>{
-    
-        res.send(req.user_data);    
-    
-    });
-        
-
-    // 404ED!!!
-
-    /*
     app.get(`*`,(req,res)=>{
-        res.sendStatus(404).send("404ed!");
+
+        res.send("404ed!");
+
     });
-    */
 
 }
