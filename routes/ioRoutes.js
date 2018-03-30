@@ -48,12 +48,13 @@ module.exports = function(io){
 
             console.log("Message done been sent");
             console.log(message);
-
+            
             users.forEach(i=>{
 
                 if(i.user_data.id == message.toId){
                     db.user.findAll({where: {id: message.fromId}})
                            .then(arr=>{
+                               console.log("I found that one!");
                                io.broadcast.to(i.id).emit("new message",arr[0])
                            });
                 }
