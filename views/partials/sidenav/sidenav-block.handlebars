@@ -4,10 +4,10 @@
 
 <h3>Welcome {{name}}!</h3>
 
-<a href="/inbox">
 
-    <button class="btn">Messages <span id="unread">{{#if unread}}{{unread}}{{/if}}</span></button>
 
-</a>
+    <button class="btn msg-alert" onclick="window.location.href='/inbox'"><span id="unread">{{#if unread}}{{unread}}{{/if}}</span> Messages for You</button>
+
+
 
 <br>

@@ -285,3 +285,12 @@ p {
   .msgtext {
     margin-top: 0;
   }
+
+  .panel-body .btn {
+    margin-left: 10px;
+  }
+
+  .msg-alert {
+    width: 100%;
+    margin-top: 15px;
+  }
