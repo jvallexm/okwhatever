@@ -26,7 +26,7 @@
     <!-- Custom styles for this template -->
         <link rel="stylesheet" href="../public/assets/css/style.css" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,500,700,800" rel="stylesheet">
-        <script src="../public/assets/javascript/app.js"></script>
+        <script src="javascriptFiles/validation.js"></script>
     
 </head>
 
@@ -66,7 +66,7 @@
         
                 <div class="row">
                         
-                    <!-- MAIN DIV CONTAINER -->
+                    <!-- DIV CONTAINING FORM -->
                     <div class="container">
 
                             <!--************************* INSIDE OF THIS SECTION ARE ALL THE INDIVIDUAL FORMS *********************-->
@@ -86,14 +86,14 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="date">Date</label>
-                                                    <input class="datepicker form-control" id="datePicker" data-date-format="mm/dd/yyyy" placeholder="MM/DD/YYY"></input>  
+                                                    <input class="datepicker form-control" name="date" id="datePicker" data-date-format="mm-dd-yyyy" placeholder="MM-DD-YYYY"></input>  
                                                 </div>
                                                 
                                             </div>
 
                                             <!-- ROW 2 --> 
                                             <div class="form-row col-md-12" >
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-6">
                                                     <label for="gender">Gender</label>
                                                     <select class="form-control" name="gender" id="gender">
                                                         <option value="" selected disabled hidden>Choose...</option>
@@ -120,7 +120,7 @@
                                                         <option>Other</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-6">
                                                     <label for="sexuality">Sexuality</label>
                                                     <select class="form-control" name="sexuality" id="sexuality">
                                                         <option value="" selected disabled hidden>Choose...</option>
@@ -140,23 +140,45 @@
                                                 </div>
                                             </div>
 
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="favorite1">A Few of My Favorite Things:</label>
-                                                <input type="text" class="form-control" id="favorite1" placeholder="i.e., Doctor Who">
-                                                <input type="text" class="form-control" id="favorite2" placeholder="i.e., Crunchcoat">
-                                                <input type="text" class="form-control" id="favorite3" placeholder="i.e., Squirrel Girl">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="bio">Bio</label>
-                                                <textarea class="form-control" id="bio" rows="4" placeholder="a brief history of your life until now"></textarea>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="interestedIn">Interested in:</label>
-                                                    <input type="text" class="form-control" id="interestedIn" placeholder="Dating? Friendship? Getting A Pizza?">
+                                            <!-- ROW 3 -->
+                                            <div class="form-row col-md-12" >
+                                                <div class="form-group col-md-12">
+                                                    <label for="favorite1">A Few of My Favorite Things:</label>
+                                                    <input type="text" name="fav1" class="form-control" id="favorite1" placeholder="i.e., Doctor Who">
                                                 </div>
                                             </div>
+
+                                            <!-- ROW 4 -->
+                                            <div class="form-row col-md-12" >
+                                                <div class="form-group col-md-12">
+                                                    <label for="favorite1">A Few of My Favorite Things:</label>
+                                                    <input type="text" name="fav2" class="form-control" id="favorite2" placeholder="i.e., Crunchcoat">
+                                                </div>
+                                            </div>
+
+                                                <!-- ROW 5 -->
+                                            <div class="form-row col-md-12" >
+                                                <div class="form-group col-md-12">
+                                                    <label for="favorite1">A Few of My Favorite Things:</label>
+                                                    <input type="text" name="fav3" class="form-control" id="favorite3" placeholder="i.e., Squirrel Girl">
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- ROW 6 -->
+                                            <div class="form-group col-md-12">
+                                                <label for="bio">Bio</label>
+                                                <textarea name="bio" class="form-control" id="bio" rows="4" placeholder="a brief history of your life until now"></textarea>
+                                            </div>
+
+                                            <!-- ROW 7 -->
+                                            <div class="form-row col-md-12">
+                                                <div class="form-group">
+                                                    <label for="interestedIn">Interested in:</label>
+                                                    <input type="text" name="interestedIn" class="form-control" id="interestedIn" placeholder="Dating? Friendship? Getting A Pizza?">
+                                                </div>
+                                            </div>
+
+
                                             <button type="submit" class="btn btn-primary pull-right">Submit</button>
 
                                     </fieldset>
