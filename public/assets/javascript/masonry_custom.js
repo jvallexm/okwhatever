@@ -18,7 +18,8 @@ $grid.on( 'click', '.grid-item', function() {
 	var id = $(this).data("id");
   // change size of item via class
   	$( this ).toggleClass('grid-item--gigante');
-  	$(".hidetrick").toggle();
+  	// $(".hidetrick").toggle();
+  	$(this).closest('.grid-item').find('.hidetrick').toggle();
   // $(".glyphicon-play").hide();
   // trigger layout
   	$grid.masonry();
