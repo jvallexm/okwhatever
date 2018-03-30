@@ -27,8 +27,8 @@ module.exports = function(app){
                     result = you;
     
                 }
-
-                Message.unread(you,(unread)=>{
+                
+                Message.unread(you.id,(unread)=>{
 
                     if(unread > 0)
                         result.unread = unread;
@@ -240,7 +240,6 @@ module.exports = function(app){
 
     });
 
-<<<<<<< HEAD
 
     app.get(`*`,(req,res)=>{
 
@@ -249,29 +248,3 @@ module.exports = function(app){
     });
 
 }
-=======
-    // Testing routes
-
-    app.get('/test',(req,res)=>{
-
-        res.send(req.user_data);
-        
-    });
-    
-    app.get('/foo',(req,res)=>{
-    
-        res.send(req.user_data);    
-    
-    });
-        
-
-    // 404ED!!!
-
-    /*
-    app.get(`*`,(req,res)=>{
-        res.sendStatus(404).send("404ed!");
-    });
-    */
-
-}
->>>>>>> 573b78aded08b645698d9809ae9098940432b681
