@@ -37,10 +37,10 @@ $(document).ready(() => {
                 $("#sexuality").val(r.interested_in);
                 if(r.faves){
                     let faves = r.faves.split(";;;");
-                    $("#favorite1").val(faves[0]);
+                    $("#favorite1").val(faves[0]);     
+                    $("#favorite2").val(faves[1]);
+                    $("#favorite3").val(faves[2]);
                 }
-                $("#favorite2").val(faves[1]);
-                $("#favorite3").val(faves[2]);
                 $("#city").val(r.city);
                 $("#state").val(r.state);
                 $("#interestedIn").val(r.wants_to);
