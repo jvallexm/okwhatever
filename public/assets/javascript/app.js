@@ -174,7 +174,14 @@ $(document).ready(() => {
             type: 'POST',
             data: {id: $(this).attr("data-id")}
         }).then((r)=>{
-            $(this).text("DONE BEEN READ");
+            $(this).removeClass("btn-info read")
+                   .addClass("btn-secondary")
+                   .text("Read");
+            let newUnread = parseInt($("#unread").text()) - 1;
+            if(newUnread == 0)
+                $("#unread").text("");
+            else
+                $("#unread").text(newUnread);
         });
 
     });
