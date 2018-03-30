@@ -178,7 +178,9 @@ $(document).ready(() => {
         }).then((r)=>{
             $(this).removeClass("btn-info read")
                    .addClass("btn-secondary")
-                   .html(`<span class="glyphicon glyphicon-check"></span>`);
+                   .text("");
+            $(this).append($("<span>").addClass("glyphicon glyphicon-check"));
+                   //.html(`<span class="glyphicon glyphicon-check"></span>`);
             let newUnread = parseInt($("#unread").text()) - 1;
             if(newUnread == 0)
                 $("#unread").text("");
