@@ -41,3 +41,5 @@ require( './routes/ioRoutes.js'   )(io)
 require( './routes/authRoutes.js' )(app,path);
 require( './routes/apiRoutes.js'  )(app);
 require( './routes/htmlRoutes.js' )(app);
+
+module.exports = app;
