@@ -205,7 +205,13 @@ module.exports = function(app){
                         you.unread = unread;
 
                     res.render("matches",{you:  you,
-                                          match: matches});
+                                          match: matches.sort((a,b)=>{
+                                            if(a.createdAt > b.createdAt)
+                                                    return -1;
+                                                else
+                                                    return 1;
+                                          })
+                    });
 
                 });
                 
