@@ -55,23 +55,24 @@ $(document).ready(() => {
 
     }
 
-    $('.datepicker').datepicker();
+    $('#datePicker')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the date field
+            $('#eventForm').formValidation('revalidateField', 'date');
+        });
 
-    // after new login, user enters data, then on submit button click triggers:
+
+  
+  /*
+        // after new login, user enters data, then on submit button click triggers:
     $(".create-form").on("submit", function(event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
-        var newUser = {
-            birthday:      $("#birthday").val(),
-            bio:           $("#bio").val().trim(),
-            gender:        $("#gender").val().trim(),
-            interested_in: $("#sexuality").val().trim(),
-            faves:         `${$("#favorite1").val().trim()};;;${$("#favorite2").val().trim()};;;${$("#favorite3").val().trim()}`,
-            wants_to:      $("#interestedIn").val().trim(),
-            city:          $("#city").val().trim(),
-            state:         $("#state").val().trim()
-        };
+
 
         console.log(newUser.birthday);
 
@@ -152,7 +153,147 @@ $(document).ready(() => {
                 }
             );
         } 
-    });
+    });*/
+
+    $('#contact_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            city: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 20
+                    },
+                        notEmpty: {
+                        message: 'Please provide a city'
+                    }
+                }
+            },
+            state: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 20
+                    },
+                        notEmpty: {
+                        message: 'Please provide a state'
+                    }
+                }
+            },
+            date: {
+                validators: {
+                    date: {
+                        format: 'MM-DD-YYYY',
+                        message: 'The value is not a valid date'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select a gender'
+                    }
+                }
+            },
+            sexuality: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select a sexuality'
+                    }
+                }
+            },
+            fav1: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 50
+                    },
+                        notEmpty: {
+                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                    }
+                }
+            },
+            fav2: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 50
+                    },
+                        notEmpty: {
+                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                    }
+                }
+            },
+            fav3: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 50
+                    },
+                        notEmpty: {
+                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                    }
+                }
+            },
+            bio: {
+                validators: {
+                        stringLength: {
+                        max: 250
+                    },
+                        notEmpty: {
+                        message: 'Please fill out but do not exceed 250 characters'
+                    }
+                }
+            },
+            interestedIn: {
+                validators: {
+                        stringLength: {
+                        max: 100
+                    },
+                        notEmpty: {
+                        message: 'Please fill out but do not exceed 100 characters'
+                    }
+                }
+            },
+
+
+        }
+           
+        })
+        .on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+
+            let newUser = {
+                birthday:      $("#birthday").val(),
+                bio:           $("#bio").val().trim(),
+                gender:        $("#gender").val().trim(),
+                interested_in: $("#sexuality").val().trim(),
+                faves:         `${$("#favorite1").val().trim()};;;${$("#favorite2").val().trim()};;;${$("#favorite3").val().trim()}`,
+                wants_to:      $("#interestedIn").val().trim(),
+                city:          $("#city").val().trim(),
+                state:         $("#state").val().trim()
+            };
+
+            // Use Ajax to submit form data
+            $.ajax("/api/profile/update", {
+                type: "POST",
+                data: newUser
+            }).then(
+                function() {
+                    console.log("created new user user");
+                    // Reload the page to get the updated list
+                    $("#validation").val("Profile updated!")
+                    $('#successModal').modal('show');
+                    $('#modal2msg').text('Your Profile has been successfully updated!');
+                }
+            );
+        });
 
 
     var msgid;
@@ -173,19 +314,24 @@ $(document).ready(() => {
     $(".read").on("click",function(e){
 
         $.ajax(`/api/message/read`,{
+
             type: 'POST',
             data: {id: $(this).attr("data-id")}
+
         }).then((r)=>{
+
             $(this).removeClass("btn-info read")
                    .addClass("btn-secondary")
                    .text("");
+
             $(this).append($("<span>").addClass("glyphicon glyphicon-check"));
-                   //.html(`<span class="glyphicon glyphicon-check"></span>`);
+
             let newUnread = parseInt($("#unread").text()) - 1;
             if(newUnread == 0)
                 $("#unread").text("");
             else
                 $("#unread").text(newUnread);
+
         });
 
     });

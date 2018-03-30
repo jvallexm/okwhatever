@@ -1,5 +1,5 @@
 const FacebookStrategy = require("passport-facebook").Strategy;
-const GoogleStrategy     = require('passport-google-oauth20').Strategy;
+const GoogleStrategy   = require('passport-google-oauth20').Strategy;
 const passport         = require("passport");
 const jwt              = require('jsonwebtoken');
 const db               = require('../models/index');
