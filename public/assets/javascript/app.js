@@ -60,96 +60,9 @@ $(document).ready(() => {
             format: 'mm/dd/yyyy'
         });
 
-
-  
-  /*
-        // after new login, user enters data, then on submit button click triggers:
-    $(".create-form").on("submit", function(event) {
-        // Make sure to preventDefault on a submit event.
-        event.preventDefault();
-
-
-
-        console.log(newUser.birthday);
-
-        let isValidated = false;
-
-        $("#validation").text("")
-
-        if ($('.datepicker').val() === "") {
-            date = false;
-        } else {date = true;};
-
-        if ($('#gender').val() === null) {
-            gender = false;
-        }else {gender = true;};
-
-        if ($('#sexuality').val() === null) {
-           sexuality = false;
-        }else {sexuality = true;};
-
-        if ($('#favorite1').val() === "") {
-            favThing1 = false;
-        }else {favThing1 = true;};
-
-        if ($('#favorite2').val() === "") {
-            favThing2 = false;
-        }else {favThing2 = true;};
-
-        if ($('#favorite3').val() === "") {
-            favThing3 = false;
-        }else {favThing3 = true;};
-
-        if ($('#bio').val() === "") {
-            bio = false;
-        }else {bio = true;};
-        
-        if ($('#interestedIn').val() === "") {
-            interested = false;
-        }else {interested = true;};
-
-        if (date===false){
-            $("#validation").append(" please fill out a date. ");
-        };
-        if (gender===false){
-            $("#validation").append(" please fill out a gender. ");
-        };
-        if (sexuality===false){
-            $("#validation").append(" please fill out a sexuality. ");
-        };
-        if (favThing1===false){
-            $("#validation").append(" please fill out favorite thing 1. ");
-        };
-        if (favThing2===false){
-            $("#validation").append(" please fill out favorite thing 2. ");
-        };
-        if (favThing3===false){
-            $("#validation").append(" please fill out favorite thing 3. ");
-        };
-        if (bio===false){
-            $("#validation").append(" please fill out a bio. ");
-        };
-        if (interested===false){
-            $("#validation").append(" please fill out some of your interests. ");
-        };
-
-        if ($("#validation").val().trim() === ""){
-            isValidated = true;
-            // Send the POST request.
-            $.ajax("/api/profile/update", {
-                type: "POST",
-                data: newUser
-            }).then(
-                function() {
-                    console.log("created new user user");
-                    // Reload the page to get the updated list
-                    $("#validation").val("Profile updated!")
-                    $('#successModal').modal('show');
-                    $('#modal2msg').text('Your Profile has been successfully updated!');
-                }
-            );
-        } 
-    });*/
+    $("#contact_form").on("submit",(e)=>{
+        e.preventDefault();
+    });
 
     $('#contact_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -264,10 +177,6 @@ $(document).ready(() => {
         .on('success.form.bv', function(e) {
             // Prevent form submission
             e.preventDefault();
-
-            var $form = $(e.target);
-
-            var bv = $form.data('bootstrapValidator');
 
             let newUser = {
                 birthday:      $("#birthday").val(),
