@@ -191,7 +191,10 @@ module.exports = function(app){
                         you = r[i];
                         //matches.push(r[i]);
                     } else if(r[i].complete) {
+                        let faves = r[i].faves.split(";;;").join(" - ");
+                        r[i].faves = faves;
                         matches.push(r[i]);
+                        
                     }
 
                 }

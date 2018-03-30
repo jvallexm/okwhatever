@@ -35,8 +35,10 @@ $(document).ready(() => {
                 $("#bio").val(r.bio);
                 $("#gender").val(r.gender);
                 $("#sexuality").val(r.interested_in);
-                let faves = r.faves.split(";;;");
-                $("#favorite1").val(faves[0]);
+                if(r.faves){
+                    let faves = r.faves.split(";;;");
+                    $("#favorite1").val(faves[0]);
+                }
                 $("#favorite2").val(faves[1]);
                 $("#favorite3").val(faves[2]);
                 $("#city").val(r.city);
