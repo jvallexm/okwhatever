@@ -1,4 +1,5 @@
-const jwt          = require('jsonwebtoken');
+const jwt  = require('jsonwebtoken');
+const db   = require('../models/index');
 
 module.exports = function(io){
 
@@ -47,9 +48,12 @@ module.exports = function(io){
 
             users.forEach(i=>{
                 if(i.user_data.id === message.toId){
-                    
+                    db.user.findAll({where: {id: message.fromId}})
+                           .then(arr=>{
+                               io.broadcast.to(i.id).emit("new message",arr[0])
+                           });
                 }
-            })
+            });
 
         });
 
