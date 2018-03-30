@@ -4,9 +4,10 @@ module.exports = function(io){
 
     function parseClientCookie(client,cb){
         
-        let cookie = client.handshake.headers.cookie;
+        let cookie    = client.handshake.headers.cookie;
         let authSplit = cookie.split("auth=")[1];
-        let token = authSplit.split(";")[0];
+        let token     = authSplit.split(";")[0];
+        
         jwt.verify(token,process.env.COOKIE_SECRET,(err,data)=>{
     
             if(data)

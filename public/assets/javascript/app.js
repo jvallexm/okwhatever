@@ -168,7 +168,16 @@ $(document).ready(() => {
         $('#myModal').modal('show');
     });
 
+    $(".read").on("click",function(e){
 
+        $.ajax(`/api/message/read`,{
+            type: 'POST',
+            data: {id: $(this).attr("data-id")}
+        }).then((r)=>{
+            $(this).text("DONE BEEN READ");
+        });
+
+    });
 
     // post new message
      $(".message-form").on("submit", function(event) {
