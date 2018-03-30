@@ -30,8 +30,8 @@ module.exports = function(io){
 
                 client.user_data = data;
                 console.log("*** adding user ***");
-                console.log(client);
-//              console.log(client.user_data);
+                console.log(client.socket.id);
+                console.log(client.user_data);
                 users.push(client);
                 console.log("total users " + users.length);
 
