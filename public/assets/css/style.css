@@ -279,5 +279,13 @@ p {
   }
 
   .msgimage {
-    width: 150px;
+    width: 140px;
+  }
+
+  .panel {
+    margin-left: 15px;
+  }
+
+  .msgtext {
+    margin-top: 0;
   }
