@@ -243,4 +243,6 @@ $(document).ready(() => {
 
     popultate();
 
+    $grid.masonry();
+
 });
