@@ -97,7 +97,7 @@ $(document).ready(() => {
             date: {
                 validators: {
                     date: {
-                        format: 'MM-DD-YYYY',
+                        format: 'MM/DD/YYYY',
                         message: 'The value is not a valid date'
                     }
                 }
