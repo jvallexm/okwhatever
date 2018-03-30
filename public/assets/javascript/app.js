@@ -145,6 +145,7 @@ $(document).ready(() => {
                     console.log("created new user user");
                     // Reload the page to get the updated list
                     $("#validation").val("Profile updated!")
+                    $('#successModal').modal('show');
                 }
             );
         } 
