@@ -1,24 +1,145 @@
-$(document).ready(function () {
-
-   
-
-    let date = Boolean;
-    let gender = Boolean;
-    let sexuality = Boolean;
-    let favThing1 = Boolean;
-    let favThing2 = Boolean;
-    let favThing3 = Boolean;
-    let bio = Boolean;
-    let interested = Boolean;
-
-    $(".btn").on("click", function(event) {
-        // Make sure to preventDefault on a submit event.
-        event.preventDefault();
-        
 
 
-    });
+$(document).ready(function() {
 
+    $('#datePicker')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the date field
+            $('#eventForm').formValidation('revalidateField', 'date');
+        });
+
+
+
+    $('#contact_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            city: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 20
+                    },
+                        notEmpty: {
+                        message: 'Please provide a city'
+                    }
+                }
+            },
+            state: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 20
+                    },
+                        notEmpty: {
+                        message: 'Please provide a state'
+                    }
+                }
+            },
+            date: {
+                validators: {
+                    date: {
+                        format: 'MM-DD-YYYY',
+                        message: 'The value is not a valid date'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select a gender'
+                    }
+                }
+            },
+            sexuality: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select a sexuality'
+                    }
+                }
+            },
+            fav1: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 50
+                    },
+                        notEmpty: {
+                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                    }
+                }
+            },
+            fav2: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 50
+                    },
+                        notEmpty: {
+                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                    }
+                }
+            },
+            fav3: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                        max: 50
+                    },
+                        notEmpty: {
+                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                    }
+                }
+            },
+            bio: {
+                validators: {
+                        stringLength: {
+                        max: 250
+                    },
+                        notEmpty: {
+                        message: 'Please fill out but do not exceed 250 characters'
+                    }
+                }
+            },
+            interestedIn: {
+                validators: {
+                        stringLength: {
+                        max: 100
+                    },
+                        notEmpty: {
+                        message: 'Please fill out but do not exceed 100 characters'
+                    }
+                }
+            },
+
+
+        }
+           
+        })
+        .on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#contact_form').data('bootstrapValidator').resetForm();
+
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
 });
-
 
