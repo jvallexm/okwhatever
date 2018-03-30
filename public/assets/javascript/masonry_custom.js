@@ -20,7 +20,7 @@ $grid.on( 'click', '.grid-item', function() {
   	$( this ).toggleClass('grid-item--gigante');
   	// $(".hidetrick").toggle();
   	$(this).closest('.grid-item').find('.hidetrick').toggle();
-  $(".glyphicon-play").toggle();
+  	$(this).closest('.grid-item').find('.glyphicon-play').toggle();
   // trigger layout
   	$grid.masonry();
 });
