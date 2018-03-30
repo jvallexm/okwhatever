@@ -52,7 +52,7 @@ module.exports = function(io){
             users.forEach(i=>{
 
                 if(i.user_data.id == message.toId){
-                    db.user.findAll({where: {id: message.fromId}})
+                    db.user.findAll({where: {id: requestAnimationFrame.user_data.id}})
                            .then(arr=>{
                                console.log("I found that one!");
                                io.broadcast.to(i.id).emit("new message",arr[0])

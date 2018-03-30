@@ -208,7 +208,7 @@ $(document).ready(() => {
         }).then(
             function() {
                 console.log("posted new message");
-                socket.emit("send message",{fromID: msgid});
+                socket.emit("send message",{toId: msgid, fromId: getCookie("id")});
                 // confirmation modal
                 $("#myModal").modal('hide');
                 $("#message").val("");
