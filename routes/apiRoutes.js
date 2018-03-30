@@ -66,7 +66,7 @@ module.exports = function(app){
         
     });
 
-    app.post('/api/message/read',(err,res)=>{
+    app.post('/api/message/read',(req,res)=>{
 
         db.message.update({readTo: true},{where: {id: req.body.id}})
                   .then((r)=>{
