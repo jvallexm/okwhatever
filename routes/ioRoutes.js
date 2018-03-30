@@ -46,8 +46,12 @@ module.exports = function(io){
 
         client.on("send message",(message)=>{
 
+            console.log("Message done been sent");
+            console.log(message);
+
             users.forEach(i=>{
-                if(i.user_data.id === message.toId){
+
+                if(i.user_data.id == message.toId){
                     db.user.findAll({where: {id: message.fromId}})
                            .then(arr=>{
                                io.broadcast.to(i.id).emit("new message",arr[0])
