@@ -72,7 +72,18 @@ module.exports = function(app,path){
       function(accessToken, refreshToken, profile, cb) {
         console.log(profile); // Logs profile data
         user = profile;
-        return cb(null, user);
+        if (profile) {
+            user = profile; // Sets the user to be the returned profiles
+            // Creates a JWT for the user
+            user.my_token = jwt.sign( {id: user.id},
+                                      process.env.COOKIE_SECRET,
+                                      {expiresIn: 86400}          );
+            user.user_id = user.id; // Saves the user is to be set as a client side cookie
+            return cb(null, user);  // Returns the user
+        }
+        else {
+            return cb(null, false); //fff
+        }
       }
     ));
 
@@ -86,7 +97,11 @@ module.exports = function(app,path){
         passport.authenticate('google', { failureRedirect: '/login' }),
         function(req, res) {
             // Successful authentication, redirect home.
-            res.json(req.profile);
+            res.json({
+                id: req.user.id,
+                name: req.name.givenName,
+                image: req.user.photos[0].value
+            });
     });
 
     app.get('/auth/google',   passport.authenticate('google',{scope: ['profile'] }));
