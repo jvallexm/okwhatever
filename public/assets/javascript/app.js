@@ -269,6 +269,10 @@ $(document).ready(() => {
             // Prevent form submission
             e.preventDefault();
 
+            var $form = $(e.target);
+
+            var bv = $form.data('bootstrapValidator');
+
             let newUser = {
                 birthday:      $("#birthday").val(),
                 bio:           $("#bio").val().trim(),
