@@ -54,6 +54,17 @@ module.exports = function(app){
 
     // Middlewear to redirect to edit page if incomplete profile    
 
+    app.use(`/`,(req,res,next)=>{
+
+        User.findOne(req,(r)=>{
+            if(r.complete)
+                next();
+            else
+                res.redirect(`/edit`);
+        })
+
+    });
+
     // If logged in defaults to...
 
     app.get(`/`,(req,res)=>{
