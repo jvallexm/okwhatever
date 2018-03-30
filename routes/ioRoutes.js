@@ -55,7 +55,7 @@ module.exports = function(io){
                     db.user.findAll({where: {id: message.fromId}})
                            .then(arr=>{
                                console.log("I found that one!");
-                               socket.broadcast.to(i.id).emit("new message",arr[0])
+                               client.broadcast.to(i.id).emit("new message",arr[0])
                            });
                 }
             });
