@@ -20,6 +20,7 @@ module.exports = function(io){
     const users = [];
 
     io.on("connection",(client)=>{
+<<<<<<< HEAD
 
         if(client.handshake.headers.cookie){
 
@@ -39,12 +40,28 @@ module.exports = function(io){
             console.log("Anonymous done connected");
 
         }
+=======
+        console.log("Someone done connected");
 
-        client.on("disconnect",(client)=>{
-            console.log("someone done disconnected");
-            users.splice(users.indexOf(client),1);
-        });
-    
+        if(client.cookie){
+        
+            parseClientCookie(client,(data)=>{
+
+                client.user_data = data;
+                console.log(client.user_data);
+                users.push(client);
+                console.log("total users " + users.length);
+
+            });
+>>>>>>> 573b78aded08b645698d9809ae9098940432b681
+
+            client.on("disconnect",(client)=>{
+                console.log("someone done disconnected");
+                users.splice(users.indexOf(client),1);
+            });
+
+        }
+        
     });
 
 

@@ -37,9 +37,14 @@ const engine = {
 app.engine("handlebars", exphbs(engine));
 app.set("view engine", "handlebars");
 
+<<<<<<< HEAD
 /* Routing */
 
 require( './routes/ioRoutes.js'   )(io)
+=======
+/* Will always send login first */
+
+>>>>>>> 573b78aded08b645698d9809ae9098940432b681
 require( './routes/authRoutes.js' )(app,path);
 require( './routes/apiRoutes.js'  )(app);
 require( './routes/htmlRoutes.js' )(app);
