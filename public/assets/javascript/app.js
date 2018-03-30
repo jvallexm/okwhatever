@@ -7,82 +7,6 @@ $("#login").on("click", function() {
 
 $(document).ready(() => {
 
-    $('#datePicker')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('#eventForm').formValidation('revalidateField', 'date');
-        });
-
-
-
-    $('#contact_form').bootstrapValidator({
-        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            city: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                    },
-                        notEmpty: {
-                        message: 'Please provide a city'
-                    }
-                }
-            },
-            state: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                    },
-                        notEmpty: {
-                        message: 'Please provide a state'
-                    }
-                }
-            },
-            gender: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select a gender'
-                    }
-                }
-            },
-            sexuality: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select a sexuality'
-                    }
-                }
-            },
-        }
-           
-        })
-        .on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-                $('#contact_form').data('bootstrapValidator').resetForm();
-
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
-        });
-
-
     function getCookie(cname) {
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
@@ -149,8 +73,68 @@ $(document).ready(() => {
 
         console.log(newUser.birthday);
 
-        
+        let isValidated = false;
 
+        $("#validation").text("")
+
+        if ($('.datepicker').val() === "") {
+            date = false;
+        } else {date = true;};
+
+        if ($('#gender').val() === null) {
+            gender = false;
+        }else {gender = true;};
+
+        if ($('#sexuality').val() === null) {
+           sexuality = false;
+        }else {sexuality = true;};
+
+        if ($('#favorite1').val() === "") {
+            favThing1 = false;
+        }else {favThing1 = true;};
+
+        if ($('#favorite2').val() === "") {
+            favThing2 = false;
+        }else {favThing2 = true;};
+
+        if ($('#favorite3').val() === "") {
+            favThing3 = false;
+        }else {favThing3 = true;};
+
+        if ($('#bio').val() === "") {
+            bio = false;
+        }else {bio = true;};
+        
+        if ($('#interestedIn').val() === "") {
+            interested = false;
+        }else {interested = true;};
+
+        if (date===false){
+            $("#validation").append(" please fill out a date. ");
+        };
+        if (gender===false){
+            $("#validation").append(" please fill out a gender. ");
+        };
+        if (sexuality===false){
+            $("#validation").append(" please fill out a sexuality. ");
+        };
+        if (favThing1===false){
+            $("#validation").append(" please fill out favorite thing 1. ");
+        };
+        if (favThing2===false){
+            $("#validation").append(" please fill out favorite thing 2. ");
+        };
+        if (favThing3===false){
+            $("#validation").append(" please fill out favorite thing 3. ");
+        };
+        if (bio===false){
+            $("#validation").append(" please fill out a bio. ");
+        };
+        if (interested===false){
+            $("#validation").append(" please fill out some of your interests. ");
+        };
+
+        if ($("#validation").val().trim() === ""){
             isValidated = true;
             // Send the POST request.
             $.ajax("/api/profile/update", {
@@ -163,7 +147,7 @@ $(document).ready(() => {
                     $("#validation").val("Profile updated!")
                 }
             );
-        
+        } 
     });
 
 
