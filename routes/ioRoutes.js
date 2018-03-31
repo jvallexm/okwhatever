@@ -5,16 +5,24 @@ module.exports = function(io){
 
     function parseClientCookie(client,cb){
         
-        let cookie    = client.handshake.headers.cookie;
-        let authSplit = cookie.split("auth=")[1];
-        let token     = authSplit.split(";")[0];
+        if(cookie.indexOf("auth") > -1){
 
-        jwt.verify(token,process.env.COOKIE_SECRET,(err,data)=>{
-    
-            if(data)
-               cb(data);
-    
-        });
+            let cookie    = client.handshake.headers.cookie;
+            let authSplit = cookie.split("auth=")[1];
+            let token     = authSplit.split(";")[0];
+
+            jwt.verify(token,process.env.COOKIE_SECRET,(err,data)=>{
+        
+                if(data)
+                cb(data);
+        
+            });
+
+        } else {
+
+            return false;
+
+        }
         
 
     }
@@ -29,12 +37,14 @@ module.exports = function(io){
             
             parseClientCookie(client,(data)=>{
 
-                client.user_data = data;
-                console.log("*** adding user ***");
-                console.log(client.id);
-                console.log(client.user_data);
-                users.push(client);
-                console.log("total users " + users.length);
+                if(data){
+                    client.user_data = data;
+                    console.log("*** adding user ***");
+                    console.log(client.id);
+                    console.log(client.user_data);
+                    users.push(client);
+                    console.log("total users " + users.length);
+                }
 
             });
 
