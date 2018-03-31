@@ -72,6 +72,7 @@ $(document).ready(() => {
             },
             fields: {
                 city: {
+                    trigger: "change keyup",
                     validators: {
                             stringLength: {
                             min: 2,
@@ -83,6 +84,7 @@ $(document).ready(() => {
                     }
                 },
                 state: {
+                    trigger: "change keyup",
                     validators: {
                             stringLength: {
                             min: 2,
