@@ -65,7 +65,7 @@ $(document).ready(() => {
 
         
 
-    $('#contact_form').bootstrapValidator({
+        $('#contact_form').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -171,7 +171,7 @@ $(document).ready(() => {
                             message: 'Please fill out but do not exceed 100 characters'
                         }
                     }
-                }
+                },
     
     
             }
