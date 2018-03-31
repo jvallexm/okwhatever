@@ -280,7 +280,7 @@ $(document).ready(() => {
 
         $("#msg-btn").popover('show');
 
-        if($("unread").length){
+
 
             let newUnread = parseInt($("#unread").text()) - 1;
             if(newUnread == 0)
@@ -288,12 +288,7 @@ $(document).ready(() => {
             else
                 $("#unread").text(newUnread);
 
-        } else {
-
-            let unread = $("<span>").attr("id","unread").text("1");
-            $("#msg-btn").prepend(unread);
-
-        }
+        
 
     });
 
