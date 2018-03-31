@@ -47,8 +47,8 @@ $(document).ready(() => {
                 $("#city").val(r.city);
                 $("#state").val(r.state);
                 $("#interestedIn").val(r.wants_to);    
-                    
-                $("#contact_form").bootstrapValidator('revalidateField','city');
+
+                $("#contact_form").revalidateForm('revalidateField','input');
 
             } else {
 
