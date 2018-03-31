@@ -76,6 +76,10 @@ $(document).ready(() => {
             state:         $("#state").val().trim()
         };
 
+        let unixTime = new Date(newUser.birthday).getFullYear();
+
+        console.log("Year of birth " + unixTime);
+
         // Use Ajax to submit form data
         $.ajax("/api/profile/update", {
             type: "POST",
@@ -280,7 +284,9 @@ $(document).ready(() => {
 
         $("#msg-btn").popover('show');
 
-        if($("unread").length){
+            let current = $(`#unread`).text();
+
+            console.log("current messages " + current);
 
             let newUnread = parseInt($("#unread").text()) - 1;
             if(newUnread == 0)
@@ -288,12 +294,7 @@ $(document).ready(() => {
             else
                 $("#unread").text(newUnread);
 
-        } else {
-
-            let unread = $("<span>").attr("id","unread").text("1");
-            $("#msg-btn").prepend(unread);
-
-        }
+        
 
     });
 
