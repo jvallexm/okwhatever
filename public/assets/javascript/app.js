@@ -35,18 +35,18 @@ $(document).ready(() => {
                     let date = new Date(r.birthday * 1000);
                     $("#birthday").val(`${date.getMonth() +1 }/${date.getDate()}/${date.getFullYear()}`).trigger("change");
                 }
-                $("#bio").val(r.bio).trigger("change");
-                $("#gender").val(r.gender).trigger("change");
-                $("#sexuality").val(r.interested_in).trigger("change");
+                $("#bio").val(r.bio).trigger("change").change();
+                $("#gender").val(r.gender).trigger("change").change();
+                $("#sexuality").val(r.interested_in).trigger("change").change();
                 if(r.faves){
                     let faves = r.faves.split(";;;");
-                    $("#favorite1").val(faves[0]).trigger("change");     
-                    $("#favorite2").val(faves[1]).trigger("change");
-                    $("#favorite3").val(faves[2]).trigger("change");
+                    $("#favorite1").val(faves[0]).trigger("change").change();     
+                    $("#favorite2").val(faves[1]).trigger("change").change();
+                    $("#favorite3").val(faves[2]).trigger("change").change();
                 }
-                $("#city").val(r.city).trigger("change");
-                $("#state").val(r.state).trigger("change");
-                $("#interestedIn").val(r.wants_to).trigger("change");    
+                $("#city").val(r.city).trigger("change").change();
+                $("#state").val(r.state).trigger("change").change();
+                $("#interestedIn").val(r.wants_to).trigger("change").change();    
 
             } else {
 
