@@ -33,20 +33,20 @@ $(document).ready(() => {
                 
                 if(r.birthday){
                     let date = new Date(r.birthday * 1000);
-                    $("#birthday").attr("value",`${date.getMonth() +1 }/${date.getDate()}/${date.getFullYear()}`).change();
+                    $("#birthday").val(`${date.getMonth() +1 }/${date.getDate()}/${date.getFullYear()}`).trigger("change");
                 }
-                $("#bio").attr("value",r.bio);
-                $("#gender").attr("value",r.gender);
-                $("#sexuality").attr("value",r.interested_in);
+                $("#bio").val(r.bio).trigger("change");
+                $("#gender").val(r.gender).trigger("change");
+                $("#sexuality").val(r.interested_in).trigger("change");
                 if(r.faves){
                     let faves = r.faves.split(";;;");
-                    $("#favorite1").attr("value",faves[0]);     
-                    $("#favorite2").attr("value",faves[1]);
-                    $("#favorite3").attr("value",faves[2]);
+                    $("#favorite1").val(faves[0]).trigger("change");     
+                    $("#favorite2").val(faves[1]).trigger("change");
+                    $("#favorite3").val(faves[2]).trigger("change");
                 }
-                $("#city").attr("value",r.city).change();
-                $("#state").attr("value",r.state);
-                $("#interestedIn").attr("value",r.wants_to);    
+                $("#city").val(r.city).trigger("change");
+                $("#state").val(r.state).trigger("change");
+                $("#interestedIn").val(r.wants_to).trigger("change");    
 
             } else {
 
@@ -172,11 +172,6 @@ $(document).ready(() => {
     
             }
                
-    });
-
-    $("#city").on('dp.change dp.show', function (e) {
-        // Revalidate the date when user change it
-        $('#contact_form').bootstrapValidator('revalidateField', 'city');
     });
 
     $("#contact_form").on("submit",(e)=>{
