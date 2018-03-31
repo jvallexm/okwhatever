@@ -280,7 +280,9 @@ $(document).ready(() => {
 
         $("#msg-btn").popover('show');
 
+            let current = $(`#unread`).text();
 
+            console.log("current messages " + current);
 
             let newUnread = parseInt($("#unread").text()) - 1;
             if(newUnread == 0)
