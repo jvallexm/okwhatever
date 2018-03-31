@@ -33,20 +33,20 @@ $(document).ready(() => {
                 
                 if(r.birthday){
                     let date = new Date(r.birthday * 1000);
-                    $("#birthday").val(`${date.getMonth() +1 }/${date.getDate()}/${date.getFullYear()}`).change();
+                    $("#birthday").attr("value",`${date.getMonth() +1 }/${date.getDate()}/${date.getFullYear()}`).change();
                 }
-                $("#bio").val(r.bio);
-                $("#gender").val(r.gender);
-                $("#sexuality").val(r.interested_in);
+                $("#bio").attr("value",r.bio);
+                $("#gender").attr("value",r.gender);
+                $("#sexuality").attr("value",r.interested_in);
                 if(r.faves){
                     let faves = r.faves.split(";;;");
-                    $("#favorite1").val(faves[0]);     
-                    $("#favorite2").val(faves[1]);
-                    $("#favorite3").val(faves[2]);
+                    $("#favorite1").attr("value",faves[0]);     
+                    $("#favorite2").attr("value",faves[1]);
+                    $("#favorite3").attr("value",faves[2]);
                 }
-                $("#city").val(r.city).change();
-                $("#state").val(r.state);
-                $("#interestedIn").val(r.wants_to);    
+                $("#city").attr("value",r.city).change();
+                $("#state").attr("value",r.state);
+                $("#interestedIn").attr("value",r.wants_to);    
 
             } else {
 
