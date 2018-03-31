@@ -308,7 +308,7 @@ $(document).ready(() => {
     function makePopover(user){
 
         let message = $("<div>").addClass("pop-pop text-center");
-        let mHead   = $("<h6>").text(`New Message from ${user.name}`);
+        let mHead   = $("<h6>").addClass("up-up").text(`New Message from ${user.name}`);
         let smol    = $("<img>").addClass("smol").attr("src",user.image);
         message.append(mHead).append(smol);
         return message;
