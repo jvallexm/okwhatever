@@ -63,7 +63,7 @@ $(document).ready(() => {
             format: 'mm/dd/yyyy'
         });
 
-        
+        let exp = /[A-z0-9\s]+/g
 
         $('#contact_form').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -84,7 +84,7 @@ $(document).ready(() => {
                             message: 'Please provide a city'
                         },
                         regexp: {
-                            regexp: /[A-z\s]/g,
+                            regexp: exp,
                             message: 'Letters and numbers only, please'
                         }
                     }
@@ -100,7 +100,7 @@ $(document).ready(() => {
                             message: 'Please provide a state'
                         },
                         regexp: {
-                            regexp: /[A-z\s]/g,
+                            regexp: exp,
                             message: 'Letters and numbers only, please'
                         }
                     }
@@ -137,7 +137,7 @@ $(document).ready(() => {
                             message: 'Please provide a favorite thing between 2 and 50 characters'
                         },
                         regexp: {
-                            regexp: /[A-z\s]/g,
+                            regexp: exp,
                             message: 'Letters and numbers only, please'
                         }
                     }
@@ -152,7 +152,7 @@ $(document).ready(() => {
                             message: 'Please provide a favorite thing between 2 and 50 characters'
                         },
                         regexp: {
-                            regexp: /[A-z\s]/g,
+                            regexp: exp,
                             message: 'Letters and numbers only, please'
                         }
                     }
