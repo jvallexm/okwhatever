@@ -1,6 +1,7 @@
 const db       = require('../models/index');
 const User     = require('../controllers/userController');
 const Message  = require('../controllers/messageController');
+const path     = require('path');
 
 module.exports = function(app){
     
@@ -247,7 +248,7 @@ module.exports = function(app){
 
     app.get(`*`,(req,res)=>{
 
-        res.send("404ed!");
+        res.sendFile( path.join(__dirname + `/../public/404.html`));
 
     });
 
