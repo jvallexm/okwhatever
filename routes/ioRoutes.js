@@ -4,10 +4,11 @@ const db   = require('../models/index');
 module.exports = function(io){
 
     function parseClientCookie(client,cb){
+
+        let cookie    = client.handshake.headers.cookie;
         
         if(cookie.indexOf("auth") > -1){
 
-            let cookie    = client.handshake.headers.cookie;
             let authSplit = cookie.split("auth=")[1];
             let token     = authSplit.split(";")[0];
 
