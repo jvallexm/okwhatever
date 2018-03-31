@@ -200,7 +200,7 @@ $(document).ready(() => {
                         message: 'Please fill out but do not exceed 100 characters'
                     }
                 }
-            },
+            }
 
 
         }
