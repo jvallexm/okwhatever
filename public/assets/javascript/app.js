@@ -48,6 +48,117 @@ $(document).ready(() => {
                 $("#state").val(r.state);
                 $("#interestedIn").val(r.wants_to);
 
+                $('#contact_form').bootstrapValidator({
+                    // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        city: {
+                            validators: {
+                                    stringLength: {
+                                    min: 2,
+                                    max: 20
+                                },
+                                    notEmpty: {
+                                    message: 'Please provide a city'
+                                }
+                            }
+                        },
+                        state: {
+                            validators: {
+                                    stringLength: {
+                                    min: 2,
+                                    max: 20
+                                },
+                                    notEmpty: {
+                                    message: 'Please provide a state'
+                                }
+                            }
+                        },
+                        date: {
+                            validators: {
+                                date: {
+                                    format: 'MM/DD/YYYY',
+                                    message: 'The value is not a valid date'
+                                }
+                            }
+                        },
+                        gender: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please select a gender'
+                                }
+                            }
+                        },
+                        sexuality: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please select a sexuality'
+                                }
+                            }
+                        },
+                        fav1: {
+                            validators: {
+                                    stringLength: {
+                                    min: 2,
+                                    max: 50
+                                },
+                                    notEmpty: {
+                                    message: 'Please provide a favorite thing between 2 and 50 characters'
+                                }
+                            }
+                        },
+                        fav2: {
+                            validators: {
+                                    stringLength: {
+                                    min: 2,
+                                    max: 50
+                                },
+                                    notEmpty: {
+                                    message: 'Please provide a favorite thing between 2 and 50 characters'
+                                }
+                            }
+                        },
+                        fav3: {
+                            validators: {
+                                    stringLength: {
+                                    min: 2,
+                                    max: 50
+                                },
+                                    notEmpty: {
+                                    message: 'Please provide a favorite thing between 2 and 50 characters'
+                                }
+                            }
+                        },
+                        bio: {
+                            validators: {
+                                    stringLength: {
+                                    max: 250
+                                },
+                                    notEmpty: {
+                                    message: 'Please fill out but do not exceed 250 characters'
+                                }
+                            }
+                        },
+                        interestedIn: {
+                            validators: {
+                                    stringLength: {
+                                    max: 100
+                                },
+                                    notEmpty: {
+                                    message: 'Please fill out but do not exceed 100 characters'
+                                }
+                            }
+                        }
+            
+            
+                    }
+                       
+                    });
+
             } else {
 
                 console.log("ERROR!!");
@@ -95,117 +206,6 @@ $(document).ready(() => {
         );
 
     });
-
-    $('#contact_form').bootstrapValidator({
-        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            city: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                        max: 20
-                    },
-                        notEmpty: {
-                        message: 'Please provide a city'
-                    }
-                }
-            },
-            state: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                        max: 20
-                    },
-                        notEmpty: {
-                        message: 'Please provide a state'
-                    }
-                }
-            },
-            date: {
-                validators: {
-                    date: {
-                        format: 'MM/DD/YYYY',
-                        message: 'The value is not a valid date'
-                    }
-                }
-            },
-            gender: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select a gender'
-                    }
-                }
-            },
-            sexuality: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select a sexuality'
-                    }
-                }
-            },
-            fav1: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                        max: 50
-                    },
-                        notEmpty: {
-                        message: 'Please provide a favorite thing between 2 and 50 characters'
-                    }
-                }
-            },
-            fav2: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                        max: 50
-                    },
-                        notEmpty: {
-                        message: 'Please provide a favorite thing between 2 and 50 characters'
-                    }
-                }
-            },
-            fav3: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                        max: 50
-                    },
-                        notEmpty: {
-                        message: 'Please provide a favorite thing between 2 and 50 characters'
-                    }
-                }
-            },
-            bio: {
-                validators: {
-                        stringLength: {
-                        max: 250
-                    },
-                        notEmpty: {
-                        message: 'Please fill out but do not exceed 250 characters'
-                    }
-                }
-            },
-            interestedIn: {
-                validators: {
-                        stringLength: {
-                        max: 100
-                    },
-                        notEmpty: {
-                        message: 'Please fill out but do not exceed 100 characters'
-                    }
-                }
-            }
-
-
-        }
-           
-        });
 
 
     var msgid;
