@@ -217,6 +217,7 @@ module.exports = function(app){
                         r[i].faves = faves;
                         let birthYear = new Date(r[i].birthday * 1000);
                         r[i].age = dateDiffInYears(now,birthYear);
+                        console.log("age of " + r[i].name + " r[i].age");
                         matches.push(r[i]);
                         
                     }
