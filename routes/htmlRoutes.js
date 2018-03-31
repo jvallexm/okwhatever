@@ -208,11 +208,11 @@ module.exports = function(app){
 
                 for(let i=0;i<r.length;++i){
 
-                  /*  if(r[i].id === itYou){
+                    if(r[i].id === itYou){
                         you = r[i];
                         matches.push(you)
                         //matches.push(r[i]);
-                    } else*/ if(r[i].complete) {
+                    } else if(r[i].complete) {
                         let faves = r[i].faves.split(";;;").join(" - ");
                         r[i].faves = faves;
                         let birthYear = new Date(r[i].birthday * 1000);
