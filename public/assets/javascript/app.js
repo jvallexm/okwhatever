@@ -44,11 +44,9 @@ $(document).ready(() => {
                     $("#favorite2").val(faves[1]);
                     $("#favorite3").val(faves[2]);
                 }
-                $("#city").val(r.city);
+                $("#city").val(r.city).change();
                 $("#state").val(r.state);
                 $("#interestedIn").val(r.wants_to);    
-
-                $("#contact_form").revalidateForm('revalidateField','input');
 
             } else {
 
@@ -174,6 +172,11 @@ $(document).ready(() => {
     
             }
                
+    });
+
+    $("#city").on('dp.change dp.show', function (e) {
+        // Revalidate the date when user change it
+        $('#contact_form').bootstrapValidator('revalidateField', 'city');
     });
 
     $("#contact_form").on("submit",(e)=>{
