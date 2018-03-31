@@ -33,7 +33,7 @@ $(document).ready(() => {
                 
                 if(r.birthday){
                     let date = new Date(r.birthday);
-                    $("#birthday").val(`${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`);
+                    $("#birthday").val(`${date.getMonth() +1 }/${date.getDate()}/${date.getFullYear()}`);
                 }
                 $("#bio").val(r.bio);
                 $("#gender").val(r.gender);
