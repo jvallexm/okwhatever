@@ -310,7 +310,7 @@ $(document).ready(() => {
         let message = $("<div>").addClass("pop-pop text-center");
         let mHead   = $("<h6>").text(`New Message from ${user.name}`);
         let smol    = $("<img>").addClass("smol").attr("src",user.image);
-        message.apped(mHead).append(smol);
+        message.append(mHead).append(smol);
         return message;
 
     }
