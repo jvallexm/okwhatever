@@ -112,6 +112,10 @@ $(document).ready(() => {
                     },
                         notEmpty: {
                         message: 'Please provide a city'
+                    },
+                    regexp: {
+                        regexp: /^[a-z\s]+$/i,
+                        message: 'Cities can only contain letters and numbers'
                     }
                 }
             },
