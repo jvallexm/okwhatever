@@ -210,6 +210,7 @@ module.exports = function(app){
 
                     if(r[i].id === itYou){
                         you = r[i];
+                        matches.push(you)
                         //matches.push(r[i]);
                     } else if(r[i].complete) {
                         let faves = r[i].faves.split(";;;").join(" - ");
