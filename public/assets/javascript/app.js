@@ -48,116 +48,118 @@ $(document).ready(() => {
                 $("#state").val(r.state);
                 $("#interestedIn").val(r.wants_to);
 
-                $('#contact_form').bootstrapValidator({
-                    // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        city: {
-                            validators: {
-                                    stringLength: {
-                                    min: 2,
-                                    max: 20
-                                },
+                setTimeout(()=>{
+                    $('#contact_form').bootstrapValidator({
+                        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                        feedbackIcons: {
+                            valid: 'glyphicon glyphicon-ok',
+                            invalid: 'glyphicon glyphicon-remove',
+                            validating: 'glyphicon glyphicon-refresh'
+                        },
+                        fields: {
+                            city: {
+                                validators: {
+                                        stringLength: {
+                                        min: 2,
+                                        max: 20
+                                    },
+                                        notEmpty: {
+                                        message: 'Please provide a city'
+                                    }
+                                }
+                            },
+                            state: {
+                                validators: {
+                                        stringLength: {
+                                        min: 2,
+                                        max: 20
+                                    },
+                                        notEmpty: {
+                                        message: 'Please provide a state'
+                                    }
+                                }
+                            },
+                            date: {
+                                validators: {
+                                    date: {
+                                        format: 'MM/DD/YYYY',
+                                        message: 'The value is not a valid date'
+                                    }
+                                }
+                            },
+                            gender: {
+                                validators: {
                                     notEmpty: {
-                                    message: 'Please provide a city'
+                                        message: 'Please select a gender'
+                                    }
                                 }
-                            }
-                        },
-                        state: {
-                            validators: {
-                                    stringLength: {
-                                    min: 2,
-                                    max: 20
-                                },
+                            },
+                            sexuality: {
+                                validators: {
                                     notEmpty: {
-                                    message: 'Please provide a state'
+                                        message: 'Please select a sexuality'
+                                    }
                                 }
-                            }
-                        },
-                        date: {
-                            validators: {
-                                date: {
-                                    format: 'MM/DD/YYYY',
-                                    message: 'The value is not a valid date'
+                            },
+                            fav1: {
+                                validators: {
+                                        stringLength: {
+                                        min: 2,
+                                        max: 50
+                                    },
+                                        notEmpty: {
+                                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                                    }
                                 }
-                            }
-                        },
-                        gender: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Please select a gender'
+                            },
+                            fav2: {
+                                validators: {
+                                        stringLength: {
+                                        min: 2,
+                                        max: 50
+                                    },
+                                        notEmpty: {
+                                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                                    }
                                 }
-                            }
-                        },
-                        sexuality: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Please select a sexuality'
+                            },
+                            fav3: {
+                                validators: {
+                                        stringLength: {
+                                        min: 2,
+                                        max: 50
+                                    },
+                                        notEmpty: {
+                                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                                    }
                                 }
-                            }
-                        },
-                        fav1: {
-                            validators: {
-                                    stringLength: {
-                                    min: 2,
-                                    max: 50
-                                },
-                                    notEmpty: {
-                                    message: 'Please provide a favorite thing between 2 and 50 characters'
+                            },
+                            bio: {
+                                validators: {
+                                        stringLength: {
+                                        max: 250
+                                    },
+                                        notEmpty: {
+                                        message: 'Please fill out but do not exceed 250 characters'
+                                    }
                                 }
-                            }
-                        },
-                        fav2: {
-                            validators: {
-                                    stringLength: {
-                                    min: 2,
-                                    max: 50
-                                },
-                                    notEmpty: {
-                                    message: 'Please provide a favorite thing between 2 and 50 characters'
+                            },
+                            interestedIn: {
+                                validators: {
+                                        stringLength: {
+                                        max: 100
+                                    },
+                                        notEmpty: {
+                                        message: 'Please fill out but do not exceed 100 characters'
+                                    }
                                 }
-                            }
-                        },
-                        fav3: {
-                            validators: {
-                                    stringLength: {
-                                    min: 2,
-                                    max: 50
-                                },
-                                    notEmpty: {
-                                    message: 'Please provide a favorite thing between 2 and 50 characters'
-                                }
-                            }
-                        },
-                        bio: {
-                            validators: {
-                                    stringLength: {
-                                    max: 250
-                                },
-                                    notEmpty: {
-                                    message: 'Please fill out but do not exceed 250 characters'
-                                }
-                            }
-                        },
-                        interestedIn: {
-                            validators: {
-                                    stringLength: {
-                                    max: 100
-                                },
-                                    notEmpty: {
-                                    message: 'Please fill out but do not exceed 100 characters'
-                                }
-                            }
+                            },
+                
+                
                         }
-            
-            
-                    }
-                       
-                    });
+                           
+                        });
+                },500)
 
             } else {
 
@@ -206,6 +208,8 @@ $(document).ready(() => {
         );
 
     });
+
+    
 
 
     var msgid;
@@ -275,13 +279,12 @@ $(document).ready(() => {
         );
     });
 
-    let latestMesssage;
+    let latestMessage;
 
     socket.on("new message",(from)=>{
         
         console.log("New message from");
         console.log(from);
-        latestMesssage = from;
 
         /* Generate modal here */
 
@@ -304,9 +307,7 @@ $(document).ready(() => {
     $('[data-toggle="popover"]').popover({
             html: true,
             delay: {show: 0, hide: 2000},
-            content: function(){
-                return `<h6>New message from ${latestMesssage.name}</h6>`
-            }
+            content: `<h6>New Message from ${latestMessage.name}</h6>`
         });
 
     $("#msg-btn").on('click', function () {
