@@ -47,9 +47,8 @@ $(document).ready(() => {
                 $("#city").val(r.city);
                 $("#state").val(r.state);
                 $("#interestedIn").val(r.wants_to);
-                /*
-                setTimeout(()=>{
-                    $('#contact_form').bootstrapValidator({
+                
+                $('#contact_form').bootstrapValidator({
                         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
                         feedbackIcons: {
                             valid: 'glyphicon glyphicon-ok',
@@ -58,6 +57,7 @@ $(document).ready(() => {
                         },
                         fields: {
                             city: {
+                                trigger: `change keyup`,
                                 validators: {
                                         stringLength: {
                                         min: 2,
@@ -69,6 +69,7 @@ $(document).ready(() => {
                                 }
                             },
                             state: {
+                                trigger: `change keyup`,
                                 validators: {
                                         stringLength: {
                                         min: 2,
@@ -159,7 +160,7 @@ $(document).ready(() => {
                         }
                            
                         });
-                },500)*/
+                }
 
             } else {
 
