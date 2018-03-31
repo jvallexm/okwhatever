@@ -106,22 +106,26 @@ $(document).ready(() => {
         fields: {
             city: {
                 validators: {
-                        stringLength: {
+                    stringLength: {
                         min: 2,
                         max: 20
                     },
                     notEmpty: {
                         message: 'Please provide a city'
+                    },
+                    regexp: {
+                        regexp: /^[A-z\s]+$/i,
+                        message: 'Most cities have only letters... cmon now'
                     }
                 }
             },
             state: {
                 validators: {
-                        stringLength: {
+                    stringLength: {
                         min: 2,
                         max: 20
                     },
-                        notEmpty: {
+                    notEmpty: {
                         message: 'Please provide a state'
                     }
                 }
@@ -292,7 +296,7 @@ $(document).ready(() => {
             console.log("current messages " + current);
 
             let newUnread = parseInt($("#unread").text()) - 1;
-            if(newUnread == 0)
+            if(newUnread == 0 || newUnread == "NaN")
                 $("#unread").text("");
             else
                 $("#unread").text(newUnread);
@@ -305,7 +309,7 @@ $(document).ready(() => {
             html: true,
             delay: {show: 0, hide: 2000},
             content: function(){
-                return `<h4>New message from ${latestMesssage.name}<h4>`
+                return `<h6>New message from ${latestMesssage.name}</h6>`
             }
         });
 
