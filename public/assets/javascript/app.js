@@ -307,9 +307,11 @@ $(document).ready(() => {
 
     function makePopover(user){
 
-        let message = $("<div>").addClass("pop-pop");
+        let message = $("<div>").addClass("pop-pop text-center");
         let mHead   = $("<h6>").text(`New Message from ${user.name}`);
         let smol    = $("<img>").addClass("smol").attr("src",user.image);
+        message.apped(mHead).append(smol);
+        return message;
 
     }
 
@@ -317,7 +319,7 @@ $(document).ready(() => {
             html: true,
             delay: {show: 0, hide: 2000},
             content: function(){
-                return `<h6>New Message from ${latestMessage.name}</h6>`
+                return makePopover(latestMessage);
             }
         });
 
