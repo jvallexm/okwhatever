@@ -112,16 +112,12 @@ $(document).ready(() => {
                     },
                     notEmpty: {
                         message: 'Please provide a city'
-                    },
-                    regexp: {
-                        regexp: /[A-z\s]/g,
-                        message: 'Most cities have only letters... cmon now'
                     }
                 }
             },
             state: {
                 validators: {
-                    stringLength: {
+                        stringLength: {
                         min: 2,
                         max: 20
                     },
