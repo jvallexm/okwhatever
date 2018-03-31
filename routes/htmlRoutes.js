@@ -212,14 +212,14 @@ module.exports = function(app){
                         you = r[i];
                         matches.push(you)
                         //matches.push(r[i]);
-                    } else if(r[i].complete) {*/
+                    } else*/ if(r[i].complete) {
                         let faves = r[i].faves.split(";;;").join(" - ");
                         r[i].faves = faves;
                         let birthYear = new Date(r[i].birthday * 1000);
                         r[i].age = dateDiffInYears(now,birthYear);
                         matches.push(r[i]);
                         
-                   // }
+                    }
 
                 }
 
