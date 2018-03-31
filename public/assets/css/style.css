@@ -319,3 +319,13 @@ p {
     /*margin-top: -20px;*/
     height: 17px;
   }
+
+  .flirt-true {
+    border-color: #00a54f;
+    border-width: 2px;
+  }
+
+ .flirt-false {
+    border-color: #0047a5;
+    border-width: 2px;
+  }
