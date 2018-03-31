@@ -295,6 +295,8 @@ $(document).ready(() => {
 
     });
 
+    $('[data-toggle="popover"]').popover(); 
+
     popultate();
 
     $grid.masonry();
