@@ -13,7 +13,7 @@ A dating app for people who have (almost) given up.
 * [dotenv](https://www.npmjs.com/package/dotenv) - Module to load variables from .env file into process.env.
 * [Express](https://expressjs.com/) - Framework for Node.js.
 * [Express-Handlebars](https://handlebarsjs.com/) - HTML template system.
-* [Express-Session](https://www.npmjs.com/package/express-session) - To store and access user data.
+- To store and access user data.
 * [Json Web Token](https://jwt.io/) - For securely sending information between users.
 * [Masonry](https://masonry.desandro.com/) - Our JavaScript grid layout library.
 * [Mocha](https://mochajs.org/) - JavaScript testing framework.
@@ -21,7 +21,6 @@ A dating app for people who have (almost) given up.
 * [MySQL2](https://www.npmjs.com/package/mysql2) - Offers additional features.
 * [Parse URL](https://www.npmjs.com/package/parseurl) - To parse the URL.
 * [Passport](http://www.passportjs.org/) - Authentication of username and password.
-* [Passport-Facebook](http://www.passportjs.org/docs/facebook/) - Allows users to log in using their facebook account.
 * [Passport-Google-OAuth20](https://www.npmjs.com/package/passport-google-oauth-2) - Allows users to login using their Google account.
 * [Passport-OAuth2](https://www.npmjs.com/package/passport-oauth2-code) - Authenticates users with an ID.
 * [Sequelize](http://docs.sequelizejs.com/) - Our ORM to control connectivity to the database.
