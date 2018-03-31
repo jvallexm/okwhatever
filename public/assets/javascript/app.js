@@ -63,6 +63,8 @@ $(document).ready(() => {
             format: 'mm/dd/yyyy'
         });
 
+        /*
+
         $('#contact_form').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
             feedbackIcons: {
@@ -174,7 +176,7 @@ $(document).ready(() => {
     
             }
                
-    });
+    });*/
 
     $("#contact_form").on("submit",(e)=>{
 
@@ -315,7 +317,7 @@ $(document).ready(() => {
         $('#msg-btn').popover('destroy');
     });
 
-    //popultate();
+    popultate();
 
     // force restack of grid after jquery hidetrick
 
