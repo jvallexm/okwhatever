@@ -106,11 +106,11 @@ $(document).ready(() => {
         fields: {
             city: {
                 validators: {
-                    stringLength: {
+                        stringLength: {
                         min: 2,
                         max: 20
                     },
-                    notEmpty: {
+                        notEmpty: {
                         message: 'Please provide a city'
                     }
                 }
@@ -121,7 +121,7 @@ $(document).ready(() => {
                         min: 2,
                         max: 20
                     },
-                    notEmpty: {
+                        notEmpty: {
                         message: 'Please provide a state'
                     }
                 }
@@ -292,7 +292,7 @@ $(document).ready(() => {
             console.log("current messages " + current);
 
             let newUnread = parseInt($("#unread").text()) - 1;
-            if(newUnread == 0 || newUnread == "NaN")
+            if(newUnread == 0)
                 $("#unread").text("");
             else
                 $("#unread").text(newUnread);
