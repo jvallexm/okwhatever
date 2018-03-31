@@ -114,7 +114,7 @@ $(document).ready(() => {
                         message: 'Please provide a city'
                     },
                     regexp: {
-                        regexp: /^[A-z\s]+$/i,
+                        regexp: /^[A-z\s]+/g,
                         message: 'Most cities have only letters... cmon now'
                     }
                 }
