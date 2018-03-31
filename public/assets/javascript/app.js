@@ -32,7 +32,7 @@ $(document).ready(() => {
             if(r){
                 
                 if(r.birthday){
-                    let date = new Date(r.birthday);
+                    let date = new Date(r.birthday * 1000);
                     $("#birthday").val(`${date.getMonth() +1 }/${date.getDate()}/${date.getFullYear()}`);
                 }
                 $("#bio").val(r.bio);
@@ -64,12 +64,11 @@ $(document).ready(() => {
         });
 
     $("#contact_form").on("submit",(e)=>{
-        e.preventDefault();
 
         e.preventDefault();
 
         let newUser = {
-            birthday:      new Date($(`#birthday`).val()).getTime(),
+            birthday:      new Date($(`#birthday`).val()).getTime()/1000,
             bio:           $("#bio").val().trim(),
             gender:        $("#gender").val().trim(),
             interested_in: $("#sexuality").val().trim(),
