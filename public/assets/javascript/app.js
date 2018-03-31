@@ -239,7 +239,7 @@ $(document).ready(() => {
             $(this).append($("<span>").addClass("glyphicon glyphicon-check"));
 
             let newUnread = parseInt($("#unread").text()) - 1;
-            if(newUnread == 0)
+            if(newUnread == 0 || newUnread == "NaN")
                 $("#unread").text("");
             else
                 $("#unread").text(newUnread);
@@ -275,10 +275,13 @@ $(document).ready(() => {
         );
     });
 
+    let latestMesssage;
+
     socket.on("new message",(from)=>{
         
         console.log("New message from");
         console.log(from);
+        latestMesssage = from;
 
         /* Generate modal here */
 
@@ -299,7 +302,11 @@ $(document).ready(() => {
     });
 
     $('[data-toggle="popover"]').popover({
-            delay: {show: 0, hide: 2000}
+            html: true,
+            delay: {show: 0, hide: 2000},
+            content: function(){
+                return `<h4>New message from ${latestMesssage.name}<h4>`
+            }
         });
 
     $("#msg-btn").on('click', function () {
