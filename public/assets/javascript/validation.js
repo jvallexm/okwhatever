@@ -29,6 +29,10 @@ $(document).ready(function() {
                     },
                         notEmpty: {
                         message: 'Please provide a city'
+                    },
+                    regexp: {
+                        regexp: /^[a-z\s]+$/i,
+                        message: 'Most cities have only letters... cmon now'
                     }
                 }
             },
@@ -40,6 +44,10 @@ $(document).ready(function() {
                     },
                         notEmpty: {
                         message: 'Please provide a state'
+                    },
+                    regexp: {
+                        regexp: /^[a-z\s]+$/i,
+                        message: `Only letters please.`
                     }
                 }
             },
@@ -72,7 +80,11 @@ $(document).ready(function() {
                         max: 50
                     },
                         notEmpty: {
-                        message: 'Please provide a favorite thing between 2 and 50 characters'
+                        message: 'please fill me out'
+                    },
+                    regexp: {
+                        regexp: /^[a-z\s0-9]+$/i,
+                        message: 'Can only contain letters and numbers'
                     }
                 }
             },
@@ -84,6 +96,10 @@ $(document).ready(function() {
                     },
                         notEmpty: {
                         message: 'Please provide a favorite thing between 2 and 50 characters'
+                    },
+                    regexp: {
+                        regexp: /^[a-z\s0-9]+$/i,
+                        message: 'Can only contain letters and numbers'
                     }
                 }
             },
@@ -95,6 +111,10 @@ $(document).ready(function() {
                     },
                         notEmpty: {
                         message: 'Please provide a favorite thing between 2 and 50 characters'
+                    },
+                    regexp: {
+                        regexp: /^[a-z\s0-9]+$/i,
+                        message: 'Can only contain letters and numbers'
                     }
                 }
             },
