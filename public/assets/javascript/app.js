@@ -278,9 +278,7 @@ $(document).ready(() => {
 
         /* Generate modal here */
 
-        $('[data-toggle="popover"]').popover({
-            delay: {show: 0, hide: 2000}
-        });
+        $("#msg-btn").popover('show');
 
         if($("unread").length){
 
@@ -299,7 +297,9 @@ $(document).ready(() => {
 
     });
 
-    $('[data-toggle="popover"]').popover(); 
+    $('[data-toggle="popover"]').popover({
+            delay: {show: 0, hide: 2000}
+        });
 
     $("#msg-btn").on('click', function () {
         $('#msg-btn').popover('destroy');
