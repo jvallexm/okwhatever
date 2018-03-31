@@ -9,7 +9,7 @@
 var $grid = $('.grid').masonry({
   itemSelector: '.grid-item',
   columnWidth: 150,
-  gutter: 15,
+  gutter: 5,
 });
 
 $(".hidetrick").hide();
