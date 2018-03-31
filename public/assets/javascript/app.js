@@ -30,8 +30,11 @@ $(document).ready(() => {
         $.get("/api/profile/" + id).done((r)=>{
 
             if(r){
-
-                $("#birthday").val(r.birthday);
+                
+                if(r.birthday){
+                    let date = new Date(r.birthday);
+                    $("#birthday").val(`${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`);
+                }
                 $("#bio").val(r.bio);
                 $("#gender").val(r.gender);
                 $("#sexuality").val(r.interested_in);
@@ -66,7 +69,7 @@ $(document).ready(() => {
         e.preventDefault();
 
         let newUser = {
-            birthday:      $("#birthday").val(),
+            birthday:      new Date(newUser.birthday).getTime()/1000,
             bio:           $("#bio").val().trim(),
             gender:        $("#gender").val().trim(),
             interested_in: $("#sexuality").val().trim(),
@@ -76,9 +79,7 @@ $(document).ready(() => {
             state:         $("#state").val().trim()
         };
 
-        let unixTime = new Date(newUser.birthday).getFullYear();
-
-        console.log("Year of birth " + unixTime);
+        let unixTime = 
 
         // Use Ajax to submit form data
         $.ajax("/api/profile/update", {

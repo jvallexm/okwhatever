@@ -187,6 +187,8 @@ module.exports = function(app){
 
                 let matches = [];
 
+                let now = new Date();
+
                 for(let i=0;i<r.length;++i){
 
                     if(r[i].id === itYou){
@@ -195,6 +197,8 @@ module.exports = function(app){
                     } else if(r[i].complete) {
                         let faves = r[i].faves.split(";;;").join(" - ");
                         r[i].faves = faves;
+                        let birthYear = new Date(r[i].birthday).getFullYear();
+                        r[i].age = now.getFullYear() - birthYear;
                         matches.push(r[i]);
                         
                     }
