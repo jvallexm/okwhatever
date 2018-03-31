@@ -216,7 +216,7 @@ module.exports = function(app){
                         let faves = r[i].faves.split(";;;").join(" - ");
                         r[i].faves = faves;
                         let birthYear = new Date(r[i].birthday * 1000);
-                        r[i].age = dateDiffInYears(now,birthYear);
+                        r[i].age = dateDiffInYears(birthYear,now);
                         matches.push(r[i]);
                         
                     }
