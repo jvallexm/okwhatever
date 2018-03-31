@@ -315,7 +315,7 @@ $(document).ready(() => {
         $('#msg-btn').popover('destroy');
     });
 
-    popultate();
+    //popultate();
 
     // force restack of grid after jquery hidetrick
 
