@@ -126,10 +126,14 @@ height:auto;
 }
 
 
-/*.row {
+.row {
      margin-right: 0px; 
    
-}*/
+}
+
+.match-row {
+  padding-left: 15px;
+}
 
 .btn-match {
   width: 120px;
