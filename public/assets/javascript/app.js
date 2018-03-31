@@ -47,7 +47,7 @@ $(document).ready(() => {
                 $("#city").val(r.city);
                 $("#state").val(r.state);
                 $("#interestedIn").val(r.wants_to);
-
+                /*
                 setTimeout(()=>{
                     $('#contact_form').bootstrapValidator({
                         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -159,7 +159,7 @@ $(document).ready(() => {
                         }
                            
                         });
-                },500)
+                },500)*/
 
             } else {
 
