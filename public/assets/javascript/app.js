@@ -69,7 +69,7 @@ $(document).ready(() => {
         e.preventDefault();
 
         let newUser = {
-            birthday:      new Date(newUser.birthday).getTime()/1000,
+            birthday:      new Date($(`#birthday`).val()).getTime()/1000,
             bio:           $("#bio").val().trim(),
             gender:        $("#gender").val().trim(),
             interested_in: $("#sexuality").val().trim(),
