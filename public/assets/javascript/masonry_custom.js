@@ -8,8 +8,7 @@
 
 var $grid = $('.grid').masonry({
   itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer',
-  // columnWidth: 150,
+  columnWidth: 150,
   gutter: 5,
 });
 
