@@ -58,7 +58,7 @@ $(document).ready(() => {
 
     }
 
-    $('#datePicker')
+    $('#birthday')
         .datepicker({
             format: 'mm/dd/yyyy'
         });
