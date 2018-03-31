@@ -75,7 +75,7 @@ height:auto;
 
 .grid-sizer,
 .grid-item {
-  max-width: 300px;
+  max-width: 330px;
    margin-bottom: 10px;
 }
 
@@ -105,7 +105,7 @@ height:auto;
 }
 
 .grid-item--gigante {
-  width: 64%;
+  max-width: 600px;
 /*  height: 500px;
 */}
 
