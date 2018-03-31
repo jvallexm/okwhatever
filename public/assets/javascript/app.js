@@ -35,20 +35,37 @@ $(document).ready(() => {
                     let date = new Date(r.birthday * 1000);
                     $("#birthday").val(`${date.getMonth() +1 }/${date.getDate()}/${date.getFullYear()}`).change();
                 }
-                $("#bio").val(r.bio).change();
-                $("#gender").val(r.gender).change();
-                $("#sexuality").val(r.interested_in).change();
+                $("#bio").val(r.bio);
+                $("#gender").val(r.gender);
+                $("#sexuality").val(r.interested_in);
                 if(r.faves){
                     let faves = r.faves.split(";;;");
-                    $("#favorite1").val(faves[0]).change();     
-                    $("#favorite2").val(faves[1]).change();
-                    $("#favorite3").val(faves[2]).change();
+                    $("#favorite1").val(faves[0]);     
+                    $("#favorite2").val(faves[1]);
+                    $("#favorite3").val(faves[2]);
                 }
-                $("#city").val(r.city).change();
-                $("#state").val(r.state).change();
-                $("#interestedIn").val(r.wants_to).change();
+                $("#city").val(r.city);
+                $("#state").val(r.state);
+                $("#interestedIn").val(r.wants_to);
                 
-        
+                if(r.birthday){
+                    let date = new Date(r.birthday * 1000);
+                    $("#birthday").change();
+                }
+                $("#bio").change();
+                $("#gender").change();
+                $("#sexuality").change();
+                if(r.faves){
+                    let faves = r.faves.split(";;;");
+                    $("#favorite1").change();
+                    $("#favorite2").change();
+                    $("#favorite3").change();
+                }
+                $("#city").change();
+                $("#state").change();
+                $("#interestedIn").change();
+                
+                
                     
                 
 
