@@ -46,26 +46,7 @@ $(document).ready(() => {
                 }
                 $("#city").val(r.city);
                 $("#state").val(r.state);
-                $("#interestedIn").val(r.wants_to);
-                
-                if(r.birthday){
-                    let date = new Date(r.birthday * 1000);
-                    $("#birthday").change();
-                }
-                $("#bio").change();
-                $("#gender").change();
-                $("#sexuality").change();
-                if(r.faves){
-                    let faves = r.faves.split(";;;");
-                    $("#favorite1").change();
-                    $("#favorite2").change();
-                    $("#favorite3").change();
-                }
-                $("#city").change();
-                $("#state").change();
-                $("#interestedIn").change();
-                
-                
+                $("#interestedIn").val(r.wants_to);    
                     
                 
 
@@ -304,7 +285,7 @@ $(document).ready(() => {
         
         console.log("New message from");
         console.log(from);
-
+        latestMessage = from;
         /* Generate modal here */
 
         $("#msg-btn").popover('show');
