@@ -307,7 +307,9 @@ $(document).ready(() => {
     $('[data-toggle="popover"]').popover({
             html: true,
             delay: {show: 0, hide: 2000},
-            content: `<h6>New Message from ${latestMessage.name}</h6>`
+            content: function(){
+                return `<h6>New Message from ${latestMessage.name}</h6>`
+            }
         });
 
     $("#msg-btn").on('click', function () {
