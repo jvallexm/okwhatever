@@ -278,6 +278,10 @@ $(document).ready(() => {
 
         /* Generate modal here */
 
+        $('[data-toggle="popover"]').popover({
+            delay: {show: 0, hide: 2000}
+        });
+
         if($("unread").length){
 
             let newUnread = parseInt($("#unread").text()) - 1;
@@ -297,7 +301,13 @@ $(document).ready(() => {
 
     $('[data-toggle="popover"]').popover(); 
 
+    $("#msg-btn").on('click', function () {
+        $('#msg-btn').popover('destroy');
+    });
+
     popultate();
+
+    // force restack of grid after jquery hidetrick
 
     $grid.masonry();
 
