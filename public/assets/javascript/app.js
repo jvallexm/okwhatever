@@ -305,6 +305,14 @@ $(document).ready(() => {
 
     });
 
+    function makePopover(user){
+
+        let message = $("<div>").addClass("pop-pop");
+        let mHead   = $("<h6>").text(`New Message from ${user.name}`);
+        let smol    = $("<img>").addClass("smol").attr("src",user.image);
+
+    }
+
     $('[data-toggle="popover"]').popover({
             html: true,
             delay: {show: 0, hide: 2000},
