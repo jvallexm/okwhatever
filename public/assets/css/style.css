@@ -314,3 +314,8 @@ p {
     font-size: 150%;
     padding: 20px;
   }
+
+  .flirt-img {
+    /*margin-top: -20px;*/
+    height: 17px;
+  }
