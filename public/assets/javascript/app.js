@@ -319,7 +319,8 @@ $(document).ready(() => {
             html: true,
             delay: {show: 0, hide: 2000},
             content: function(){
-                return makePopover(latestMessage);
+                if(latestMessage)
+                    return makePopover(latestMessage);
             }
         });
 
