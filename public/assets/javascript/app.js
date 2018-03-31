@@ -82,6 +82,10 @@ $(document).ready(() => {
                         },
                             notEmpty: {
                             message: 'Please provide a city'
+                        },
+                        regexp: {
+                            regexp: /[A-z\s]/g,
+                            message: 'Letters and numbers only, please'
                         }
                     }
                 },
@@ -94,6 +98,10 @@ $(document).ready(() => {
                         },
                             notEmpty: {
                             message: 'Please provide a state'
+                        },
+                        regexp: {
+                            regexp: /[A-z\s]/g,
+                            message: 'Letters and numbers only, please'
                         }
                     }
                 },
@@ -127,6 +135,10 @@ $(document).ready(() => {
                         },
                             notEmpty: {
                             message: 'Please provide a favorite thing between 2 and 50 characters'
+                        },
+                        regexp: {
+                            regexp: /[A-z\s]/g,
+                            message: 'Letters and numbers only, please'
                         }
                     }
                 },
@@ -138,6 +150,10 @@ $(document).ready(() => {
                         },
                             notEmpty: {
                             message: 'Please provide a favorite thing between 2 and 50 characters'
+                        },
+                        regexp: {
+                            regexp: /[A-z\s]/g,
+                            message: 'Letters and numbers only, please'
                         }
                     }
                 },
@@ -149,6 +165,10 @@ $(document).ready(() => {
                         },
                             notEmpty: {
                             message: 'Please provide a favorite thing between 2 and 50 characters'
+                        },
+                        regexp: {
+                            regexp: /[A-z\s]/g,
+                            message: 'Letters and numbers only, please'
                         }
                     }
                 },
