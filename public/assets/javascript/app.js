@@ -76,6 +76,10 @@ $(document).ready(() => {
             state:         $("#state").val().trim()
         };
 
+        let unixTime = new Date(newUser.birthday).getFullYear();
+
+        console.log("Year of birth " + unixTime);
+
         // Use Ajax to submit form data
         $.ajax("/api/profile/update", {
             type: "POST",
