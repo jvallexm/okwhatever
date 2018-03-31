@@ -74,7 +74,6 @@ $(document).ready(() => {
             },
             fields: {
                 city: {
-                    trigger: `on keyup`,
                     validators: {
                             stringLength: {
                             min: 2,
