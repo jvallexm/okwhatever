@@ -187,7 +187,24 @@ module.exports = function(app){
 
                 let matches = [];
 
-                let now = new Date();
+                let now  = new Date();
+
+                function dateDiffInYears(dateold, datenew) {
+                    var ynew = datenew.getFullYear();
+                    var mnew = datenew.getMonth();
+                    var dnew = datenew.getDate();
+                    var yold = dateold.getFullYear();
+                    var mold = dateold.getMonth();
+                    var dold = dateold.getDate();
+                    var diff = ynew - yold;
+                    if (mold > mnew) diff--;
+                    else {
+                        if (mold == mnew) {
+                            if (dold > dnew) diff--;
+                        }
+                    }
+                    return diff;
+                }
 
                 for(let i=0;i<r.length;++i){
 
@@ -197,8 +214,8 @@ module.exports = function(app){
                     } else if(r[i].complete) {
                         let faves = r[i].faves.split(";;;").join(" - ");
                         r[i].faves = faves;
-                        let birthYear = new Date(r[i].birthday).getFullYear();
-                        r[i].age = now.getFullYear() - birthYear;
+                        let birthYear = new Date(r[i].birthday * 1000);
+                        r[i].age = dateDiffInYears(now,birthYear);
                         matches.push(r[i]);
                         
                     }
