@@ -63,7 +63,7 @@ $(document).ready(() => {
             format: 'mm/dd/yyyy'
         });
 
-        let exp = /[A-z0-9\s]+/g
+        let exp = !/[A-z0-9\s]+/g
 
         $('#contact_form').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
