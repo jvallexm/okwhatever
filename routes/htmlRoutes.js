@@ -58,26 +58,22 @@ module.exports = function(app){
 
     });
 
-    // Route to view a profile
-
-    app.get(`/users/:id`,(req,res)=>{
-
-
-
-    });
-
     // Route to check inbox
 
     app.get(`/inbox`,(req,res)=>{
         
         if(req.user_data){
-            let user = req.user_data.id;
 
-            Message.inbox(user,(inbox)=>{
+            let user = req.user_data.id; // References user's id
+
+            Message.inbox(user,(inbox)=>{ 
 
                 User.findOne(req,(r)=>{
 
                     let send = {
+
+                        /* Sorts messages so that the newest is displayed first */
+
                         message: inbox.sort((a,b)=>{
                             if(a.createdAt > b.createdAt)
                                 return -1;
@@ -108,20 +104,17 @@ module.exports = function(app){
 
             });
 
-        } else {
-
-            res.render("messages",{
-                message: []
-            });
-
         }
 
     });
+
+    /* Sends a list of the messages a user has sent */
 
     app.get(`/sent`,(req,res)=>{
 
         
         if(req.user_data){
+
             let user = req.user_data.id;
 
             Message.outbox(user,(inbox)=>{
@@ -163,12 +156,6 @@ module.exports = function(app){
 
             });
 
-        } else {
-
-            res.render("messages",{
-                message: []
-            });
-
         }
 
     });
@@ -181,13 +168,15 @@ module.exports = function(app){
 
             User.findAll(req,(r)=>{
                 
-                let itYou = req.user_data.id;
+                let itYou = req.user_data.id; // Your id
+ 
+                let you; // Obect that holds the user's data
 
-                let you;
+                let matches = []; // List of matches 
 
-                let matches = [];
+                let now  = new Date(); // Current date
 
-                let now  = new Date();
+                /* Function to render user's ages */
 
                 function dateDiffInYears(dateold, datenew) {
                     var ynew = datenew.getFullYear();
@@ -206,15 +195,20 @@ module.exports = function(app){
                     return diff;
                 }
 
+                /* Sorts all matches for ones who are not the user, sets the user object with their data */
+
                 for(let i=0;i<r.length;++i){
 
                     if(r[i].id === itYou){
+
                         you = r[i];
+
                     } else if(r[i].complete) {
-                        let faves = r[i].faves.split(";;;").join(" - ");
+
+                        let faves = r[i].faves.split(";;;").join(" - "); // Makes favorites readable
                         r[i].faves = faves;
                         let birthYear = new Date(r[i].birthday * 1000);
-                        r[i].age = dateDiffInYears(birthYear,now);
+                        r[i].age = dateDiffInYears(birthYear,now); // Dynamically creates the user's age 
                         matches.push(r[i]);
                         
                     }
@@ -240,19 +234,7 @@ module.exports = function(app){
     
             });
 
-        } else {
-
-            res.render("matches",{
-                you: {
-                    name: "Hot Poppers",
-                    image: "hotpoppers.jpg"
-                },
-                match: []
-            });
-
         }
-
-        
 
     });
 
@@ -265,6 +247,8 @@ module.exports = function(app){
 
     });
 
+
+    /* Sends the 404 Page for all other routes */
 
     app.get(`*`,(req,res)=>{
 

@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes){
             primaryKey: true
         },
         fromId:     DataTypes.STRING,  // Id of the user the message is from
-        toId:       DataTypes.STRING,  
+        toId:       DataTypes.STRING,  // Id of the user the message is sent to
         inboxTo:    DataTypes.BOOLEAN, // If the message is in the 'to' user inbox
         inboxFrom:  DataTypes.BOOLEAN, // If the message is in the 'from' user inbox
         text:       DataTypes.STRING,  // Text of the message
@@ -21,10 +21,14 @@ module.exports = function(sequelize, DataTypes){
 
     message.associate = function(models){
 
+        /* The user messages are sent by */
+
         message.belongsTo(models.user, 
         {foreignKey: {
             allowNull: false
         }});
+
+        /* The user message are sent to */
 
         message.belongsTo(models.user, 
         {   

@@ -8,10 +8,9 @@ module.exports = function(app){
 
         console.log("creating a new message");
 
-        let flirt = false;
+        let flirt = req.body.flirt ? true : false; // If the message is a flirt or not 
 
-        if(req.body.flirt == "true")
-            flirt = true;
+        /* New message to be sent to the database */
             
         db.message.create({
 
@@ -26,23 +25,18 @@ module.exports = function(app){
             isFlirt: flirt,
             userId: req.user_data.id
 
-        }).then(user => res.send("ding"));
+        }).then(user => res.send(true)); // Sends true when the user has been created
         
     });
 
-    app.get('/api/profile/:id',(req,res)=>{
-        db.user.findAll({ where: { id: req.params.id }})
-               .then(results => res.json(results[0]));
-    });
+    /* Updating the profile of a single user */
 
-    //updating a user
     app.post('/api/profile/update',(req,res)=>{
 
         console.log("updating user");
         
         if(req.user_data){
 
-            console.log(req.user_data.id);
             let id = req.user_data.id; // Id of the user being updated
             let update = req.body;     // Object being sent to the API
 
@@ -60,11 +54,13 @@ module.exports = function(app){
 
             console.log("You're not logged in!");
             console.log(req.body);
-            res.send("ding");
+            res.send(false);
             
         }
         
     });
+
+    /* Updates messages so that they are shown as 'read' in /inbox */
 
     app.post('/api/message/read',(req,res)=>{
 
@@ -73,14 +69,6 @@ module.exports = function(app){
                       res.send("ding");
                   })
 
-    });
-
-    //get all users
-    app.get('/api/users',(req,res)=>{
-
-        db.user.findAll({})
-               .then(results => res.json(results));
-               
     });
 
 }

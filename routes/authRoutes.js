@@ -32,8 +32,6 @@ module.exports = function(app,path){
 
     });
 
-   
-
     /* Passport Google Strategy */
 
     passport.use(new GoogleStrategy({
@@ -56,16 +54,15 @@ module.exports = function(app,path){
             return cb(null, user);  // Returns the user
         }
         else {
-            return cb(null, false); //fff
+            return cb(null, false); // Otherwise returns false
         }
       }
     ));
 
-
-    app.use( passport.initialize() );
+    app.use( passport.initialize() );  // Uses passport
     app.use( passport.session()    );
 
-    app.get('/auth/facebook', passport.authenticate('facebook',{authType: 'rerequest', scope: ['public_profile','photos'] }));
+    app.get('/auth/google',   passport.authenticate('google',{scope: ['profile'] })); // Sends a request to google to authenticate users
 
     app.get('/auth/google/callback', 
         passport.authenticate('google', { failureRedirect: '/login' }),
@@ -74,38 +71,38 @@ module.exports = function(app,path){
             let token = req.user.my_token;
             res.cookie('auth',token,{httpOnly: false}); // Sets JWT token to be ready by server as cookie
             res.cookie('id',req.user.user_id);          // Sets the id as a token to be ready by the client as a cookie
+
+            /* Checks the user database to see if a user already exists with the ID */
             
             db.user.findAll({where: {id: req.user.user_id}})
                    .then(arr=>{
 
-                        console.log(req.user._json);
+                        /* If a user doesn't exist it creates a new one and sends the user to the redirect page */
                         
                         if(arr.length === 0){
 
                             let insert = {
                                 
-                                id: req.user.id,
-                                name: req.user.name.givenName,
-                                image: req.user.photos[0].value.split("?")[0]
+                                id: req.user.id,                               // User's ID
+                                name: req.user.name.givenName,                 // User's first name
+                                image: req.user.photos[0].value.split("?")[0]  // The user's profile photo
 
                             };
-                            console.log(insert);
+                            console.log(insert); 
                             db.user.create(insert).then(res.sendFile(path.join(__dirname + `/../public/redirect.html`)));
 
                         } else {
 
-                            res.sendFile(path.join(__dirname + `/../public/redirect.html`));
+                            res.sendFile(path.join(__dirname + `/../public/redirect.html`)); // Redirects existing users
 
                         }
 
-                    });           // Redirects to login
+                    }); 
 
     });
 
-    app.get('/auth/google',   passport.authenticate('google',{scope: ['profile'] }));
 
-
-    /* Middlewear to send users back to /login who have not been authorized */
+    /* Middlewear to send users back to /login who have not been authorized or whose authorization has expired */
 
     app.use((req,res,next)=>{
 
