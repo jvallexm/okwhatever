@@ -37,9 +37,9 @@ const engine = {
 app.engine("handlebars", exphbs(engine));
 app.set("view engine", "handlebars");
 
-require( './routes/ioRoutes.js'   )(io)
-require( './routes/authRoutes.js' )(app,path);
-require( './routes/apiRoutes.js'  )(app);
-require( './routes/htmlRoutes.js' )(app);
+require( './routes/ioRoutes.js'   )(io)        // Socket.io routes
+require( './routes/authRoutes.js' )(app,path); // Authorization routes
+require( './routes/apiRoutes.js'  )(app);      // API routes
+require( './routes/htmlRoutes.js' )(app);      // HTML Routes 
 
 module.exports = app;

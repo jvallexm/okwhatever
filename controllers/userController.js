@@ -4,7 +4,7 @@ const db = require('../models/index');
 
 module.exports = {
 
-    /* Find and return a single user */
+    /* Find and return a single user from the request headers */
 
     findOne: function(req,cb){
 
@@ -13,7 +13,7 @@ module.exports = {
                    
                 cb(arr[0]);
 
-            });
+        });
 
     },
 

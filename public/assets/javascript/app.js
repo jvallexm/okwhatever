@@ -1,11 +1,9 @@
-const socket = io();
-
-$("#login").on("click", function() {
-    console.log("login..");
-    window.location.replace(`/auth/facebook`);
-});
+const socket = io(); // Socket.io
 
 $(document).ready(() => {
+
+
+    /* Reads cookies and returns the cookie cname */
 
     function getCookie(cname) {
         var name = cname + "=";
@@ -23,10 +21,12 @@ $(document).ready(() => {
         return "";
     }
 
+    /* Fills in the user profile fields on the /edit page */
 
     function popultate(){
 
         let id = getCookie("id");
+        
         $.get("/api/profile/" + id).done((r)=>{
 
             if(r){
@@ -58,14 +58,13 @@ $(document).ready(() => {
 
     }
 
-    $('#birthday')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        });
+    /* Datepicker for edit page */
 
-        let exp = /[A-z0-9\s]/i
+    $('#birthday').datepicker({ format: 'mm/dd/yyyy' });
 
-        $('#contact_form').bootstrapValidator({
+    let exp = /[A-z0-9\s]/i // Regex for data validation
+
+    $('#contact_form').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -198,9 +197,13 @@ $(document).ready(() => {
                
     });
 
+    /* Submission for /edit page  */
+
     $("#contact_form").on("submit",(e)=>{
 
         e.preventDefault();
+
+        /* Creates an object to be sent to the database */
 
         let newUser = {
             birthday:      new Date($(`#birthday`).val()).getTime()/1000,
@@ -216,25 +219,25 @@ $(document).ready(() => {
 
         // Use Ajax to submit form data
         $.ajax("/api/profile/update", {
+
             type: "POST",
             data: newUser
-        }).then(
-            function() {
-                console.log("created new user user");
-                // Reload the page to get the updated list
-                $("#validation").val("Profile updated!")
+
+        }).then((r)=>{
+            
+                $("#validation").val("Profile updated!");
                 $('#successModal').modal('show');
                 $('#modal2msg').text('Your Profile has been successfully updated!');
+            
             }
         );
 
     });
 
-    
+    var msgid;      // Id of the user a message will be sent to
+    var flirtornot; // If the sent message is a `flirt` or a `whatever`
 
-
-    var msgid;
-    var flirtornot;
+    /* Creates a modal for flirt and click buttons with the id of the user the message will be sent to */
 
     $(".flirt").on("click", function(event) {
         msgid = $(this).data("id");
@@ -248,6 +251,8 @@ $(document).ready(() => {
         $('#myModal').modal('show');
     });
 
+    /* Changes unread messages to read ones in the /inbox page */
+
     $(".read").on("click",function(e){
 
         $.ajax(`/api/message/read`,{
@@ -257,11 +262,15 @@ $(document).ready(() => {
 
         }).then((r)=>{
 
+            /* Changes the mark as read button to a checkmark */
+
             $(this).removeClass("btn-info read")
                    .addClass("btn-secondary")
                    .text("");
 
             $(this).append($("<span>").addClass("glyphicon glyphicon-check"));
+
+            /* Reduces the number of unread messages displayed in the side-nav */
 
             let newUnread = parseInt($("#unread").text()) - 1;
             if(newUnread == 0 || newUnread == "NaN")
@@ -286,12 +295,14 @@ $(document).ready(() => {
 
         // Send the POST request.
         $.ajax("/api/send", {
+
             type: "POST",
             data: newMsg
+
         }).then(
             function() {
                 console.log("posted new message");
-                socket.emit("send message",{toId: msgid, fromId: getCookie("id")});
+                socket.emit("send message",{toId: msgid, fromId: getCookie("id")}); // Sends a message request to the server socket
                 // confirmation modal
                 $("#myModal").modal('hide');
                 $("#message").val("");
@@ -300,7 +311,7 @@ $(document).ready(() => {
         );
     });
 
-    let latestMessage;
+    let latestMessage; // The user from whom the latest message is recieved
 
     socket.on("new message",(from)=>{
         
@@ -309,21 +320,25 @@ $(document).ready(() => {
         latestMessage = from;
         /* Generate modal here */
 
-        $("#msg-btn").popover('show');
+        $("#msg-btn").popover('show'); // Shows the new message popover
 
-            let current = $(`#unread`).text();
+            let current = $(`#unread`).text(); // The current number of unread messgaes
 
             console.log("current messages " + current);
 
-            let newUnread = parseInt($("#unread").text()) - 1;
-            if(newUnread == 0)
-                $("#unread").text("");
+            /* Increases the unread messages by 1 */
+
+            let newUnread = parseInt($("#unread").text()) + 1;
+            if(newUnread == 0 || newUnread == "NaN")
+                $("#unread").text("1");
             else
                 $("#unread").text(newUnread);
 
         
 
     });
+
+    /* Creates the new popover html to be displayed when a socket sends a new message  */
 
     function makePopover(user){
 
@@ -335,6 +350,8 @@ $(document).ready(() => {
 
     }
 
+    /* Generates a new popover when a message is sent */
+
     $('[data-toggle="popover"]').popover({
             html: true,
             delay: {show: 0, hide: 2000},
@@ -343,6 +360,8 @@ $(document).ready(() => {
                     return makePopover(latestMessage);
             }
         });
+
+    /* Destroys the popover when the user checks their inbox */
 
     $("#msg-btn").on('click', function () {
         $('#msg-btn').popover('destroy');
